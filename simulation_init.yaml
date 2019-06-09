@@ -52,18 +52,18 @@ agents:
 observers:
   model_observers:
     -
-      observer_type: Dumb_Model_Obs
+      observer_type: ModelPoolObserver
       observer_name: DM_Obs
       observer_actions:
         - obs_fb
   agent_observers:
     -
-      observer_type: Funny_Bug_Obs
+      observer_type: PoolObserver
       observer_name: FB_Obs
       observer_actions:
         - obs_fb
     -
-      observer_type: Circumspect_Bug_Obs
+      observer_type: PoolObserver
       observer_name: CB_Obs
       observer_actions:
         - obs_cb

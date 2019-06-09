@@ -36,6 +36,7 @@ class Simulation(object):
             setattr(self, self.parameter_name, self.parameter_value)
         self.create_scenarios()
         self.create_agents()
+        self.create_observers()
 
     def create_scenarios(self):
         """Scenario creation"""
@@ -67,9 +68,9 @@ class Simulation(object):
         self.model_observers_def = self.yaml_simulation_defs['observers']['model_observers']
         self.agent_observers_def = self.yaml_simulation_defs['observers']['agent_observers']
         self.model_observers = ObserverCreator(self, self.model,
-                                                 self.model_observers_def)
+                                               self.model_observers_def)
         self.model_observers = ObserverCreator(self, self.model,
-                                                 self.agent_observers_def)
+                                               self.agent_observers_def)
 
     def intialize_run(self):
         """Run intialization -

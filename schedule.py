@@ -74,8 +74,9 @@ class PoolSchedule(Schedule):
         if step_unit == 'step':
             for this_step in range(0, no_of_steps, step_interval):
                 for agent_name, agent in self.model.simulation.agents.items():
-                    for action_name, action in agent.actions.items():
-                        action(this_step)
+                    agent.step(this_step)
+                for observer_name, observer in self.model.simulation.agent_observers.items():
+                    observer.observe()
         else:
             raise Exception(step_unit,
                             "is not valid as step unity")

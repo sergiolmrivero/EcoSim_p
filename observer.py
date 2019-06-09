@@ -1,13 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
 Definition of the class Observer
 
 *SLMR
-REMEMBER TO USE DEPENDENCE INJECTION IN THE CODE.
-http://python-dependency-injector.ets-labs.org/index.html
-
 """
 
 import dependency_injector.providers as providers
@@ -27,6 +24,7 @@ class Observer(object):
 # Definir a EventSchedule
 # Eventualmente, implementar o Agente para diferentes tipos de schd
 # Montar um modelo macroeconômico básico (Usando Hilder)
+# Incluir um dataframe para observação e montar estrutura de observação
 
 
 class EventObserver(Observer):
@@ -36,7 +34,7 @@ class EventObserver(Observer):
         super().__init__(name, model, simulation)
         self.events = dict()
 
-    def observe_event(self, an_event):
+    def observe(self, an_event):
         self.events[an_event.event_id] = an_event
 
 

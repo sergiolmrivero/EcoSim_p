@@ -71,8 +71,6 @@ class Agent(object):
         """ Agent standard step - can be specialized by subclass """
 
 
-
-
 class DiscreteEventAgent(Agent):
 
     def __init__(self, simulation, model, agent_number, agent_def):
@@ -87,7 +85,7 @@ class DiscreteEventAgent(Agent):
         """
         self.my_step = this_step
         for action in self.actions.values():
-                action(self.my_step)
+            action(self.my_step)
 
 
 class EventAgent(Agent):
