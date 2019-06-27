@@ -20,6 +20,9 @@ class Observer(object):
         self.space = simulation
         self.scenario_name = " "
 
+    def observe(self):
+        """ Implemented by subclass"""
+        pass
 
 # Definir a EventSchedule
 # Eventualmente, implementar o Agente para diferentes tipos de schd
