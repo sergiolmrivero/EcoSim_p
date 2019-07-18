@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
@@ -21,7 +21,8 @@ from schedule import ScheduleCreator
 
 class Space(object):
 
-    def __init__(self, model, name, actions_set_file, action_class, schedule_def):
+    def __init__(self, model, name, actions_set_file,
+                 action_class, schedule_def):
         """Initialize Space Class"""
         self.model = model
         self.name = name

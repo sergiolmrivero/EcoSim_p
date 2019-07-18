@@ -54,6 +54,16 @@ class Agent(object):
                 print("There is no action called ", action_name,
                       " in the space called", space.name)
 
+    def get_atrribute(self, attribute_name):
+        try:
+            this_attribute = None
+            this_attribute = self.__getattribute__(attribute_name)
+        except AttributeError:
+            print("There is no attribute called ", attribute_name,
+                  " in agent ", self.name)
+        else:
+            return this_attribute
+
     def alive(self):
         """ Agent set to alive """
         self.alive = True

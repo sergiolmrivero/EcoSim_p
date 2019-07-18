@@ -1,10 +1,14 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
 Model Creation
 
 *SLMR
+
+
+exec(open('fiat_sim.py').read())
+
 """
 from simulation import Simulation
 
