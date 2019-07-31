@@ -16,26 +16,19 @@ Maintains a list of dependents and notifies them of any state changes.
 import dependency_injector.providers as providers
 import dependency_injector.errors as errors
 from importlib import import_module
-from schedule import ScheduleCreator
+from collections import OrderedDict
 
 
 class Space(object):
 
     def __init__(self, model, name, actions_set_file,
-                 action_class, schedule_def):
+                 action_class):
         """Initialize Space Class"""
         self.model = model
         self.name = name
         self.actions = dict()
-        self.agents = dict()
-        self.create_schedule(schedule_def)
+        self.agents = OrderedDict()
         self.create_actions(actions_set_file, action_class)
-
-    def create_schedule(self, schedule_def):
-        self.schedule_factory = ScheduleCreator(self.model,
-                                                self,
-                                                schedule_def)
-        self.schedule = self.schedule_factory.provided_schedule
 
     def create_actions(self, actions_set_file, action_class):
         self.actions_module = import_module(actions_set_file)
@@ -50,6 +43,10 @@ class Space(object):
     def enter(self, agent_name, agent):
         if agent_name not in self.agents:
             self.agents[agent_name] = agent
+
+    def exit(self, agent_name):
+        if agent_name in self.agents:
+            del self.agents[agent_name]
 
     def action(self, action_name):
         return self.actions[action_name]
@@ -72,7 +69,6 @@ class SpaceCreator(object):
             self.space_name = space_def['space_name']
             self.space_actions = space_def['action_set']
             self.space_action_class = space_def['action_class']
-            self.space_schedule_def = space_def['schedule']
             try:
                 self.space_class = eval(self.space_type)
             except NameError:
@@ -81,8 +77,7 @@ class SpaceCreator(object):
             self.space_Factory.add_args(self.spaces_model,
                                         self.space_name,
                                         self.space_actions,
-                                        self.space_action_class,
-                                        self.space_schedule_def)
+                                        self.space_action_class)
             try:
                 self.new_space = self.space_Factory()
                 self.spaces[self.space_name] = self.new_space

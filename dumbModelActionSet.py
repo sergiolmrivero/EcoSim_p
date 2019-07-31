@@ -29,8 +29,8 @@ class DumbActionSet(ActionSet):
     def sim_info(self):
         print("")
         print("Model: ", self.model.name)
-        self.scenario_name = self.space.schedule.scenario_name
-        self.this_run = self.space.schedule.run_nr
+        self.scenario_name = self.model.schedule.scenario_name
+        self.this_run = self.model.schedule.run_nr
         print("Scenario: ", self.scenario_name)
         print("Run: ", self.this_run)
         print("------------")

@@ -24,6 +24,7 @@ class Agent(object):
         self.model = model
         self.spaces = dict()
         self.alive = False
+        self.model.enter_model(self, self.name)
         self.agent_actions = agent_def['agent_actions']
         self.actions = dict()
         for space_name in agent_def['agent_spaces']:

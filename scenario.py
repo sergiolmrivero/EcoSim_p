@@ -9,6 +9,7 @@ Definition of the class Scenario
 import dependency_injector.providers as providers
 import dependency_injector.errors as errors
 import numpy as np
+import datetime as dt
 
 
 class Scenario(object):
@@ -26,7 +27,6 @@ class Scenario(object):
         self.initialize_variables()
         self.agents_init = agents_init
         self.vars_by_agent_type = dict()
-        self.schedules = dict()
 
     def initialize_parameters(self):
         for parameter in self.parameters:
@@ -42,60 +42,72 @@ class Scenario(object):
 
     def initialize_schedule(self):
         """ Initialize the schedule depending on type of schedule """
-        for space in self.model.spaces.values():
-            self.this_schedule = space.schedule
-            self.schedules[self.this_schedule.name] = self.this_schedule
+        self.schedule = self.model.schedule
 
     def execute_scenario(self):
-        self.initialize_parameters()
-        self.initialize_variables()
-        self.initialize_schedule()
+        self.pre_scenario()
         for run_nr in range(self.no_of_runs):
             if run_nr == 0 or self.reset_each_run:
                 self.initialize_agents_vars()
-            self.set_agents_vars()
             self.run(run_nr)
+        self.post_scenario()
+
+    def pre_scenario(self):
+        self.initialize_parameters()
+        self.initialize_variables()
+        self.initialize_schedule()
+
+    def post_scenario(self):
+        for observer_name, observer in self.model.agent_observers.items():
+            observer.create_dataframe()
+            self.now = dt.datetime.now().isoformat(timespec='minutes')
+            self.filename = "_".join([self.simulation.name,
+                                     observer_name,
+                                      self.now, '.csv'])
+            observer.save_dataframe(self.filename)
 
     def initialize_agents_vars(self):
         np.random.seed()
         for agent_type, agent_vars in self.agents_init.items():
             try:
-                if agent_type in self.simulation.agents_by_type:
-                    self.vars_dict = dict()
-                    for var in agent_vars:
-                        self.agent_var_name = var['var_name']
-                        self.agent_var_type = var['var_type']
-                        self.agent_var_dist = var['var_dist']
-                        self.agent_var_value = var['var_value']
-                        self.a_var = AgentVar(self.agent_var_name,
-                                              self.agent_var_type,
-                                              self.agent_var_dist,
-                                              self.agent_var_value)
-                        self.vars_dict[self.a_var.name] = self.a_var
-                    self.vars_by_agent_type[agent_type] = self.vars_dict
+                self.agents_of_type = None
+                self.agents_of_type = self.model.agents_by_type[agent_type]
+                if self.agents_of_type is not None:
+                    for agent in self.agents_of_type.values():
+                        self.vars_dict = dict()
+                        for var in agent_vars:
+                            self.agent_var_name = var['var_name']
+                            self.agent_var_type = var['var_type']
+                            self.agent_var_dist = var['var_dist']
+                            self.agent_var_value = var['var_value']
+                            self.a_var = AgentVar(self.agent_var_name,
+                                                  self.agent_var_type,
+                                                  self.agent_var_dist,
+                                                  self.agent_var_value)
+                            self.vars_dict[self.a_var.name] = self.a_var
+                            self.vars_by_agent_type[agent_type] = self.vars_dict
+                            self.set_an_agent_vars(agent)
             except KeyError:
                 print("There is no agent type called ", agent_type,
                       " in this model")
-        self.set_agents_vars()
 
-    def set_agents_vars(self):
+    def set_an_agent_vars(self, an_agent):
         for agent_type, agent_vars in self.vars_by_agent_type.items():
-            for agents_of_type in self.simulation.agents_by_type[agent_type]:
+            for agents_of_type in self.model.agents_by_type[agent_type]:
                 for var_name, var in agent_vars.items():
                     self.var_value = var.generate_value()
-                    setattr(self, var_name, self.var_value)
+                    setattr(an_agent, var_name, self.var_value)
 
     def run(self, run_nr):
         """
         This method executes the schedule
         """
         # Needs to change to be generic and depedent on the type of scheduling
-        for schedule in self.schedules.values():
-            schedule.execute(self.name,
-                             self.step_unit,
-                             self.step_interval,
-                             self.no_of_steps,
-                             run_nr)
+        self.schedule.execute(self.name,
+                              self.step_unit,
+                              self.step_interval,
+                              self.no_of_steps,
+                              run_nr)
 
 
 class AgentVar(object):

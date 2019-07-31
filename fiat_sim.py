@@ -33,7 +33,7 @@ print("")
 print("")
 print("")
 
-print(my_sim.agents)
+print(my_model.agents)
 print("")
 print("")
 print("")

@@ -9,8 +9,6 @@ Simulation Creation (This implements a batch simulation)
 import yaml
 from model import Model
 from scenario import ScenarioCreator
-from agent import AgentPopulationCreator
-from observer import ObserverCreator
 
 
 class Simulation(object):
@@ -35,8 +33,8 @@ class Simulation(object):
             self.parameter_value = parameter['parameter_value']
             setattr(self, self.parameter_name, self.parameter_value)
         self.create_scenarios()
-        self.create_agents()
-        self.create_observers()
+        self.model.create_agents()
+        self.model.create_observers()
 
     def create_scenarios(self):
         """Scenario creation"""
@@ -44,33 +42,6 @@ class Simulation(object):
         self.scenarios_factory = ScenarioCreator(self, self.model,
                                                  self.scenarios_def)
         self.scenarios = self.scenarios_factory.scenarios
-
-    def create_agents(self):
-        """
-        It acess the AgentFactory
-        (AgentPopulationCreator).
-        Create the agents
-        """
-        self.agents_def = self.yaml_simulation_defs['agents']
-        self.agents_pop = AgentPopulationCreator(self, self.model,
-                                                 self.agents_def)
-        self.agents = self.agents_pop.agents
-        self.agents_by_type = self.agents_pop.agents_by_type
-
-    def create_observers(self):
-        """
-        It acess the ObserverFactory
-        (ObserverCreator).
-        Create the Observers
-        """
-        self.model_observers = {}
-        self.agent_observers = {}
-        self.model_observers_def = self.yaml_simulation_defs['observers']['model_observers']
-        self.agent_observers_def = self.yaml_simulation_defs['observers']['agent_observers']
-        self.model_observers = ObserverCreator(self, self.model,
-                                               self.model_observers_def)
-        self.model_observers = ObserverCreator(self, self.model,
-                                               self.agent_observers_def)
 
     def intialize_run(self):
         """Run intialization -

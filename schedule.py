@@ -17,10 +17,9 @@ import dependency_injector.errors as errors
 class Schedule(object):
     """ Schedule Class """
 
-    def __init__(self, name, model, space):
+    def __init__(self, name, model):
         self.name = name
         self.model = model
-        self.space = space
         self.scenario_name = " "
 
     def execute(self, scenario_name,
@@ -41,9 +40,9 @@ class Schedule(object):
 
 class EventSchedule(Schedule):
     """ An Event Schedule """
-    def __init__(self, name, model, space):
+    def __init__(self, name, model):
         """ PoolSchedule initialization """
-        super().__init__(name, model, space)
+        super().__init__(name, model)
         self.events = dict()
 
     def collect_event(self, an_event):
@@ -59,9 +58,9 @@ class EventSchedule(Schedule):
 
 class PoolSchedule(Schedule):
     """ A pool schedule for test"""
-    def __init__(self, name, model, space):
+    def __init__(self, name, model):
         """ PoolSchedule initialization """
-        super().__init__(name, model, space)
+        super().__init__(name, model)
         self.run_nr = " "
 
     def execute(self, scenario_name,
@@ -73,10 +72,10 @@ class PoolSchedule(Schedule):
         self.scenario_name = scenario_name
         if step_unit == 'step':
             for this_step in range(0, no_of_steps, step_interval):
-                for agent_name, agent in self.model.simulation.agents.items():
+                for agent_name, agent in self.model.agents.items():
                     agent.step(this_step)
-                for observer_name, observer in self.model.simulation.agent_observers.items():
-                    observer.observe()
+                for observer_name, observer in self.model.agent_observers.items():
+                    observer.observe(this_step)
         else:
             raise Exception(step_unit,
                             "is not valid as step unity")
@@ -84,22 +83,19 @@ class PoolSchedule(Schedule):
 
 class ScheduleCreator(object):
     """ Schedule Generator - Schedule Implemented Subclass must be used"""
-    def __init__(self, model, space, schedule_def):
+    def __init__(self, model, schedule_def):
         self.model = model
-        self.space = space
         for schedule in schedule_def:
             self.schedule_type = schedule['schedule_type']
             self.schedule_name = schedule['schedule_name']
             self.schedule_model = self.model
-            self.schedule_space = self.space
             try:
                 self.schedule_class = eval(self.schedule_type)
             except NameError:
                 print("class ", self.schedule_type, " is not defined")
             self.schedule_Factory = ScheduleProvider(self.schedule_class)
             self.schedule_Factory.add_args(self.schedule_name,
-                                           self.schedule_model,
-                                           self.schedule_space)
+                                           self.schedule_model)
             try:
                 self.new_schedule = self.schedule_Factory()
             except errors.Error as exception:
