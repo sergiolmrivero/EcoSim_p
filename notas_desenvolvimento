@@ -4,11 +4,9 @@
 
 1) O modelo parece estar muito complexo - Haveria solução para isso?
 
-2) Trabalhar no Observador e na Observação
-   Ações:
-   a) Montar dicionário com Observações  (uma para cada agente em cada iteração)
-   b) Montar Estrutura para salvar dataframe com observações (diretório, nomes de arquivos)
-   c) Fazer isso por execução-cenário
+2) No modelo do agente - Implementar uma função (script) - para organizar as ações 
+   (eventualmente implementar isso no agente)
 
-Nota: Observação está colocando apenas 1 elemento e substituindo toda vez.
+3) IMPLEMENTAR O MODELO DE AGENTES ECONOMICOS
+
 
