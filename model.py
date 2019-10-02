@@ -79,13 +79,8 @@ class Model:
         (ObserverCreator).
         Create the Observers
         """
-        # self.model_observers = {}
         self.agent_observers = {}
-        # self.model_observers_def = self.yaml_defs['observers']['model_observers']
         self.agent_observers_def = self.yaml_defs['observers']
-        # self.model_observers_pop = ObserverCreator(self, self.simulation,
-        #                                           self.model_observers_def)
         self.agent_observers_pop = ObserverCreator(self, self.simulation,
                                                    self.agent_observers_def)
         self.agent_observers = self.agent_observers_pop.observers
-        # self.model_observers = self.model_observers_pop.observers

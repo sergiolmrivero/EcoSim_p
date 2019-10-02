@@ -57,6 +57,17 @@ class Scenario(object):
         self.initialize_variables()
         self.initialize_schedule()
 
+    def run(self, run_nr):
+        """
+        This method executes the schedule
+        """
+        # Needs to change to be generic and depedent on the type of scheduling
+        self.schedule.execute(self.name,
+                              self.step_unit,
+                              self.step_interval,
+                              self.no_of_steps,
+                              run_nr)
+
     def post_scenario(self):
         for observer_name, observer in self.model.agent_observers.items():
             observer.create_dataframe()
@@ -97,17 +108,6 @@ class Scenario(object):
                 for var_name, var in agent_vars.items():
                     self.var_value = var.generate_value()
                     setattr(an_agent, var_name, self.var_value)
-
-    def run(self, run_nr):
-        """
-        This method executes the schedule
-        """
-        # Needs to change to be generic and depedent on the type of scheduling
-        self.schedule.execute(self.name,
-                              self.step_unit,
-                              self.step_interval,
-                              self.no_of_steps,
-                              run_nr)
 
 
 class AgentVar(object):

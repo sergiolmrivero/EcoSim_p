@@ -16,10 +16,14 @@ import datetime as dt
 
 class Observer(object):
     """ Schedule Class
-        Um Agente pode estar em varios espaços...Mas o observador do agente é DO AGENTE e não do espaço
-        Então, deve haver apenas um observador para cada tipo de agente. O observador observa o agente.
-        Se eu tiver multiplas schedules - teria que montar um mecanismo de observação mais complexo.
-        Uma possível solução é a schedule executar a ação do agente para cada espaço e 1 schedule -> N Espaços
+        Um Agente pode estar em varios espaços...
+        Mas o observador do agente é DO AGENTE e não do espaço
+        Então, deve haver apenas um observador para cada tipo de agente.
+        O observador observa o agente.
+        Se eu tiver multiplas schedules - teria que montar um mecanismo
+        de observação mais complexo.
+        Uma possível solução é a schedule executar a ação do agente para
+        cada espaço e 1 schedule -> N Espaços
         É necessário reestruturar a schedule para que ela funcione adequadamente.
     """
 

@@ -1,0 +1,14 @@
+### Notas do Desenvolvimento do Trabalho
+
+2019-10-02
+
+1) O modelo parece estar muito complexo - Haveria solução para isso?
+
+2) Trabalhar no Observador e na Observação
+   Ações:
+   a) Montar dicionário com Observações  (uma para cada agente em cada iteração)
+   b) Montar Estrutura para salvar dataframe com observações (diretório, nomes de arquivos)
+   c) Fazer isso por execução-cenário
+
+Nota: Observação está colocando apenas 1 elemento e substituindo toda vez.
+
