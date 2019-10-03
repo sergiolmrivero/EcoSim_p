@@ -94,9 +94,11 @@ class DiscreteEventAgent(Agent):
         """ Agent standard step - can be specialized by subclass ]
             -- The code below is only an example
         """
-        self.my_step = this_step
-        for action in self.actions.values():
-            action(self.my_step)
+        # Implemented by subclass
+        # self.my_step = this_step
+        # for action in self.actions.values():
+        #     action(self.my_step)
+        pass 
 
 
 class EventAgent(Agent):

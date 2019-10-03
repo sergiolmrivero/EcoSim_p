@@ -12,7 +12,7 @@ class DumbActionSet(ActionSet):
         self.space = space
 
     def happy_hello(self, step):
-        print("Hello!! Wonderfull World!!!!")
+        return(print("Hello!! Wonderfull World!!!!"))
         print("Step: ", step)
         self.sim_info()
 
