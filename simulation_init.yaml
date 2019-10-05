@@ -31,7 +31,6 @@ agents:
     agent_spaces:
       - FunnySpace
       - BoringSpace
-      - mySpace
     agent_actions:
       - happy_hello
     no_of_agents: 5

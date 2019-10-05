@@ -8,7 +8,7 @@ Simulation Creation (This implements a batch simulation)
 """
 import yaml
 from model import Model
-from scenario import ScenarioCreator
+from scenarioCreation import ScenarioCreator
 
 
 class Simulation(object):

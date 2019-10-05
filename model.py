@@ -10,11 +10,11 @@ http://python-dependency-injector.ets-labs.org/index.html
 
 """
 import yaml
-from space import SpaceCreator
 from collections import OrderedDict
-from agent import AgentPopulationCreator
-from observer import ObserverCreator
-from schedule import ScheduleCreator
+from spaceCreation import SpaceCreator
+from agentCreation import AgentPopulationCreator
+from scheduleCreation import ScheduleCreator
+from observerCreation import ObserverCreator
 
 
 class Model:

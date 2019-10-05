@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
@@ -11,8 +10,8 @@ exec(open('dumbModel.py').read())
 
 """
 from simulation import Simulation
-import space
-import agent
+import basicSpaces
+import basicAgents
 import model
 
 import agents

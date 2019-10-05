@@ -1,6 +1,7 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+"""
+Dumb Model Action Set
+"""
 
 from actions import ActionSet
 
@@ -12,7 +13,7 @@ class DumbActionSet(ActionSet):
         self.space = space
 
     def happy_hello(self, step):
-        return(print("Hello!! Wonderfull World!!!!"))
+        print("Hello!! Wonderfull World!!!!")
         print("Step: ", step)
         self.sim_info()
 

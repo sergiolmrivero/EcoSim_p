@@ -2,7 +2,7 @@
 
 # Class examples
 
-from space import Space
+from basicSpaces import Space
 
 class FunnySpace(Space):
     """ A Party"""
