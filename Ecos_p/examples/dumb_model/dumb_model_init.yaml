@@ -13,14 +13,14 @@ spaces:
   -
     space_type: FunnySpace
     space_name: FunnySpace
-    action_set: dumbModelActionSet
+    action_set: dumb_model_action_set
     action_class: DumbActionSet
     space_variables:
         heat: 10.0
   -  
     space_type: BoringSpace
     space_name: BoringSpace
-    action_set: dumbModelActionSet
+    action_set: dumb_model_action_set
     action_class: DumbActionSet
     space_variables:
         heat: 0.0
