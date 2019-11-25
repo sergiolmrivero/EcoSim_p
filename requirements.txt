@@ -1,6 +1,6 @@
 pandas
 datetime
 dependency_injector
-yaml
+pyyaml
 collections
 
