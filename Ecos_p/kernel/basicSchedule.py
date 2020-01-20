@@ -10,6 +10,7 @@ http://python-dependency-injector.ets-labs.org/index.html
 
 """
 
+
 class Schedule(object):
     """ Schedule Class """
 
@@ -69,6 +70,31 @@ class PoolSchedule(Schedule):
         if step_unit == 'step':
             for this_step in range(0, no_of_steps, step_interval):
                 for agent_name, agent in self.model.agents.items():
+                    agent.step(this_step)
+                for observer_name, observer in self.model.agent_observers.items():
+                    observer.observe(this_step)
+        else:
+            raise Exception(step_unit,
+                            "is not valid as step unity")
+
+
+class MixedSchedule(Schedule):
+    """ A pool schedule for test"""
+    def __init__(self, name, model):
+        """ PoolSchedule initialization """
+        super().__init__(name, model)
+        self.run_nr = " "
+
+    def execute(self, scenario_name,
+                step_unit,
+                step_interval,
+                no_of_steps,
+                run_nr):
+        self.run_nr = run_nr
+        self.scenario_name = scenario_name
+        if step_unit == 'step':
+            for this_step in range(0, no_of_steps, step_interval):
+                for agent in self.model.mixed_agents():
                     agent.step(this_step)
                 for observer_name, observer in self.model.agent_observers.items():
                     observer.observe(this_step)

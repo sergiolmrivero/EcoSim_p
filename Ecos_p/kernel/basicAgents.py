@@ -5,8 +5,6 @@
 Definition of the class Agent
 
 *SLMR
-REMEMBER TO USE DEPENDENCE INJECTION IN THE CODE.
-http://python-dependency-injector.ets-labs.org/index.html
 
 """
 from event import Event
@@ -97,6 +95,7 @@ class DiscreteEventAgent(Agent):
         # for action in self.actions.values():
         #     action(self.my_step)
 
+
 class EventAgent(Agent):
 
     def __init__(self, simulation, model, agent_number, agent_def):
@@ -117,8 +116,6 @@ class EventAgent(Agent):
                 a_space.schedule.collect_event(self.an_event)
 
         #  action(self.my_step)
-
-
 
     # def set_memory(self, a_memory=None):
     #     if a_memory is None:

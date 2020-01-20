@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+"""
+Labor Market Action Set
+"""
+
+from macro_Caiani_action_set import MacroEcoActionSet
+
+
+class LaborActionSet(MacroEcoActionSet):
+    """ Dumb model action set """
+    def __init__(self, model, space):
+        self.model = model
+        self.space = space
+
+    def compute_desired_output(self):
+        "Agent compute desired output"
+        pass
+
+    def bid_labor_demand(self):
+        "CG_firm ask for a quantity of labor at a price"
+        pass
+
+    def contract_labor(self):
+        "Agent contract labor in the labor market at a price"
+        pass
+
+    def pay_salary(self):
+        "Agent Firm pay salaries"
+        pass

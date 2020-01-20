@@ -15,12 +15,16 @@ from spaceCreation import SpaceCreator
 from agentCreation import AgentPopulationCreator
 from scheduleCreation import ScheduleCreator
 from observerCreation import ObserverCreator
+import random as rnd
+import time
 
 
 class Model:
 
     def __init__(self, yaml_file):
         """ Carrega as definicoes do arquivo yaml"""
+        self.seed = time.time()
+        self.random = rnd.Random(self.seed)
         self.simulation = None
         self.init_file = yaml_file
         with open(self.init_file, "r") as read_file:
@@ -60,6 +64,21 @@ class Model:
     def agents_by_type(self):
         return OrderedDict({value.__class__.__name__ + "_" + str(key): value
                             for key, value in self.agents.items()})
+
+    def agents_number(self):
+        return len(self.agents)
+
+    def agents_of_type_number(self, agent_type):
+        return len({key: value for key, value in self.agents.items()
+                    if value.__class__.__name__ == agent_type})
+
+    def mixed_agents(self):
+        agents_names = list(self.agents.keys())
+        self.random.shuffle(agents_names)
+
+        for agent_name in agents_names:
+            if agent_name in self.agents:
+                yield self.agents[agent_name]
 
     def create_agents(self):
         """

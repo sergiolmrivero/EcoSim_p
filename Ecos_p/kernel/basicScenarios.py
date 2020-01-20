@@ -15,7 +15,8 @@ class Scenario(object):
    Class that contains
     the definitions of a scenario
     """
-    def __init__(self, simulation, model, name, parameters, variables, agents_init):
+    def __init__(self, simulation, model, name,
+                 parameters, variables, agents_init):
         self.simulation = simulation
         self.model = model
         self.name = name

@@ -10,6 +10,7 @@ class Funny_Bug(DiscreteEventAgent):
 
     def step(self, this_step):
         self.my_step = this_step
+        self.actions['brazuca_happy_hello'](self.my_step)
         self.actions['happy_hello'](self.my_step)
 
 class Circumspect_Bug(DiscreteEventAgent):
