@@ -3,35 +3,36 @@
 Credit Market Action Set
 """
 
-from actions import ActionSet
+from macro_Caiani_action_set import MacroEcoActionSet
 
 
-class CreditActionSet(ActionSet):
-    """ Dumb model action set """
-    def __init__(self, model, space):
-        self.model = model
-        self.space = space
+class CreditActionSet(MacroEcoActionSet):
+    """ credit space action set """
 
-    def happy_hello(self, step):
-        print("Hello!! Wonderfull World!!!!")
-        print("Step: ", step)
-        self.sim_info()
+    def decide_cr_target(self, a_bank):
+        """ A bank agent decides capital ratio target """
+        pass
 
-    def formal_hello(self, step):
-        print("Hello, Sir World. I am very glad to meet you.")
-        print("Step: ", step)
-        self.sim_info()
+    def decide_interest_rate_strategy(self, a_bank):
+        """A bank decides the strategy for interest rate determination """
+        pass
+    
+    def offer_credit(self, a_bank):
+        """ A bank offer credit on the credit market """
+        pass
+    
+    def contract_credit(self, an_agent, a_bank):
+        """ An agent contracts credit from a Bank """
+        pass
 
-    def simple_hello(self, step):
-        print("Hello, World.")
-        print("Step: ", step)
-        self.sim_info()
+    def calculate_exposure(self, a_bank):
+        """ A bank calculates its exposure """
+        pass
 
-    def sim_info(self):
-        print("")
-        print("Model: ", self.model.name)
-        self.scenario_name = self.model.schedule.scenario_name
-        self.this_run = self.model.schedule.run_nr
-        print("Scenario: ", self.scenario_name)
-        print("Run: ", self.this_run)
-        print("------------")
+    def receive_advances_CB(self, a_bank, central_bank, ammount):
+        """ A bank receive some ammount of money  from the central bank at some interest rate """
+        pass
+
+    def buy_gov_bonds(self, a_bank, gov, ammount):
+        """ A bank buy government bonds """
+        pass

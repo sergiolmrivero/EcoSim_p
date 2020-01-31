@@ -11,6 +11,13 @@ schedule:
     schedule_name: MyMxSchd
 spaces:
   -
+    space_type: Macro
+    space_name: Macro
+    action_set: macro_Caiani_action_set
+    action_class: MacroEcoActionSet
+    space_variables:
+        intensity_of_choice: 0.0
+  -
     space_type: Labor_market
     space_name: Labor_market
     action_set: macro_Caiani_action_set_Labor
@@ -31,85 +38,70 @@ spaces:
     action_class: KGActionSet
     space_variables:
         intensity_of_choice: 0.0
+  -
+    space_type: Credit_market
+    space_name: Credit_market
+    action_set: macro_Caiani_action_set_Credit
+    action_class: CreditActionSet
+    space_variables:
+        intensity_of_choice: 0.0
+  -
+    space_type: Deposits_market
+    space_name: Deposits_market
+    action_set: macro_Caiani_action_set_Deposits
+    action_class: DepositsActionSet
+    space_variables:
+        intensity_of_choice: 0.0
 agents:
   -
     agent_type: Household
     agent_prefix: HH
     agent_spaces:
+      - Macro
       - Labor_market
-    agent_actions:
-      - offer_gs
-      - get_highest_offer
-      - generate_offer
-      - return_offer
-      - show_offer
-      - decide_hourly_wage
     no_of_agents: 100
   -
     agent_type: CG_Firm
     agent_prefix: CG
     agent_spaces:
+      - Macro
       - CG_market
       - Labor_market
       - KG_market
-    agent_actions:
-      - offer_gs
-      - get_highest_offer
-      - get_lowest_offer
-      - return_offer
-      - produce
-      - compute_desired_output
-      - decide_offered_wage
-      - contract_labor
-      - produce
-      - average_wage
-      - offer_production
-      - sell_production
-      - compute_sales_revenue
-      - decide_investment
-      - contract_credit
-      - buy_equipment
-      - pay_salaries
-      - pay_suppliers
-      - pay_interest_bonds
-      - pay_interest_loans
-      - pay_taxes
-      - show_offer
-      - has_offers
-      - no_of_offers
     no_of_agents: 4
   -
     agent_type: KG_Firm
     agent_prefix: KG
     agent_spaces:
+      - Macro
       - KG_market
       - Labor_market
-    agent_actions:
-      - offer_gs
-      - get_highest_offer
-      - get_lowest_offer
-      - return_offer
-      - produce
-      - compute_desired_output
-      - decide_offered_wage
-      - contract_labor
-      - produce
-      - average_wage
-      - offer_production
-      - sell_production
-      - compute_sales_revenue
-      - decide_investment
-      - contract_credit
-      - buy_equipment
-      - pay_salaries
-      - pay_suppliers
-      - pay_interest_bonds
-      - pay_interest_loans
-      - pay_taxes
-      - show_offer
-      - has_offers
-      - no_of_offers
     no_of_agents: 2
+  -
+    agent_type: Bank
+    agent_prefix: Ba
+    agent_spaces:
+      - Macro
+      - Deposits_market
+      - Credit_market
+    no_of_agents: 2
+  -
+    agent_type: Central_Bank
+    agent_prefix: CB
+    agent_spaces:
+      - Macro
+      - Deposits_market
+      - Credit_market
+    no_of_agents: 1
+  -
+    agent_type: Government
+    agent_prefix: Gov
+    agent_spaces:
+      - Macro
+      - Deposits_market
+      - Credit_market
+      - Labor_market
+    no_of_agents: 1        
 observers:
     -
       observer_type: Observer
@@ -165,6 +157,30 @@ observers:
         - desired_perc_inv
         - perc_inv
         - mark_up
+    -
+      observer_type: Observer
+      observer_name: Bank_Obs
+      observer_actions:
+        - obs_Bank
+      observer_agent: Bank
+      observable_vars:
+        - ammount
+    -
+      observer_type: Observer
+      observer_name: CB_Obs
+      observer_actions:
+        - obs_CB
+      observer_agent: Central_Bank
+      observable_vars:
+        - ammount
+    -
+      observer_type: Observer
+      observer_name: Gov_Obs
+      observer_actions:
+        - obs_Gov
+      observer_agent: Government
+      observable_vars:
+        - ammount
 scenarios:
   -
     scenario_type: Scenario
@@ -268,39 +284,39 @@ scenarios:
             var_dist: np.random.normal(1.0,0.2)
             var_value: 0.0
           -
-            var_name: desired_output
+            var_name: desired_output_value
             var_type: stochastic
-            var_dist: np.random.normal(40.0,0.2)
+            var_dist: np.random.normal(10.0,0.2)
             var_value: 0.0
           -
             var_name: output
             var_type: stochastic
-            var_dist: np.random.normal(40.0,0.2)
+            var_dist: np.random.normal(10.0,0.2)
             var_value: 0.0
           -
             var_name: labor_to_contract
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: labor_contracted
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: unitary_cost
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: price
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: deposits_cash
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: desired_perc_inv
@@ -321,12 +337,12 @@ scenarios:
           -
             var_name: labor_demand
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: desired_output
             var_type: stochastic
-            var_dist: np.random.normal(40.0,0.2)
+            var_dist: np.random.normal(10.0,0.2)
             var_value: 0.0
           -
             var_name: expected_price
@@ -344,39 +360,39 @@ scenarios:
             var_dist: np.random.normal(1.0,0.2)
             var_value: 0.0
           -
-            var_name: desired_output
+            var_name: desired_output_value
             var_type: stochastic
-            var_dist: np.random.normal(40.0,0.2)
+            var_dist: np.random.normal(10.0,0.2)
             var_value: 0.0
           -
             var_name: output
             var_type: stochastic
-            var_dist: np.random.normal(40.0,0.2)
+            var_dist: np.random.normal(10.0,0.2)
             var_value: 0.0
           -
             var_name: labor_to_contract
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: labor_contracted
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: unitary_cost
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: price
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: deposits_cash
             var_type: stochastic
-            var_dist: np.random.normal(30.0,1.0)
+            var_dist: np.random.normal(10.0,1.0)
             var_value: 0.0
           -
             var_name: desired_perc_inv
@@ -393,6 +409,25 @@ scenarios:
             var_type: stochastic
             var_dist: np.random.normal(0.09,0.05)
             var_value: 0.0
+      Bank:
+          -
+            var_name: ammount
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+      Central_Bank:
+          -
+            var_name: ammount
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+      Government:
+          -
+            var_name: ammount
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+
 
 
             

@@ -13,4 +13,4 @@ http://python-dependency-injector.ets-labs.org/index.html
 class ActionSet(object):
     """ The action set of the model """
     def __init__(self):
-        pass
+        """ ActionSet Initialization"""

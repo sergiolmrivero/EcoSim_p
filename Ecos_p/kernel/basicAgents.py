@@ -14,19 +14,17 @@ class Agent(object):
 
     def __init__(self, simulation, model, agent_number, agent_def):
         """ Agent Initialization
-            Incorporar as variaveis de agente na implementação"""
+            Incorporar as variaveis de agente na implementação
+        """
         self.name = agent_def['agent_prefix'] + '_' + str(agent_number)
         self.simulation = simulation
         self.model = model
         self.spaces = dict()
         self.alive = False
         self.model.enter_model(self, self.name)
-        self.agent_actions = agent_def['agent_actions']
-        self.actions = dict()
         for space_name in agent_def['agent_spaces']:
             try:
                 self.enter_space(space_name)
-                self.get_my_actions(self.spaces[space_name])
             except KeyError:
                 print("There is no space called ", space_name,
                       " in this model")
@@ -36,20 +34,6 @@ class Agent(object):
         self.model.spaces[space_name]
         self.spaces[space_name] = self.model.spaces[space_name]
         self.spaces[space_name].enter(self.name, self)
-
-    def get_action(self, space, action_name):
-        self.actions[action_name] = space.action(action_name)
-
-    def get_all_actions(self, space):
-        self.actions = space.actions
-
-    def get_my_actions(self, space):
-        for action_name in self.agent_actions:
-            try:
-                self.actions[action_name] = space.actions[action_name]
-            except KeyError:
-                print("There is no action called ", action_name,
-                      " in the space called", space.name)
 
     def get_atrribute(self, attribute_name):
         try:

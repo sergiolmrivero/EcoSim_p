@@ -13,7 +13,7 @@ class Market(Space):
         if isinstance(new_offers, SortedDict):
             self.offers = new_offers
         else:
-            print('The input ins not a sorted dictionary')
+            print('The input is not a sorted dictionary')
 
 
 class Labor_market(Market):
@@ -34,3 +34,6 @@ class Credit_market(Market):
 
 class Deposits_market(Market):
     """ The Deposits Market"""
+
+class Macro(Market):
+    """ Macroeconomic General Actions """
