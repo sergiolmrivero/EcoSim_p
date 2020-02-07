@@ -4,7 +4,7 @@ Space Creation (This implements a batch simulation)
 
 *SLMR
 
-Definition of space agent creators 
+Definition of space agent creators
 
 """
 import dependency_injector.providers as providers
@@ -25,11 +25,12 @@ class SpaceCreator(object):
             self.space_actions = space_def['action_set']
             self.space_action_class = space_def['action_class']
             try:
-                a_space = "sps" + "." + self.space_type   
+                a_space = "sps" + "." + self.space_type
                 self.space_class = eval(a_space)
             except NameError:
                 print("class ", self.space_type, " is not defined")
             self.space_Factory = SpaceProvider(self.space_class)
+            # refazer a interface da claase espaço - Retirar o action_set
             self.space_Factory.add_args(self.spaces_model,
                                         self.space_name,
                                         self.space_actions,

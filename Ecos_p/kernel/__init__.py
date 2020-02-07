@@ -6,8 +6,8 @@ Python Economic ABM
 import datetime
 
 
-from simulation   import Simulation
-from model  import Model
+from simulation import Simulation
+from model import Model
 from basicSpaces import Spaces
 from basicAgents import Agents
 

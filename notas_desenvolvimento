@@ -28,11 +28,18 @@
        Salário de subsistência. ?????
      
 
-2) Implementar mercado de trabalho primeiro
+2) Implementar mercado de trabalho primeiro (Parcialmente feito)
    - Implementar famílias ofertando trabalho (com o trabalho aleatoriamente comprado)
    - Implementar recebimento de salários (pelo trabalho feito (de maneira do teste)
 
-3) Implementar inicialmente household posteriormente CG_Firms
+
+3) Implementar os protótipos de todos os agentes.
+
+4) Implementar uma estrutura de visualização.
+
+Done
+
+3) Implementar inicialmente household posteriormente CG_Firms OK!!!
 
 
 

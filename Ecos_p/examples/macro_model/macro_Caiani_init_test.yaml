@@ -50,7 +50,7 @@ agents:
       - get_lowest_offer
       - return_offer
       - produce
-      - compute_expected_output
+      - compute_desired_output_cg
       - offer_production
       - sell_production
       - compute_sales_revenue
@@ -68,6 +68,13 @@ observers:
       observable_vars:
         - expected_wage
         - labor_capacity
+        - employed
+        - demand
+        - consumption
+        - consumption_expected
+        - workforce
+        - total_cash
+        - deposits_cash
     -
       observer_type: Observer
       observer_name: CG_Obs
@@ -77,6 +84,16 @@ observers:
       observable_vars:
         - labor_demand
         - offered_wage
+        - desired_output
+        - output_cg
+        - labor_to_contract
+        - labor_contracted
+        - unitary_cost
+        - price_cg
+        - deposits_cash
+        - desired_perc_inv
+        - perc_inv
+        - mark_up
 scenarios:
   -
     scenario_type: Scenario
@@ -87,7 +104,7 @@ scenarios:
         parameter_value: 1
       -
         parameter_name: reset_each_run
-        parameter_value: TRUE
+        parameter_value: True
       -
         parameter_name: step_unit
         parameter_value: step
@@ -118,6 +135,41 @@ scenarios:
             var_type: stochastic
             var_dist: np.random.normal(2.0,0.2)
             var_value: 0.0
+          -
+            var_name: employed
+            var_type: binary
+            var_dist: None
+            var_value: False
+          -
+            var_name: demand
+            var_type: stochastic
+            var_dist: np.random.normal(2.0,0.2)
+            var_value: 0.0
+          -
+            var_name: consumption
+            var_type: stochastic
+            var_dist: np.random.normal(2.0,0.2)
+            var_value: 0.0
+          -
+            var_name: consumption_expected
+            var_type: stochastic
+            var_dist: np.random.normal(2.0,0.2)
+            var_value: 0.0
+          -
+            var_name: workforce
+            var_type: integer
+            var_dist: None
+            var_value: 1
+          -
+            var_name: total_cash
+            var_type: stochastic
+            var_dist: np.random.normal(2.0,0.2)
+            var_value: 0.0
+          -
+            var_name: deposits_cash
+            var_type: stochastic
+            var_dist: np.random.normal(2.0,0.2)
+            var_value: 0.0
       CG_Firm:
           -
             var_name: labor_demand
@@ -144,3 +196,57 @@ scenarios:
             var_type: stochastic
             var_dist: np.random.normal(1.0,0.2)
             var_value: 0.0
+          -
+            var_name: desired_output_cg
+            var_type: stochastic
+            var_dist: np.random.normal(40.0,0.2)
+            var_value: 0.0
+          -
+            var_name: output_cg
+            var_type: stochastic
+            var_dist: np.random.normal(40.0,0.2)
+            var_value: 0.0
+          -
+            var_name: labor_to_contract
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+          -
+            var_name: labor_contracted
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+          -
+            var_name: unitary_cost
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+          -
+            var_name: price_cg
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+          -
+            var_name: deposits_cash
+            var_type: stochastic
+            var_dist: np.random.normal(30.0,1.0)
+            var_value: 0.0
+          -
+            var_name: desired_perc_inv
+            var_type: stochastic
+            var_dist: np.random.normal(0.09,0.05)
+            var_value: 0.0
+          -
+            var_name: perc_inv
+            var_type: stochastic
+            var_dist: np.random.normal(0.09,0.05)
+            var_value: 0.0
+          -
+            var_name: mark_up
+            var_type: stochastic
+            var_dist: np.random.normal(0.09,0.05)
+            var_value: 0.0
+
+
+            
+
