@@ -4,7 +4,11 @@
 from basicAgents import DiscreteEventAgent
 from macro_Caiani_action_set import MacroEcoActionSet
 from macro_Caiani_action_set_Labor import LaborActionSet
+<<<<<<< HEAD
 from macro_Caiani_action_set_Goods import GoodsActionSet
+=======
+from macro_Caiani_action_set_goods import GoodsActionSet
+>>>>>>> 2ca05c5a1191e47c6998c1e1f1567435ceb54d00
 from macro_Caiani_action_set_Credit import CreditActionSet
 from macro_Caiani_action_set_Deposits import DepositsActionSet
 
@@ -25,15 +29,26 @@ class Household(Economic_Agent):
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_actions_macro = MacroEcoActionSet()
         self.my_actions_labor = LaborActionSet()
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 2ca05c5a1191e47c6998c1e1f1567435ceb54d00
     def step(self, this_step):
         self.my_step = this_step
         self.my_actions_labor.generate_offer(self)
         self.my_actions_macro.offer_gs(self.my_step,
+<<<<<<< HEAD
                                        self.spaces['Labor_market'],
                                        self.labor_offer)
         self.my_actions_macro.show_offer(self,
                                          self.spaces['Labor_market'])
+=======
+                                 self.spaces['Labor_market'],
+                                 self.labor_offer)
+        self.my_actions_macro.show_offer(self,
+                                   self.spaces['Labor_market'])
+>>>>>>> 2ca05c5a1191e47c6998c1e1f1567435ceb54d00
 
     def show_offer(self):
         """ Show Offer """
@@ -146,7 +161,11 @@ class Bank(Economic_Agent):
         self.my_actions_macro = MacroEcoActionSet()
         self.my_actions_credit = CreditActionSet()
         self.my_actions_dep = DepositsActionSet()
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 2ca05c5a1191e47c6998c1e1f1567435ceb54d00
     def step(self, this_step):
         self.my_step = this_step
         self.cb = self.get_cb()
@@ -181,7 +200,13 @@ class Government(Economic_Agent):
         self.my_actions_macro = MacroEcoActionSet()
         self.my_actions_credit = CreditActionSet()
         self.my_actions_dep = DepositsActionSet()
+<<<<<<< HEAD
         self.my_actions_labor = LaborActionSet()
+=======
+        self.my_actions_labor = LaborActionSet()                       
+                               
+                               
+>>>>>>> 2ca05c5a1191e47c6998c1e1f1567435ceb54d00
 
     def step(self, this_step):
         self.my_step = this_step
