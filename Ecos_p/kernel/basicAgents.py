@@ -7,7 +7,7 @@ Definition of the class Agent
 *SLMR
 
 """
-from event import Event
+from Ecos_p.kernel.event import Event
 
 
 class Agent(object):
@@ -16,6 +16,7 @@ class Agent(object):
         """ Agent Initialization
             Incorporar as variaveis de agente na implementação
         """
+        self.type = agent_def['agent_type']
         self.name = agent_def['agent_prefix'] + '_' + str(agent_number)
         self.simulation = simulation
         self.model = model

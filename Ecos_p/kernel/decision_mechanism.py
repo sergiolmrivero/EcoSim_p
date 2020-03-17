@@ -21,6 +21,6 @@ class Decision_Mechanism(object):
     def set_actions(self, agent_role, space):
         pass
 
-    def decides():
+    def decides(self):
         """ Uses sensors in space-time to capture env variables"""
         return 0   # ## Must be implemented

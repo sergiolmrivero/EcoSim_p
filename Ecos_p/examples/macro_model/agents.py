@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 """ Agents from the basic macroecnomic model """
 
-from basicAgents import DiscreteEventAgent
-from macro_Caiani_action_set import MacroEcoActionSet
-from macro_Caiani_action_set_Labor import LaborActionSet
-from macro_Caiani_action_set_Goods import GoodsActionSet
-from macro_Caiani_action_set_Credit import CreditActionSet
-from macro_Caiani_action_set_Deposits import DepositsActionSet
+from Ecos_p.kernel.basicAgents import DiscreteEventAgent
+from Ecos_p.examples.macro_model.macro_Caiani_action_set import MacroEcoActionSet
+from Ecos_p.examples.macro_model.macro_Caiani_action_set_Labor import LaborActionSet
+from Ecos_p.examples.macro_model.macro_Caiani_action_set_Goods import GoodsActionSet
+from Ecos_p.examples.macro_model.macro_Caiani_action_set_CG import CGActionSet
+from Ecos_p.examples.macro_model.macro_Caiani_action_set_KG import KGActionSet
+from Ecos_p.examples.macro_model.macro_Caiani_action_set_Credit import CreditActionSet
+from Ecos_p.examples.macro_model.macro_Caiani_action_set_Deposits import DepositsActionSet
+from Ecos_p.examples.macro_model.production import ProductionFunction
 
 
-class Economic_Agent(DiscreteEventAgent):
+class EconomicAgent(DiscreteEventAgent):
     """ A basic economic agent"""
     def step(self, this_step):
         """ Implemented by subclass"""
@@ -19,7 +22,7 @@ class Economic_Agent(DiscreteEventAgent):
 """ Household Agent """
 
 
-class Household(Economic_Agent):
+class Household(EconomicAgent):
     """ A Household"""
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
@@ -46,31 +49,61 @@ class Household(Economic_Agent):
               )
 
 
+""" A Firm """
+
+
+class Firm(EconomicAgent):
+    """ A Consumer Goods Firm"""
+    # contracted_labor = {}
+    # ready_to_produce = False
+    # total_contracted_labor = 0.0
+
+    def __init__(self, simulation, model, agent_number, agent_def):
+        # self.contracted_labor = {}
+        # self.ready_to_produce = False
+        # self.total_contracted_labor = 0.0
+        # self.pf = ProductionFunction(self)
+        super().__init__(simulation, model, agent_number, agent_def)
+
+    def step(self, this_step):
+        """ Step for the Firm agent """
+        # Implemented by subclass
+        pass
+
+
 """ Consumer Goods Firm Agent """
 
 
-class CG_Firm(Economic_Agent):
+class CG_Firm(Firm):
     """ A Consumer Goods Firm"""
-    contracted_labor = dict()
-    ready_to_produce = False
-    total_contracted_labor = 0.0
 
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
+        self.contracted_labor = {}
+        self.ready_to_produce = False
+        self.total_contracted_labor = 0.0
+        self.pf = ProductionFunction(self)
+
         self.my_actions_macro = MacroEcoActionSet()
         self.my_actions_labor = LaborActionSet()
         self.my_actions_goods = GoodsActionSet()
+        self.my_actions_cg = CGActionSet()
 
     def step(self, this_step):
         """ Step for the CG agent """
         self.my_step = this_step
         self.my_actions_goods.compute_desired_output(self, 'cg')
+        self.my_actions_cg.calculate_labor_demand(self)
+        self.my_actions_cg.calculate_capacity_utilization(self)
         self.my_actions_goods.decide_offered_wage(self)
-        self.my_actions_labor.contract_labor()
+        self.my_actions_labor.contract_labor(self)
         self.my_actions_macro.show_offer(self, self.spaces['Labor_market'])
         if self.ready_to_produce:
-            self.my_actions_goods.produce(self)
-        self.my_actions_goods.offer_production(self)
+            self.output = self.pf.produce(self.desired_output.quantity)
+            self.my_actions_macro.offer_gs(self.my_step,
+                                           self.spaces['CG_market'],
+                                           self.output)
+        # self.my_actions_goods.offer_production(self, self.output)
         self.my_actions_goods.sell_production(self)
         self.my_actions_goods.compute_sales_revenue(self)
         self.my_actions_goods.decide_investment(self)
@@ -81,6 +114,8 @@ class CG_Firm(Economic_Agent):
         self.my_actions_goods.pay_interest_bonds(self)
         self.my_actions_goods.pay_interest_loans(self)
         self.my_actions_macro.pay_taxes(self)
+        """ A firm adjusts the average wage """
+        self.expected_wage = self.my_actions_goods.average_wage(self)
 
     def show_offer(self):
         print(" I, ", self.name,
@@ -93,28 +128,36 @@ class CG_Firm(Economic_Agent):
               )
 
 
-class KG_Firm(Economic_Agent):
+class KG_Firm(EconomicAgent):
     """ A Capital Goods Firm"""
-    contracted_labor = dict()
-    ready_to_produce = False
-    total_contracted_labor = 0.0
 
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
+        self.contracted_labor = {}
+        self.ready_to_produce = False
+        self.total_contracted_labor = 0.0
+        self.pf = ProductionFunction(self)
+
         self.my_actions_macro = MacroEcoActionSet()
         self.my_actions_labor = LaborActionSet()
         self.my_actions_goods = GoodsActionSet()
-
+        self.my_actions_kg = KGActionSet()
 
     def step(self, this_step):
         """ Step for the KG agent """
         self.my_step = this_step
         self.my_actions_goods.compute_desired_output(self, 'kg')
         self.my_actions_goods.decide_offered_wage(self)
-        self.my_actions_labor.contract_labor()
+        self.my_actions_kg.calculate_labor_demand(self)
+        self.my_actions_labor.contract_labor(self)
+        # NOTE: Needs to deal with turnover
         self.my_actions_macro.show_offer(self, self.spaces['Labor_market'])
         if self.ready_to_produce:
-            self.my_actions_goods.produce(self)
+            self.output = self.pf.produce(self.desired_output.quantity)
+            self.my_actions_macro.offer_gs(self.my_step,
+                                           self.spaces['KG_market'],
+                                           self.output)
+        # self.my_actions_goods.produce(self)
         self.my_actions_goods.offer_production(self)
         self.my_actions_goods.sell_production(self)
         self.my_actions_goods.compute_sales_revenue(self)
@@ -127,7 +170,6 @@ class KG_Firm(Economic_Agent):
         self.my_actions_goods.pay_interest_loans(self)
         self.my_actions_macro.pay_taxes(self)
 
-
     def show_offer(self):
         print(" I, ", self.name,
               "am getting",
@@ -139,7 +181,7 @@ class KG_Firm(Economic_Agent):
               )
 
 
-class Bank(Economic_Agent):
+class Bank(EconomicAgent):
     """ A Bank"""
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
@@ -174,7 +216,7 @@ class Bank(Economic_Agent):
         return self.model.agents_of_type('Government')
 
 
-class Government(Economic_Agent):
+class Government(EconomicAgent):
     """ The Government"""
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
@@ -203,7 +245,7 @@ class Government(Economic_Agent):
         pass
 
 
-class Central_Bank(Economic_Agent):
+class Central_Bank(EconomicAgent):
     """ The Central Bank"""
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)

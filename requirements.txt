@@ -1,4 +1,7 @@
+accounting
 pandas
 datetime
 dependency_injector
 pyyaml
+numpy
+yappi

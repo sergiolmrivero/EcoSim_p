@@ -11,19 +11,11 @@ exec(open('dumb_model.py').read())
 """
 import sys
 
-from simulation   import Simulation
-from model  import Model
-from basicSpaces import Space
-from basicAgents import Agent
-
-
-import agents
-import spaces
-
 sys.path.insert(0, '../../kernel')
 
-dumbSim = Simulation('dumb_model_init.yaml')
+from simulation import Simulation
+
+dumbSim = Simulation('dumb_model_init.yml')
 myDumbModel = dumbSim.model
 
 dumbSim.execute_simulation()
-

@@ -35,5 +35,6 @@ class Credit_market(Market):
 class Deposits_market(Market):
     """ The Deposits Market"""
 
+
 class Macro(Market):
     """ Macroeconomic General Actions """

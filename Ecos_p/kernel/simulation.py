@@ -7,8 +7,8 @@ Simulation Creation (This implements a batch simulation)
 *SLMR
 """
 import yaml
-from model import Model
-from scenarioCreation import ScenarioCreator
+from Ecos_p.kernel.model import Model
+from Ecos_p.kernel.scenarioCreation import ScenarioCreator
 
 
 class Simulation(object):
@@ -16,7 +16,7 @@ class Simulation(object):
 
     def __init__(self, simulation_file):
         with open(simulation_file, "r") as read_file:
-            self.yaml_simulation_defs = yaml.load(read_file)
+            self.yaml_simulation_defs = yaml.load(read_file, Loader=yaml.FullLoader)
         self.model = Model(simulation_file)
         self.initialize_simulation()
 
@@ -32,9 +32,9 @@ class Simulation(object):
             self.parameter_name = parameter['parameter_name']
             self.parameter_value = parameter['parameter_value']
             setattr(self, self.parameter_name, self.parameter_value)
-        self.create_scenarios()
         self.model.create_agents()
         self.model.create_observers()
+        self.create_scenarios()
 
     def create_scenarios(self):
         """Scenario creation"""
@@ -44,7 +44,7 @@ class Simulation(object):
         self.scenarios = self.scenarios_factory.scenarios
 
     def intialize_run(self):
-        """Run intialization -
+        """Run initialization -
         look at pool design pattern
         Initialize main variables for run
         agents variables and space variables

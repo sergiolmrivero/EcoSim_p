@@ -9,13 +9,20 @@ from accounting import GoodOrService
 
 
 class GoodsActionSet(ActionSet):
-    """ Dumb model action set """
+    """ Goods action set on Macro Benchmark Model"""
 
     def compute_desired_output(self, a_firm, good_type):
-        """Agent compute desired output"""
-
+        """
+        A firm compute desired output
+        The firm computes the inventory percentage that it can maintain
+        and the desired output from the expected sales and inventory
+        """
+        a_firm.desired_perc_inv = a_firm.inventory / a_firm.expected_sales
+        a_firm.desired_output_value = (a_firm.expected_sales *
+                                       (1 + a_firm.desired_perc_inv) -
+                                       a_firm.inventory_t_1)
         a_firm.desired_output = GoodOrService(a_firm.name, good_type,
-                                              a_firm.desired_output,
+                                              a_firm.desired_output_value,
                                               a_firm.expected_price,
                                               a_firm)
 
@@ -25,25 +32,6 @@ class GoodsActionSet(ActionSet):
         work that firm wants to contract
         """
         a_firm.offered_wage = a_firm.expected_wage
-
-    def contract_labor(self, a_firm):
-        """
-        Trabalho total contratado precisa ser ajustado.
-        """
-        offers_available = True
-        print(a_firm.my_actions_labor.no_of_offers(a_firm.spaces['Labor_market']))
-        while offers_available:
-            if a_firm.actions['has_offers'](a_firm.spaces['Labor_market']):
-                a_firm.an_offer = a_firm.actions['get_lowest_offer'](a_firm.spaces['Labor_market'])
-                a_firm.offer_owner = a_firm.an_offer.asset_owner
-                a_firm.contracted_labor[a_firm.offer_owner] = a_firm.an_offer
-                a_firm.total_contracted_labor += a_firm.an_offer.value
-                if a_firm.total_contracted_labor >= a_firm.desired_output_value:
-                    a_firm.ready_to_produce = True
-                    offers_available = False
-                else:
-                    offers_available = False
-                    print("Labor Market has no offers")
 
     def average_wage(self, a_firm):
         wages = 0
@@ -56,11 +44,8 @@ class GoodsActionSet(ActionSet):
             avg_wage = 0
         return avg_wage
 
-    def produce(self, a_firm):
-        """ produce """
-        pass
 
-    def offer_production(self, a_firm):
+    def offer_production(self, a_firm, ):
         "Agent offer production of consumer goods"
         pass
 

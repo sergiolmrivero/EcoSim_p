@@ -4,7 +4,7 @@
 """Definition of the agent creators """
 import dependency_injector.providers as providers
 import dependency_injector.errors as errors
-import basicAgents as ag
+import Ecos_p.kernel.basicAgents as ag
 """ agents are the user implementation of the agents """
 import agents as ags
 

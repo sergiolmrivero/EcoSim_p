@@ -53,7 +53,6 @@ class MacroEcoActionSet(ActionSet):
         " Agent compute production price"
         pass
 
-
     def pay_taxes(self, an_agent):
         """ An agent pay taxes """
         pass

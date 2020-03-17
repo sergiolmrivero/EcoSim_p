@@ -59,7 +59,7 @@ agents:
     agent_spaces:
       - Macro
       - Labor_market
-    no_of_agents: 100
+    no_of_agents: 500
   -
     agent_type: CG_Firm
     agent_prefix: CG
@@ -68,7 +68,7 @@ agents:
       - CG_market
       - Labor_market
       - KG_market
-    no_of_agents: 4
+    no_of_agents: 10
   -
     agent_type: KG_Firm
     agent_prefix: KG
@@ -76,7 +76,7 @@ agents:
       - Macro
       - KG_market
       - Labor_market
-    no_of_agents: 2
+    no_of_agents: 5
   -
     agent_type: Bank
     agent_prefix: Ba
@@ -397,7 +397,7 @@ scenarios:
           -
             var_name: labor_productivity
             var_type: stochastic
-            var_dist: np.random.normal(10.0,1.0)
+            var_dist: np.random.normal(0.5,0.5)
             var_value: 0.0            
           -
             var_name: desired_output
@@ -428,6 +428,21 @@ scenarios:
             var_name: output
             var_type: stochastic
             var_dist: np.random.normal(10.0,0.2)
+            var_value: 0.0
+          -
+            var_name: inventory
+            var_type: stochastic
+            var_dist: np.random.normal(10.0,0.2)
+            var_value: 0.0
+          -
+            var_name: inventory_t_1
+            var_type: stochastic
+            var_dist: np.random.normal(10.0,0.2)
+            var_value: 0.0
+          -
+            var_name: expected_sales
+            var_type: stochastic
+            var_dist: np.random.normal(40.0,0.2)
             var_value: 0.0
           -
             var_name: labor_to_contract

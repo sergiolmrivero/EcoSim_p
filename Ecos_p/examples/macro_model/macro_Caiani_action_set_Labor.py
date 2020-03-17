@@ -14,9 +14,22 @@ class LaborActionSet(ActionSet):
         """CG_firm ask for a quantity of labor at a price"""
         pass
 
-    def contract_labor(self):
-        """Agent contract labor in the labor market at a price"""
-        pass
+    def contract_labor(self, a_firm):
+        """A Firm contracts labor in the labor market at a price"""
+        offers_available = True
+        print(a_firm.my_actions_macro.no_of_offers(a_firm.spaces['Labor_market']))
+        while offers_available:
+            if a_firm.my_actions_macro.has_offers(a_firm.spaces['Labor_market']):
+                a_firm.an_offer = a_firm.my_actions_macro.get_lowest_offer(a_firm.spaces['Labor_market'])
+                a_firm.offer_owner = a_firm.an_offer.asset_owner
+                a_firm.contracted_labor[a_firm.offer_owner] = a_firm.an_offer
+                a_firm.total_contracted_labor += a_firm.an_offer.value
+                if a_firm.total_contracted_labor >= a_firm.desired_output_value:
+                    a_firm.ready_to_produce = True
+                    offers_available = False
+                else:
+                    offers_available = False
+                    print("Labor Market has no offers")
 
     def pay_salary(self):
         """Agent pay salaries"""

@@ -32,7 +32,7 @@ class Memory(object):
         # Precisa utilizar uma definicao feita com json
         pass
 
-    def perceives():
+    def perceives(self):
         """ Uses sensors in space-time to capture env variables"""
         return 0
 

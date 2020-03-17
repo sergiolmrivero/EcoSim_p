@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
+import os2
 
 files = os.listdir(path=os.getcwd())
 

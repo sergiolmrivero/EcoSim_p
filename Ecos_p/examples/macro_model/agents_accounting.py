@@ -5,6 +5,7 @@ This is the accounting module
 This module contains all the necessary classes to do
 """
 
+
 class GoodOrService(object):
     """
     A Basic Class representing a good or service.
