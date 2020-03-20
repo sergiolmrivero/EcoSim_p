@@ -14,7 +14,7 @@ import sys
 
 sys.path.insert(0, '../../kernel')
 
-from Ecos_p.kernel.simulation import Simulation
+from simulation import Simulation
 
 macro_sim = Simulation('macro_Caiani.yml')
 eco_m = macro_sim.model

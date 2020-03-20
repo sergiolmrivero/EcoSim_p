@@ -8,7 +8,8 @@ Definition of the class Scenario
 """
 import numpy as np
 import datetime as dt
-import yappi
+# import yappi #using to profile code
+
 
 
 class Scenario(object):
@@ -54,15 +55,15 @@ class Scenario(object):
         self.schedule = self.model.schedule
 
     def execute_scenario(self):
-        yappi.start()
+        # yappi.start() # init profiling
         self.pre_scenario()
         for run_nr in range(self.no_of_runs):
             if run_nr == 0 or self.reset_each_run:
                 self.set_an_agent_vars()
             self.run(run_nr)
         self.post_scenario()
-        yappi.get_func_stats().print_all()
-        yappi.get_thread_stats().print_all()
+        # yappi.get_func_stats().print_all()  # get statistics
+        # yappi.get_thread_stats().print_all()  # get statistics
 
     def pre_scenario(self):
         self.initialize_parameters()

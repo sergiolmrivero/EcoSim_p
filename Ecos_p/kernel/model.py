@@ -13,10 +13,10 @@ import yaml
 import random as rnd
 import time
 from collections import OrderedDict
-from Ecos_p.kernel.spaceCreation import SpaceCreator
-from Ecos_p.kernel.agentCreation import AgentPopulationCreator
-from Ecos_p.kernel.scheduleCreation import ScheduleCreator
-from Ecos_p.kernel.observerCreation import ObserverCreator
+from spaceCreation import SpaceCreator
+from agentCreation import AgentPopulationCreator
+from scheduleCreation import ScheduleCreator
+from observerCreation import ObserverCreator
 
 
 class Model:

@@ -7,7 +7,7 @@ Definition of the class Agent
 *SLMR
 
 """
-from Ecos_p.kernel.event import Event
+from event import Event
 
 
 class Agent(object):

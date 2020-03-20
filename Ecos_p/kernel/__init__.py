@@ -6,10 +6,35 @@ Python Economic ABM
 import datetime
 
 
-from Ecos_p.kernel.simulation import Simulation
-from Ecos_p.kernel.model import Model
-from Ecos_p.kernel.basicSpaces import Space
-import Ecos_p.kernel.basicAgents
+from .simulation import Simulation
+from .model import Model
+
+from .basicSpaces import Space
+from .spaceCreation import SpaceCreator
+from .spaceCreation import SpaceProvider
+
+from .basicAgents import Agent
+from .agentCreation import AgentPopulationCreator
+from .agentCreation import AgentProvider
+
+from .basicObservers import Observer
+from .observerCreation import ObserverCreator
+from .observerCreation import ObserverProvider
+
+from .basicScenarios import Scenario
+from .scenarioCreation import ScenarioCreator
+from .scenarioCreation import ScenarioProvider
+
+from .basicSchedule import Schedule
+from .scheduleCreation import ScheduleCreator
+from .scheduleCreation import ScheduleProvider
+
+__all__ = [ "Simulation", "Model",
+            "Space", "SpaceCreator", "SpaceProvider",
+            "Agent", "AgentPopulationCreator", "AgentProvider",
+            "Observer", "ObserverCreator", "ObserverProvider",
+            "Scenario", "ScenarioCreator", "ScenarioProvider",
+            "Schedule", "ScheduleCreator", "ScheduleProvider"]
 
 
 __title__ = 'kernel'

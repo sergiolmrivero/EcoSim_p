@@ -7,8 +7,8 @@ Simulation Creation (This implements a batch simulation)
 *SLMR
 """
 import yaml
-from Ecos_p.kernel.model import Model
-from Ecos_p.kernel.scenarioCreation import ScenarioCreator
+from model import Model
+from scenarioCreation import ScenarioCreator
 
 
 class Simulation(object):

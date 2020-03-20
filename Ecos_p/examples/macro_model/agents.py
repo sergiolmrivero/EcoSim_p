@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """ Agents from the basic macroecnomic model """
 
-from Ecos_p.kernel.basicAgents import DiscreteEventAgent
-from Ecos_p.examples.macro_model.macro_Caiani_action_set import MacroEcoActionSet
-from Ecos_p.examples.macro_model.macro_Caiani_action_set_Labor import LaborActionSet
-from Ecos_p.examples.macro_model.macro_Caiani_action_set_Goods import GoodsActionSet
-from Ecos_p.examples.macro_model.macro_Caiani_action_set_CG import CGActionSet
-from Ecos_p.examples.macro_model.macro_Caiani_action_set_KG import KGActionSet
-from Ecos_p.examples.macro_model.macro_Caiani_action_set_Credit import CreditActionSet
-from Ecos_p.examples.macro_model.macro_Caiani_action_set_Deposits import DepositsActionSet
-from Ecos_p.examples.macro_model.production import ProductionFunction
+from basicAgents import DiscreteEventAgent
+from macro_Caiani_action_set import MacroEcoActionSet
+from macro_Caiani_action_set_Labor import LaborActionSet
+from macro_Caiani_action_set_Goods import GoodsActionSet
+from macro_Caiani_action_set_CG import CGActionSet
+from macro_Caiani_action_set_KG import KGActionSet
+from macro_Caiani_action_set_Credit import CreditActionSet
+from macro_Caiani_action_set_Deposits import DepositsActionSet
+from production import ProductionFunction
 
 
 class EconomicAgent(DiscreteEventAgent):

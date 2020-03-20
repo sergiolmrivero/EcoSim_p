@@ -8,7 +8,7 @@ Definition of the class Scenario
 """
 import dependency_injector.providers as providers
 import dependency_injector.errors as errors
-import Ecos_p.kernel.basicScenarios as scn
+import basicScenarios as scn
 
 
 class ScenarioCreator(object):
