@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-Definition of the class ScheduleCreator
+Schedule Creation
 
-*SLMR
-REMEMBER TO USE DEPENDENCE INJECTION IN THE CODE.
-http://python-dependency-injector.ets-labs.org/index.html
+The schedule is created using dependency injection
+The definition of the schedule that will be used in the simulation is in the yaml file
 
 """
 
@@ -16,7 +15,7 @@ import basicSchedule as schd
 
 
 class ScheduleCreator(object):
-    """ Schedule Generator - Schedule Implemented Subclass must be used"""
+    """ Schedule Generator - Schedule Implemented Subclass must be used """
     def __init__(self, model, schedule_def):
         self.model = model
         for schedule in schedule_def:
@@ -41,5 +40,5 @@ class ScheduleCreator(object):
 
 
 class ScheduleProvider(providers.Factory):
-    """ Agent Provider Class"""
+    """ Schedule Provider Class"""
     provided_type = schd.Schedule

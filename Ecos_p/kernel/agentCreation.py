@@ -1,7 +1,11 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Agent Creation
 
-"""Definition of the agent creators """
+The agents are created using dependency injection
+The definitions of the agents that will be used in the simulation are in the yaml file
+"""
+
 import dependency_injector.providers as providers
 import dependency_injector.errors as errors
 import basicAgents as ag

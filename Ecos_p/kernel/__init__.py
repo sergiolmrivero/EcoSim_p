@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-Python Economic ABM 
+Python Economic ABM
+
+This is an abm engine for economic simulation in python
 
 """
 import datetime
 
 
-from .simulation import Simulation
 from .model import Model
+from .simulation import Simulation
 
 from .basicSpaces import Space
 from .spaceCreation import SpaceCreator
 from .spaceCreation import SpaceProvider
 
 from .basicAgents import Agent
+from .basicAgents import EventAgent
+from .basicAgents import DiscreteEventAgent
 from .agentCreation import AgentPopulationCreator
 from .agentCreation import AgentProvider
 
@@ -29,12 +33,12 @@ from .basicSchedule import Schedule
 from .scheduleCreation import ScheduleCreator
 from .scheduleCreation import ScheduleProvider
 
-__all__ = [ "Simulation", "Model",
-            "Space", "SpaceCreator", "SpaceProvider",
-            "Agent", "AgentPopulationCreator", "AgentProvider",
-            "Observer", "ObserverCreator", "ObserverProvider",
-            "Scenario", "ScenarioCreator", "ScenarioProvider",
-            "Schedule", "ScheduleCreator", "ScheduleProvider"]
+__all__ = ["Simulation", "Model",
+           "Space", "SpaceCreator", "SpaceProvider",
+           "Agent", "EventAgent", "DiscreteEventAgent", "AgentPopulationCreator", "AgentProvider",
+           "Observer", "ObserverCreator", "ObserverProvider",
+           "Scenario", "ScenarioCreator", "ScenarioProvider",
+           "Schedule", "ScheduleCreator", "ScheduleProvider"]
 
 
 __title__ = 'kernel'

@@ -1,10 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
-Definition of the class Scenario
+Scenario Creation
 
-*SLMR
+The Scenarios are created using dependency injection
+The definition of the Scenarios that will be used in the simulation are in the yaml file
 """
 import dependency_injector.providers as providers
 import dependency_injector.errors as errors
@@ -12,7 +12,7 @@ import basicScenarios as scn
 
 
 class ScenarioCreator(object):
-    """ Space Generator - Space Implemented Subclass must be used"""
+    """ Scenario Generator - Scenario Implemented Subclass must be used """
     def __init__(self, simulation, model, scenarios_def):
         self.scenarios = dict()
         self.simulation = simulation
@@ -45,5 +45,6 @@ class ScenarioCreator(object):
 
 
 class ScenarioProvider(providers.Factory):
-    """ Agent Provider Class"""
+    """ Scenario Provider Class"""
     provided_type = scn.Scenario
+

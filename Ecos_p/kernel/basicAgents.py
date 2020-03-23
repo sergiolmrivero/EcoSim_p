@@ -1,20 +1,14 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Definition of the class Agent
-
-*SLMR
-
 """
 from event import Event
 
 
 class Agent(object):
-
+    """ This is the basic agent class"""
     def __init__(self, simulation, model, agent_number, agent_def):
-        """ Agent Initialization
-            Incorporar as variaveis de agente na implementação
+        """ Agent Initialization from the yaml file
         """
         self.type = agent_def['agent_type']
         self.name = agent_def['agent_prefix'] + '_' + str(agent_number)
@@ -36,7 +30,8 @@ class Agent(object):
         self.spaces[space_name] = self.model.spaces[space_name]
         self.spaces[space_name].enter(self.name, self)
 
-    def get_atrribute(self, attribute_name):
+    def get_attribute(self, attribute_name):
+        """ Get an agent attribute"""
         try:
             this_attribute = None
             this_attribute = self.__getattribute__(attribute_name)
@@ -61,18 +56,19 @@ class Agent(object):
 
     def step(self):
         """ Agent standard step - can be specialized by subclass """
+        pass
 
 
 class DiscreteEventAgent(Agent):
 
     def __init__(self, simulation, model, agent_number, agent_def):
-        """ Agent Initialization
-            Incorporar as variaveis de agente na implementação"""
+        """ Discrete Event Agent Initialization
+        """
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_step = 0
 
     def step(self, this_step):
-        """ Agent standard step - can be specialized by subclass ]
+        """ Dev Agent standard step - can be specialized by subclass
             -- The code below is only an example
         """
         # Implemented by subclass
@@ -84,10 +80,10 @@ class DiscreteEventAgent(Agent):
 class EventAgent(Agent):
 
     def __init__(self, simulation, model, agent_number, agent_def):
-        """ Agent Initialization
-            Incorporar as variaveis de agente na implementação"""
+        """ Agent Initialization """
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_step = 0
+        self.an_event = None
 
     def step(self, this_step):
         """ Agent standard step - can be specialized by subclass ]

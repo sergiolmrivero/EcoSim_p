@@ -1,13 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Definition of the class Schedule
-
-*SLMR
-REMEMBER TO USE DEPENDENCE INJECTION IN THE CODE.
-http://python-dependency-injector.ets-labs.org/index.html
-
 """
 
 
@@ -15,6 +8,7 @@ class Schedule(object):
     """ Schedule Class """
 
     def __init__(self, name, model):
+        """ Initialize the schedule"""
         self.name = name
         self.model = model
         self.scenario_name = " "
@@ -24,15 +18,15 @@ class Schedule(object):
                 step_interval,
                 no_of_steps,
                 run_nr):
-        """ Interface for the execute method of schedule objects
+        """ Interface for executing methods of schedule objects
             Implemented by subclass
         """
         raise NotImplementedError("Must subclass me")
 
 
-# Definir a EventSchedule
-# Eventualmente, implementar o Agente para diferentes tipos de schd
-# Montar um modelo macroeconômico básico (Usando Hilder)
+# TODO: Definir a EventSchedule
+# TODO: Eventualmente, implementar o Agente para diferentes tipos de schd
+# TODO: Montar um modelo macroeconômico básico (Usando Hilder)
 
 
 class EventSchedule(Schedule):
@@ -54,7 +48,7 @@ class EventSchedule(Schedule):
 
 
 class PoolSchedule(Schedule):
-    """ A pool schedule for test"""
+    """ A pool schedule """
     def __init__(self, name, model):
         """ PoolSchedule initialization """
         super().__init__(name, model)
@@ -65,6 +59,7 @@ class PoolSchedule(Schedule):
                 step_interval,
                 no_of_steps,
                 run_nr):
+        """ Executes the Pool Schedule """
         self.run_nr = run_nr
         self.scenario_name = scenario_name
         if step_unit == 'step':
@@ -79,9 +74,9 @@ class PoolSchedule(Schedule):
 
 
 class MixedSchedule(Schedule):
-    """ A pool schedule for test"""
+    """ A mixed schedule for random execution"""
     def __init__(self, name, model):
-        """ PoolSchedule initialization """
+        """ Mixed schedule initialization """
         super().__init__(name, model)
         self.run_nr = " "
 
@@ -90,6 +85,7 @@ class MixedSchedule(Schedule):
                 step_interval,
                 no_of_steps,
                 run_nr):
+        """ Executes the Mixed Schedule """
         self.run_nr = run_nr
         self.scenario_name = scenario_name
         if step_unit == 'step':

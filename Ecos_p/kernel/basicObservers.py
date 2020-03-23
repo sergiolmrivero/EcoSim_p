@@ -1,31 +1,18 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Definition of the class Observer
-Inspired on datacollection.py from mesa abm
-https://mesa.readthedocs.io/en/master/
-*SLMR
 """
-
 import pandas as pd
 import datetime as dt
 
 
 class Observer(object):
-    """ Schedule Class
-        Um Agente pode estar em varios espaços...
-        Mas o observador do agente é DO AGENTE e não do espaço
-        Então, deve haver apenas um observador para cada tipo de agente.
-        O observador observa o agente.
-        Se eu tiver multiplas schedules - teria que montar um mecanismo
-        de observação mais complexo.
-        Uma possível solução é a schedule executar a ação do agente para
-        cada espaço e 1 schedule -> N Espaços
-        É necessário reestruturar a schedule para que ela funcione adequadamente.
+    """
+    The observer classs - This class observe the agents and collects data
     """
 
     def __init__(self, name, model, simulation, entity_class, agent_vars):
+        """ Initialize the observer class """
         self.name = name
         self.model = model
         self.simulation = simulation
@@ -36,18 +23,24 @@ class Observer(object):
         self.observables_keys = {}
         self.observation_keys = {}
         self.obs_no = 0
+        self.filename = None
         self.add_observables_keys()
         self.observation = None
         self.agent_vars = agent_vars
         self.define_observable_vars()
+        self.observables = None
         self.create_observables()
 
     def define_observable_entity(self, entity_class):
+        """ Defines the type of agent that will be observed by this observer """
         if entity_class not in self.model.dir():
             raise ValueError('{entity_class} not defined in the current scope')
         self.observable_entity = entity_class
 
     def add_observables_keys(self):
+        """
+        Add general observable variables from the agent (model, simulation, scenario, run, step, time, agent_name)
+        """
         self.observables_keys = {'model': [self.model.name],
                                  'simulation': [self.simulation.name],
                                  'scenario': [self.schedule.scenario_name],
@@ -57,6 +50,7 @@ class Observer(object):
                                  'agent_name': [' ']}
 
     def update_observation_keys(self):
+        """ Updates the general observable variables at each observation (step) """
         self.observation_keys['model'] = self.model.name
         self.observation_keys['simulation'] = self.simulation.name
         self.observation_keys['scenario'] = self.schedule.scenario_name
@@ -65,6 +59,7 @@ class Observer(object):
         self.observation_keys['time'] = dt.datetime.now().isoformat(timespec='minutes')
 
     def define_observable_vars(self):
+        """ Define the variables that observe will update in the observation (defined in the yaml file) """
         if self.observable_entity is not None:
             for var in self.agent_vars:
                 self.agent_observables[var] = [0]
@@ -73,6 +68,7 @@ class Observer(object):
             raise ValueError('{observable_entity} not defined')
 
     def basic_observation(self):
+        """ Observer the agent variables """
         self.observation = None
         agents_to_observe = self.model.agents_of_type(self.observable_entity)
         self.update_observation_keys()
@@ -84,9 +80,11 @@ class Observer(object):
             self.append_observation()
 
     def create_observables(self):
+        """ Create the dictionary of observable variables (for the observation file) """
         self.observables = {**self.observables_keys, **self.agent_observables}
 
     def append_observation(self):
+        """ Append and observation in the observables dictionary """
         for var, value in self.observables.items():
             value.append(self.observation[var])
 
@@ -94,10 +92,11 @@ class Observer(object):
         self.observations = pd.DataFrame(self.observables)
 
     def save_dataframe(self, df_name):
+        """  Create a dataframe to update the observations """
         self.filename = 'runs/' + df_name
         self.observations.to_csv(self.filename, index_label='index_no')
 
     def observe(self, step):
-        """ Implemented by subclass"""
+        """ Observe the variables """
         self.step = step
         self.basic_observation()

@@ -5,7 +5,6 @@
 Definition of the class Observer
 Inspired on datacollection.py from mesa abm
 https://mesa.readthedocs.io/en/master/
-*SLMR
 """
 
 import dependency_injector.providers as providers

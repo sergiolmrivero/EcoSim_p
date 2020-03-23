@@ -3,13 +3,10 @@
 
 """
 Definition of the class Scenario
-
-*SLMR
 """
 import numpy as np
 import datetime as dt
 # import yappi #using to profile code
-
 
 
 class Scenario(object):
@@ -19,6 +16,7 @@ class Scenario(object):
     """
     def __init__(self, simulation, model, name,
                  parameters, variables, agents_init):
+        """Initialize a Scenario (with yaml definitions) """
         self.simulation = simulation
         self.model = model
         self.name = name
@@ -39,12 +37,20 @@ class Scenario(object):
         self.first = True
 
     def initialize_parameters(self):
+        """
+        Initialize the scenario parameters
+        The parameters (names and values) come from scenario yaml definition
+        """
         for parameter in self.parameters:
             self.parameter_name = parameter['parameter_name']
             self.parameter_value = parameter['parameter_value']
             setattr(self, self.parameter_name, self.parameter_value)
 
     def initialize_variables(self):
+        """
+        Initialize scenario variables
+        The scenario variables come from the yaml scenario definition
+        """
         for variable in self.variables:
             self.variable_name = variable['var_name']
             self.variable_value = variable['var_init_value']
@@ -55,6 +61,10 @@ class Scenario(object):
         self.schedule = self.model.schedule
 
     def execute_scenario(self):
+        """
+        Execute the scenario
+        The simulation executes an pre-scenario and a post-scenario for each scenario
+        """
         # yappi.start() # init profiling
         self.pre_scenario()
         for run_nr in range(self.no_of_runs):
@@ -66,6 +76,7 @@ class Scenario(object):
         # yappi.get_thread_stats().print_all()  # get statistics
 
     def pre_scenario(self):
+        """ Initializes the scenario parameters, variable, shcedule, agents vars etc. """
         self.initialize_parameters()
         self.initialize_variables()
         self.initialize_schedule()
@@ -84,6 +95,10 @@ class Scenario(object):
                               run_nr)
 
     def post_scenario(self):
+        """
+        In post scenario, the  observation dataframe is saved
+        """
+        # TODO: Review observer dataframe writing methods (big dataframe consume ram)
         for observer_name, observer in self.model.agent_observers.items():
             observer.create_dataframe()
             self.now = dt.datetime.now().isoformat(timespec='minutes')
@@ -92,34 +107,14 @@ class Scenario(object):
                                       self.now, '.csv'])
             observer.save_dataframe(self.filename)
 
-    # def initialize_agents_vars(self):
-    #     np.random.seed()
-    #     for agent_type, agent_vars in self.agents_init.items():
-    #         try:
-    #             self.agents_of_type = None
-    #             self.agents_of_type = self.model.agents_by_type[agent_type]
-    #             if self.agents_of_type is not None:
-    #                 for agent in self.agents_of_type.values():
-    #                     self.vars_dict = dict()
-    #                     for var in agent_vars:
-    #                         self.agent_var_name = var['var_name']
-    #                         self.agent_var_type = var['var_type']
-    #                         self.agent_var_dist = var['var_dist']
-    #                         self.agent_var_value = var['var_value']
-    #                         self.a_var = AgentVar(self.agent_var_name,
-    #                                               self.agent_var_type,
-    #                                               self.agent_var_dist,
-    #                                               self.agent_var_value)
-    #                         self.vars_dict[self.a_var.name] = self.a_var
-    #                         # self.vars_by_agent_type[agent_type] = self.vars_dict
-    #                         self.var_value = self.a_var.generate_value()
-    #                         setattr(agent, self.a_var.name, self.var_value)
-    #                         # self.set_an_agent_vars(agent)
-    #         except KeyError:
-    #             print("There is no agent type called ", agent_type,
-    #                   " in this model")
-
     def initialize_agents_vars(self):
+        """
+        The scenario object initializes the variables dict from the yaml agent
+        variables  definition (for each scenario)
+        """
+        # TODO: This probably will need revision - Using agent pool and simply resetting the agents variable
+        #  will be more efficient
+        # TODO: This will probably be better to be as a part of the agent class
         for agent_type, agent_vars in self.agents_init.items():
             try:
                 self.agents_of_type = None
@@ -135,13 +130,14 @@ class Scenario(object):
                                             self.agent_var_type,
                                             self.agent_var_dist,
                                             self.agent_var_value)
-                        self.vars_dict[self.a_var.name]=self.a_var
+                        self.vars_dict[self.a_var.name] = self.a_var
                         self.vars_by_agent_type[agent_type] = self.vars_dict
             except KeyError:
                 print("There is no agent type called ", agent_type,
                       " in this model")
 
     def set_an_agent_vars(self):
+        """ Using the variables dict, the scenario object initializes the variables for each agent (by agent type) """
         for agent_type, agent_vars in self.vars_by_agent_type.items():
             for agent_name, agent in self.model.agents_of_type(agent_type).items():
                 for var_name, var in agent_vars.items():
@@ -159,6 +155,7 @@ class AgentVar(object):
         self.generate_value()
 
     def generate_value(self):
+        """ Generates the value for the agent  stochastic variable using the definition in the variable object """
         if self.var_type == 'stochastic':
             self.value = eval(self.dist)
         return self.value

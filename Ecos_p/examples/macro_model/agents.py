@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ Agents from the basic macroecnomic model """
 
-from basicAgents import DiscreteEventAgent
+from Ecos_p.kernel.basicAgents import DiscreteEventAgent
 from macro_Caiani_action_set import MacroEcoActionSet
 from macro_Caiani_action_set_Labor import LaborActionSet
 from macro_Caiani_action_set_Goods import GoodsActionSet

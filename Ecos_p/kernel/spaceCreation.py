@@ -1,22 +1,28 @@
+# -*- coding: utf-8 -*-
 """
+Space Creation
 
-Space Creation (This implements a batch simulation)
-
-*SLMR
-
-Definition of space agent creators
-
+The spaces are created using dependency injection
+The definition of the spaces that will be used in the simulation is in the yaml file
 """
 import dependency_injector.providers as providers
 import dependency_injector.errors as errors
 import basicSpaces as sp
-""" spaces are the user implementation of the spaces """
+""" Spaces are the user implementation of the spaces """
 import spaces as sps
 
 
 class SpaceCreator(object):
-    """ Space Generator - Space Implemented Subclass must be used"""
+    """
+    Space Creator
+    This is the general Space class implementation
+    Space implemented subclass must be used
+    """
     def __init__(self, model, spaces_def):
+        """
+        The init method for space class creation
+        Must be referred in the space subclass creation (using super)
+        """
         self.spaces = dict()
         self.spaces_model = model
         for space_def in spaces_def:
@@ -45,5 +51,5 @@ class SpaceCreator(object):
 
 
 class SpaceProvider(providers.Factory):
-    """ Agent Provider Class"""
+    """ Space Provider Class"""
     provided_type = sp.Space

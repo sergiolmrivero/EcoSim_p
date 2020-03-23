@@ -1,10 +1,8 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
-Simulation Creation (This implements a batch simulation)
+Simulation Class (This implements a batch simulation)
 
-*SLMR
 """
 import yaml
 from model import Model
@@ -15,6 +13,7 @@ class Simulation(object):
     """This class implements a simulation"""
 
     def __init__(self, simulation_file):
+        """ Initialize the simulation from a yaml file"""
         with open(simulation_file, "r") as read_file:
             self.yaml_simulation_defs = yaml.load(read_file, Loader=yaml.FullLoader)
         self.model = Model(simulation_file)
@@ -37,21 +36,28 @@ class Simulation(object):
         self.create_scenarios()
 
     def create_scenarios(self):
-        """Scenario creation"""
+        """ Scenario creation """
         self.scenarios_def = self.yaml_simulation_defs['scenarios']
         self.scenarios_factory = ScenarioCreator(self, self.model,
                                                  self.scenarios_def)
         self.scenarios = self.scenarios_factory.scenarios
 
     def intialize_run(self):
-        """Run initialization -
-        look at pool design pattern
+        """
+        Run initialization -
         Initialize main variables for run
         agents variables and space variables
         """
-
+        # TODO: Look at pool design pattern to reduce simulation creation overload
+        # TODO: To Be Defined
         pass
 
     def execute_simulation(self):
+        """
+        Executes a Simulation.
+
+        This method gets all scenarios in the yaml definition and executes
+        the defined number of runs for each scenario
+        """
         for scenario in self.scenarios.values():
             scenario.execute_scenario()
