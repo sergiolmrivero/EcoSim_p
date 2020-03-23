@@ -1,4 +1,6 @@
 
+import datetime
+
 __title__ = 'EcoSim_p'
 __version__ = '0.0.0.Alpha'
 __license__ = 'gnu'
