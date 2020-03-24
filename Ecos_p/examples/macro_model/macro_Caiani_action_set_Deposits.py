@@ -17,7 +17,7 @@ class DepositsActionSet(ActionSet):
         pass
 
     def pay(self, a_bank_to_cash, a_bank_to_deposit, payer, receiver, ammount):
-        """ An agent pays some ammount to a receiver """
+        """ An agent pays some amount to a receiver """
         pass
 
     def interests_on_deposits(self, a_bank):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" Agents from the basic macroecnomic model """
+""" Agents from the basic macroeconomic model """
 
 from Ecos_p.kernel.basicAgents import DiscreteEventAgent
 from macro_Caiani_action_set import MacroEcoActionSet
@@ -19,17 +19,15 @@ class EconomicAgent(DiscreteEventAgent):
         pass
 
 
-""" Household Agent """
-
-
 class Household(EconomicAgent):
-    """ A Household"""
+    """ Household Agent """
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_actions_macro = MacroEcoActionSet()
         self.my_actions_labor = LaborActionSet()
 
     def step(self, this_step):
+        """ Household Agent Step method """
         self.my_step = this_step
         self.my_actions_labor.generate_offer(self)
         self.my_actions_macro.offer_gs(self.my_step,
@@ -39,7 +37,7 @@ class Household(EconomicAgent):
                                          self.spaces['Labor_market'])
 
     def show_offer(self):
-        """ Show Offer """
+        """ Show Offer The agent show an offer in some market """
         print(" I, ", self.name,
               "am offering ",
               self.labor_offer.quantity,
@@ -53,12 +51,13 @@ class Household(EconomicAgent):
 
 
 class Firm(EconomicAgent):
-    """ A Consumer Goods Firm"""
+    """ A Generic Goods Firm"""
     # contracted_labor = {}
     # ready_to_produce = False
     # total_contracted_labor = 0.0
 
     def __init__(self, simulation, model, agent_number, agent_def):
+        """ Initialize a Firm """
         # self.contracted_labor = {}
         # self.ready_to_produce = False
         # self.total_contracted_labor = 0.0
@@ -71,13 +70,11 @@ class Firm(EconomicAgent):
         pass
 
 
-""" Consumer Goods Firm Agent """
-
-
 class CG_Firm(Firm):
     """ A Consumer Goods Firm"""
 
     def __init__(self, simulation, model, agent_number, agent_def):
+        """ Initialize a consumer goods firm """
         super().__init__(simulation, model, agent_number, agent_def)
         self.contracted_labor = {}
         self.ready_to_produce = False
@@ -118,6 +115,7 @@ class CG_Firm(Firm):
         self.expected_wage = self.my_actions_goods.average_wage(self)
 
     def show_offer(self):
+        """ A cg_firm shows an offer of labor and a desired output """
         print(" I, ", self.name,
               "am getting",
               self.total_contracted_labor,
@@ -171,6 +169,7 @@ class KG_Firm(EconomicAgent):
         self.my_actions_macro.pay_taxes(self)
 
     def show_offer(self):
+        """ A capital goods firm shows an offer """
         print(" I, ", self.name,
               "am getting",
               self.total_contracted_labor,
@@ -182,7 +181,7 @@ class KG_Firm(EconomicAgent):
 
 
 class Bank(EconomicAgent):
-    """ A Bank"""
+    """ A Bank economic agent """
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_actions_macro = MacroEcoActionSet()
@@ -190,6 +189,7 @@ class Bank(EconomicAgent):
         self.my_actions_dep = DepositsActionSet()
 
     def step(self, this_step):
+        """ Step method for a bank """
         self.my_step = this_step
         self.cb = self.get_cb()
         self.gov = self.get_government()
@@ -203,6 +203,7 @@ class Bank(EconomicAgent):
         self.my_actions_macro.show_offer(self, self.spaces['Credit_market'])
 
     def show_offer(self):
+        """ A bank show offer """
         print(" I, ", self.name,
               " am working in this model"
               )
@@ -217,7 +218,7 @@ class Bank(EconomicAgent):
 
 
 class Government(EconomicAgent):
-    """ The Government"""
+    """ The Government economic agetn """
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_actions_macro = MacroEcoActionSet()
@@ -226,6 +227,7 @@ class Government(EconomicAgent):
         self.my_actions_labor = LaborActionSet()
 
     def step(self, this_step):
+        """ Step method for Government Agent """
         self.my_step = this_step
         self.calculate_available_resources()
         self.my_actions_labor.contract_gov_labor()
@@ -236,6 +238,7 @@ class Government(EconomicAgent):
         self.my_actions_macro.show_offer(self, self.spaces['Credit_market'])
 
     def show_offer(self):
+        """ Government show offer"""
         print(" I, ", self.name,
               " am working in this model  BCBCBCBBCBCBCBCBCBCBCBCBCBC"
               )
@@ -246,7 +249,7 @@ class Government(EconomicAgent):
 
 
 class Central_Bank(EconomicAgent):
-    """ The Central Bank"""
+    """ The Central Bank economic agent """
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_actions_macro = MacroEcoActionSet()
@@ -254,6 +257,7 @@ class Central_Bank(EconomicAgent):
         self.my_actions_dep = DepositsActionSet()
 
     def step(self, this_step):
+        """ Step method for the Central bank Agent """
         self.my_step = this_step
         self.decide_monetary_policy()
         self.my_actions_credit.contract_cash_advances()
@@ -262,6 +266,7 @@ class Central_Bank(EconomicAgent):
         self.my_actions_macro.show_offer(self, self.spaces['Credit_market'])
 
     def show_offer(self):
+        """ Central Bank Show Offer """
         print(" I, ", self.name,
               " am working in this model GOVGOVGOVGOVGOVGOVGOVGOVGOV"
               )

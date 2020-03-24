@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+Python ABM Engine
+General init method
+"""
 
 import datetime
 

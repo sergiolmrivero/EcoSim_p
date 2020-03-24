@@ -4,18 +4,18 @@ Labor Market Action Set
 """
 
 from actions import ActionSet
-from accounting import GoodOrService
+from agents_accounting import GoodOrService
 
 
 class LaborActionSet(ActionSet):
-    """ Dumb model action set """
+    """ Labor Market action set """
 
     def bid_labor_demand(self):
-        """CG_firm ask for a quantity of labor at a price"""
+        """ A firm ask for a quantity of labor at a price """
         pass
 
     def contract_labor(self, a_firm):
-        """A Firm contracts labor in the labor market at a price"""
+        """ A Firm contracts labor in the labor market at a price """
         offers_available = True
         print(a_firm.my_actions_macro.no_of_offers(a_firm.spaces['Labor_market']))
         while offers_available:
@@ -32,7 +32,8 @@ class LaborActionSet(ActionSet):
                     print("Labor Market has no offers")
 
     def pay_salary(self):
-        """Agent pay salaries"""
+        """ Agent pay salaries """
+        # TODO: Check if duplicated
         pass
 
     def generate_offer(self, hh):
@@ -48,7 +49,7 @@ class LaborActionSet(ActionSet):
         hh.hourly_wage = hh.expected_wage
 
     def pay_wages(self):
-        """Agent pay wages"""
+        """ Agent pay wages """
         pass
 
     def contract_gov_labor(self):

@@ -53,4 +53,4 @@ class AgentPopulationCreator(object):
 
 class AgentProvider(providers.Factory):
     """ Agent Provider Class"""
-    provided_type = ag.Agent
+

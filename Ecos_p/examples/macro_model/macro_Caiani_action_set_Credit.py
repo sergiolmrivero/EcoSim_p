@@ -41,9 +41,9 @@ class CreditActionSet(ActionSet):
         pass
 
     def pay_gov_bonds_interest(self):
-        """ A government pays bonds and interests"""
+        """ A government pays bonds and interests """
         pass
 
     def offer_new_bonds(self):
-        """ A government offers bonds"""
+        """ A government offers bonds """
         pass

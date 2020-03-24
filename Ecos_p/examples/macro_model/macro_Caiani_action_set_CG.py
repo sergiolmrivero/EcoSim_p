@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Consumer Goods Action Set - needs more work
+Consumer Goods Action Set
+
 """
+# TODO: needs more work
 
 from macro_Caiani_action_set_Goods import GoodsActionSet
 

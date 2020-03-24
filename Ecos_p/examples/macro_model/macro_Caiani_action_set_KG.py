@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Capital Goods Market Action Set
+
 """
 
 from macro_Caiani_action_set_Goods import GoodsActionSet

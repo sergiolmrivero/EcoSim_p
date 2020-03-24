@@ -39,6 +39,7 @@ class GoodOrService(object):
                  value_of_gs,
                  asset_owner_of_gs=None,
                  liability_owner_of_gs=None):
+        """ Init method for a Good (or service) """
         self.name = name_of_gs
         self.gs_type = type_of_gs
         self.value = value_of_gs
@@ -47,9 +48,11 @@ class GoodOrService(object):
         self.liability_owner = liability_owner_of_gs
 
     def estimated_value(self, a_quantity_of_gs):
+        """ Calculates the estimated value of a good given a quantity as input """
         return self.value * a_quantity_of_gs
 
     def total_value(self):
+        """ Calculates the estimated value of a good for the existing quantity """
         return self.value * self.quantity
 
 
@@ -62,6 +65,7 @@ class CapitalGood(GoodOrService):
                  value_of_gs,
                  asset_owner_of_gs=None,
                  liability_owner_of_gs=None):
+        """ Initialize a production (capital) good """
         self.name = name_of_gs
         self.gs_type = "k"
         self.value = value_of_gs

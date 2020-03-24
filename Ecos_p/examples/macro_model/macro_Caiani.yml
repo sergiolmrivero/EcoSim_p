@@ -1,14 +1,23 @@
+# This is the macroeconomic model based on Caiani(2016)
+# CAIANI, Alessandro; GODIN, Antoine; CAVERZASI, Eugenio; et al.
+# Agent based-stock flow consistent macroeconomics: Towards a benchmark model.
+# Journal of Economic Dynamics and Control, v. 69, p. 375–408, 2016.
+#
+# Definition of the Simulation
 simulation_name: macro_Caiani
 simulation_model: macro_Caiani
+# Defition of Simulation Parameters
 simulation_parameters:
   -
     parameter_name: M1
     parameter_value: 0.0
 model_name: macro_Caiani
+# Definition of the Schedule
 schedule:
   -
     schedule_type: MixedSchedule
     schedule_name: MyMxSchd
+# Definition of the Spaces used in the Simulation
 spaces:
   -
     space_type: Macro
@@ -52,6 +61,7 @@ spaces:
     action_class: DepositsActionSet
     space_variables:
         intensity_of_choice: 0.0
+# Definition of the Agents used in the Simulation
 agents:
   -
     agent_type: Household
@@ -101,7 +111,8 @@ agents:
       - Deposits_market
       - Credit_market
       - Labor_market
-    no_of_agents: 1        
+    no_of_agents: 1
+# Definition of the Observers for the Agents in the simulation
 observers:
     -
       observer_type: Observer
@@ -193,26 +204,36 @@ observers:
       observer_agent: Government
       observable_vars:
         - ammount
+# Definition of the Simulation Scenarios
+# In the scenarios we define the different scenarios
+# The parameter values for the scenario are define for each scenario
 scenarios:
   -
     scenario_type: Scenario
     scenario_name: Scenario1
+    # The definition of the scenario parameters
     scenario_parameters:
       -
+        # Number of runs of the scenario
         parameter_name: no_of_runs
         parameter_value: 1
       -
+        # If the variables in the scenarios  (both agents and others) are reset at each run
         parameter_name: reset_each_run
         parameter_value: True
       -
+        # Which step unit the scenario uses
         parameter_name: step_unit
         parameter_value: step
-      -  
+      -
+        # Which step interval the scenario uses
         parameter_name: step_interval
         parameter_value: 1
-      -  
+      -
+        # Number of step in a run in the scenario
         parameter_name: no_of_steps
         parameter_value: 100
+    # The scenario variables
     scenario_variables:
       -
         var_name: heat
@@ -222,6 +243,8 @@ scenarios:
         var_name: happiness
         var_init_value: 1.0
         var_type: sharp
+    # The initialization for the agent variables (for each agent type)
+    # For stochastic variables the initialization will follow a statistical distribution
     agents_init:
       Household:
           -

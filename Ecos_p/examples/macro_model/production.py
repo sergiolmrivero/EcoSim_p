@@ -4,14 +4,15 @@
 The production Functions for the Firms
 
 @author: rivero
+
 """
 
 from agents_accounting import GoodOrService
 
 
 class ProductionFunction:
-    """ The production function class is used by the firms
-        to produce.
+    """
+    The production function class is used by the firms to produce.
     """
     def __init__(self, firm):
         """ Initialize class with labor and equipment """
@@ -31,8 +32,7 @@ class ProductionFunction:
         self.labor = firm_contracted_labor
 
     def produce(self, goods_quantity):
-        """ Produce using labor and equipment"""
-
+        """ Produce using labor and equipment """
         self.quantity_to_produce = goods_quantity
         self.produced_quantity = 0
         self.production_not_finished = True
