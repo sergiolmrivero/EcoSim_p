@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>macro_Caiani_action_set_Credit &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for macro_Caiani_action_set_Credit</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Credit Market Action Set</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">actions</span> <span class="k">import</span> <span class="n">ActionSet</span>
+
+
+<div class="viewcode-block" id="CreditActionSet"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet">[docs]</a><span class="k">class</span> <span class="nc">CreditActionSet</span><span class="p">(</span><span class="n">ActionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Credit space action set &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CreditActionSet.decide_cr_target"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.decide_cr_target">[docs]</a>    <span class="k">def</span> <span class="nf">decide_cr_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_bank</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A bank agent decides capital ratio target &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.decide_interest_rate_strategy"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.decide_interest_rate_strategy">[docs]</a>    <span class="k">def</span> <span class="nf">decide_interest_rate_strategy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_bank</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A bank decides the strategy for interest rate determination &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.offer_credit"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.offer_credit">[docs]</a>    <span class="k">def</span> <span class="nf">offer_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_bank</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A bank offer credit on the credit market &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.contract_credit"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.contract_credit">[docs]</a>    <span class="k">def</span> <span class="nf">contract_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an_agent</span><span class="p">,</span> <span class="n">a_bank</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; An agent contracts credit from a Bank &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.calculate_exposure"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.calculate_exposure">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_bank</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A bank calculates its exposure &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.contract_cash_advances"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.contract_cash_advances">[docs]</a>    <span class="k">def</span> <span class="nf">contract_cash_advances</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Central Bank Contract Cash Advances on the Credit Market &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.receive_advances_CB"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.receive_advances_CB">[docs]</a>    <span class="k">def</span> <span class="nf">receive_advances_CB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_bank</span><span class="p">,</span> <span class="n">central_bank</span><span class="p">,</span> <span class="n">ammount</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A bank receive some ammount of money  from the central bank at some interest rate &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.buy_gov_bonds"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.buy_gov_bonds">[docs]</a>    <span class="k">def</span> <span class="nf">buy_gov_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_bank</span><span class="p">,</span> <span class="n">gov</span><span class="p">,</span> <span class="n">ammount</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A bank buy government bonds &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.pay_gov_bonds_interest"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.pay_gov_bonds_interest">[docs]</a>    <span class="k">def</span> <span class="nf">pay_gov_bonds_interest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A government pays bonds and interests &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CreditActionSet.offer_new_bonds"><a class="viewcode-back" href="../macro_Caiani_action_set_Credit.html#macro_Caiani_action_set_Credit.CreditActionSet.offer_new_bonds">[docs]</a>    <span class="k">def</span> <span class="nf">offer_new_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A government offers bonds &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

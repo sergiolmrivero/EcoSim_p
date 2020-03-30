@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>spaces &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spaces</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Space Class  Implementation</span>
+<span class="kn">from</span> <span class="nn">basicSpaces</span> <span class="k">import</span> <span class="n">Space</span>
+<span class="kn">from</span> <span class="nn">sortedcontainers</span> <span class="k">import</span> <span class="n">SortedDict</span>
+<span class="c1"># TODO: Check which methods for the Action sets are better here</span>
+
+
+<div class="viewcode-block" id="Market"><a class="viewcode-back" href="../spaces.html#spaces.Market">[docs]</a><span class="k">class</span> <span class="nc">Market</span><span class="p">(</span><span class="n">Space</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Abstract Market &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">actions_set_file</span><span class="p">,</span> <span class="n">action_class</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Intialize abstract market &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">actions_set_file</span><span class="p">,</span> <span class="n">action_class</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offers</span> <span class="o">=</span> <span class="n">SortedDict</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Market.init_offers"><a class="viewcode-back" href="../spaces.html#spaces.Market.init_offers">[docs]</a>    <span class="k">def</span> <span class="nf">init_offers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_offers</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get new offers dict and check if is a sorted dict - if yes, set it &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_offers</span><span class="p">,</span> <span class="n">SortedDict</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">offers</span> <span class="o">=</span> <span class="n">new_offers</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The input is not a sorted dictionary&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Labor_market"><a class="viewcode-back" href="../spaces.html#spaces.Labor_market">[docs]</a><span class="k">class</span> <span class="nc">Labor_market</span><span class="p">(</span><span class="n">Market</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The Labor Market &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="CG_market"><a class="viewcode-back" href="../spaces.html#spaces.CG_market">[docs]</a><span class="k">class</span> <span class="nc">CG_market</span><span class="p">(</span><span class="n">Market</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The Consumer Goods Market &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="KG_market"><a class="viewcode-back" href="../spaces.html#spaces.KG_market">[docs]</a><span class="k">class</span> <span class="nc">KG_market</span><span class="p">(</span><span class="n">Market</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The Capital Goods Market &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Credit_market"><a class="viewcode-back" href="../spaces.html#spaces.Credit_market">[docs]</a><span class="k">class</span> <span class="nc">Credit_market</span><span class="p">(</span><span class="n">Market</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The Credit Market &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Deposits_market"><a class="viewcode-back" href="../spaces.html#spaces.Deposits_market">[docs]</a><span class="k">class</span> <span class="nc">Deposits_market</span><span class="p">(</span><span class="n">Market</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The Deposits Market&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Macro"><a class="viewcode-back" href="../spaces.html#spaces.Macro">[docs]</a><span class="k">class</span> <span class="nc">Macro</span><span class="p">(</span><span class="n">Market</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Macroeconomic General Actions &quot;&quot;&quot;</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

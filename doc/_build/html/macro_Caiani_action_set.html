@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>macro_Caiani_action_set module &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-macro_Caiani_action_set">
+<span id="macro-caiani-action-set-module"></span><h1>macro_Caiani_action_set module<a class="headerlink" href="#module-macro_Caiani_action_set" title="Permalink to this headline">¶</a></h1>
+<p>Macro Model Action Set</p>
+<dl class="class">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet">
+<em class="property">class </em><code class="sig-prename descclassname">macro_Caiani_action_set.</code><code class="sig-name descname">MacroEcoActionSet</code><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">actions.ActionSet</span></code></p>
+<p>Common actions for the economic model</p>
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.compute_production_price">
+<code class="sig-name descname">compute_production_price</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.compute_production_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.compute_production_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agent compute production price</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.form_expectations">
+<code class="sig-name descname">form_expectations</code><span class="sig-paren">(</span><em class="sig-param">step</em>, <em class="sig-param">z_t_1</em>, <em class="sig-param">z_e_t_1</em>, <em class="sig-param">lmbda</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.form_expectations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.form_expectations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent forms zie expectation using
+the following equation:</p>
+<blockquote>
+<div><p>z^e = z^e_{t-1} + lambda(z_{t-1} - z^e_{t-1})
+where: z is the value of the voi and lambda(lmbda)</p>
+<blockquote>
+<div><p>is the impact of the variable of interest
+in the expectation.</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.get_highest_offer">
+<code class="sig-name descname">get_highest_offer</code><span class="sig-paren">(</span><em class="sig-param">market</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.get_highest_offer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.get_highest_offer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A market answers the offer with the highest value (in the market.offers ordered dict)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.get_lowest_offer">
+<code class="sig-name descname">get_lowest_offer</code><span class="sig-paren">(</span><em class="sig-param">market</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.get_lowest_offer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.get_lowest_offer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A market answers the offer with the lowest value (in the market.offers ordered dict)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.has_offers">
+<code class="sig-name descname">has_offers</code><span class="sig-paren">(</span><em class="sig-param">market</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.has_offers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.has_offers" title="Permalink to this definition">¶</a></dt>
+<dd><p>A market answers if is has offers (True or False)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.no_of_offers">
+<code class="sig-name descname">no_of_offers</code><span class="sig-paren">(</span><em class="sig-param">market</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.no_of_offers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.no_of_offers" title="Permalink to this definition">¶</a></dt>
+<dd><p>A market answers the number of offers it has</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.offer_gs">
+<code class="sig-name descname">offer_gs</code><span class="sig-paren">(</span><em class="sig-param">step</em>, <em class="sig-param">market</em>, <em class="sig-param">gs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.offer_gs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.offer_gs" title="Permalink to this definition">¶</a></dt>
+<dd><p>include an  offer in the market</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.pay_taxes">
+<code class="sig-name descname">pay_taxes</code><span class="sig-paren">(</span><em class="sig-param">an_agent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.pay_taxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.pay_taxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>An agent pay taxes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.return_offer">
+<code class="sig-name descname">return_offer</code><span class="sig-paren">(</span><em class="sig-param">market</em>, <em class="sig-param">gs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.return_offer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.return_offer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A market receives an offer of a good or service</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="macro_Caiani_action_set.MacroEcoActionSet.show_offer">
+<code class="sig-name descname">show_offer</code><span class="sig-paren">(</span><em class="sig-param">an_agent</em>, <em class="sig-param">market</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/macro_Caiani_action_set.html#MacroEcoActionSet.show_offer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#macro_Caiani_action_set.MacroEcoActionSet.show_offer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show offer</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/macro_Caiani_action_set.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

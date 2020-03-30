@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>agents &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for agents</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot; Agents from the basic macroecnomic model &quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">basicAgents</span> <span class="k">import</span> <span class="n">DiscreteEventAgent</span>
+<span class="kn">from</span> <span class="nn">macro_Caiani_action_set</span> <span class="k">import</span> <span class="n">MacroEcoActionSet</span>
+<span class="kn">from</span> <span class="nn">macro_Caiani_action_set_Labor</span> <span class="k">import</span> <span class="n">LaborActionSet</span>
+<span class="kn">from</span> <span class="nn">macro_Caiani_action_set_Goods</span> <span class="k">import</span> <span class="n">GoodsActionSet</span>
+<span class="kn">from</span> <span class="nn">macro_Caiani_action_set_CG</span> <span class="k">import</span> <span class="n">CGActionSet</span>
+<span class="kn">from</span> <span class="nn">macro_Caiani_action_set_KG</span> <span class="k">import</span> <span class="n">KGActionSet</span>
+<span class="kn">from</span> <span class="nn">macro_Caiani_action_set_Credit</span> <span class="k">import</span> <span class="n">CreditActionSet</span>
+<span class="kn">from</span> <span class="nn">macro_Caiani_action_set_Deposits</span> <span class="k">import</span> <span class="n">DepositsActionSet</span>
+<span class="kn">from</span> <span class="nn">production</span> <span class="k">import</span> <span class="n">ProductionFunction</span>
+
+
+<div class="viewcode-block" id="Economic_Agent"><a class="viewcode-back" href="../agents.html#agents.Economic_Agent">[docs]</a><span class="k">class</span> <span class="nc">Economic_Agent</span><span class="p">(</span><span class="n">DiscreteEventAgent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A basic economic agent&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Economic_Agent.step"><a class="viewcode-back" href="../agents.html#agents.Economic_Agent.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implemented by subclass&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
+<span class="sd">&quot;&quot;&quot; Household Agent &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Household"><a class="viewcode-back" href="../agents.html#agents.Household">[docs]</a><span class="k">class</span> <span class="nc">Household</span><span class="p">(</span><span class="n">Economic_Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A Household&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span> <span class="o">=</span> <span class="n">MacroEcoActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span> <span class="o">=</span> <span class="n">LaborActionSet</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Household.step"><a class="viewcode-back" href="../agents.html#agents.Household.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_step</span> <span class="o">=</span> <span class="n">this_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span><span class="o">.</span><span class="n">generate_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">offer_gs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_step</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Labor_market&#39;</span><span class="p">],</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">labor_offer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                         <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Labor_market&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Household.show_offer"><a class="viewcode-back" href="../agents.html#agents.Household.show_offer">[docs]</a>    <span class="k">def</span> <span class="nf">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Show Offer &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; I, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+              <span class="s2">&quot;am offering &quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">labor_offer</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span>
+              <span class="s2">&quot;hour of work at &quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">labor_offer</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+              <span class="s2">&quot;hourly wage.&quot;</span>
+              <span class="p">)</span></div></div>
+
+
+<span class="sd">&quot;&quot;&quot; A Firm &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Firm"><a class="viewcode-back" href="../agents.html#agents.Firm">[docs]</a><span class="k">class</span> <span class="nc">Firm</span><span class="p">(</span><span class="n">Economic_Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A Consumer Goods Firm&quot;&quot;&quot;</span>
+    <span class="c1"># contracted_labor = {}</span>
+    <span class="c1"># ready_to_produce = False</span>
+    <span class="c1"># total_contracted_labor = 0.0</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">):</span>
+        <span class="c1"># self.contracted_labor = {}</span>
+        <span class="c1"># self.ready_to_produce = False</span>
+        <span class="c1"># self.total_contracted_labor = 0.0</span>
+        <span class="c1"># self.pf = ProductionFunction(self)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Firm.step"><a class="viewcode-back" href="../agents.html#agents.Firm.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Step for the Firm agent &quot;&quot;&quot;</span>
+        <span class="c1"># Implemented by subclass</span>
+        <span class="k">pass</span></div></div>
+
+
+<span class="sd">&quot;&quot;&quot; Consumer Goods Firm Agent &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="CG_Firm"><a class="viewcode-back" href="../agents.html#agents.CG_Firm">[docs]</a><span class="k">class</span> <span class="nc">CG_Firm</span><span class="p">(</span><span class="n">Firm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A Consumer Goods Firm&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contracted_labor</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ready_to_produce</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_contracted_labor</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pf</span> <span class="o">=</span> <span class="n">ProductionFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span> <span class="o">=</span> <span class="n">MacroEcoActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span> <span class="o">=</span> <span class="n">LaborActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span> <span class="o">=</span> <span class="n">GoodsActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_cg</span> <span class="o">=</span> <span class="n">CGActionSet</span><span class="p">()</span>
+
+<div class="viewcode-block" id="CG_Firm.step"><a class="viewcode-back" href="../agents.html#agents.CG_Firm.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Step for the CG agent &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_step</span> <span class="o">=</span> <span class="n">this_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">compute_desired_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;cg&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_cg</span><span class="o">.</span><span class="n">calculate_labor_demand</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_cg</span><span class="o">.</span><span class="n">calculate_capacity_utilization</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">decide_offered_wage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span><span class="o">.</span><span class="n">contract_labor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Labor_market&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ready_to_produce</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pf</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desired_output</span><span class="o">.</span><span class="n">quantity</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">offer_gs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_step</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;CG_market&#39;</span><span class="p">],</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+        <span class="c1"># self.my_actions_goods.offer_production(self, self.output)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">sell_production</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">compute_sales_revenue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">decide_investment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">contract_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">buy_equipment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_salaries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_suppliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_interest_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_interest_loans</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">pay_taxes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; A firm adjusts the average wage &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expected_wage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">average_wage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CG_Firm.show_offer"><a class="viewcode-back" href="../agents.html#agents.CG_Firm.show_offer">[docs]</a>    <span class="k">def</span> <span class="nf">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; I, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+              <span class="s2">&quot;am getting&quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">total_contracted_labor</span><span class="p">,</span>
+              <span class="s2">&quot;hours of work at &quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">average_wage</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span>
+              <span class="s2">&quot; average wage, from a total demmand of &quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">desired_output</span><span class="o">.</span><span class="n">value</span>
+              <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="KG_Firm"><a class="viewcode-back" href="../agents.html#agents.KG_Firm">[docs]</a><span class="k">class</span> <span class="nc">KG_Firm</span><span class="p">(</span><span class="n">Economic_Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A Capital Goods Firm&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contracted_labor</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ready_to_produce</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_contracted_labor</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pf</span> <span class="o">=</span> <span class="n">ProductionFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span> <span class="o">=</span> <span class="n">MacroEcoActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span> <span class="o">=</span> <span class="n">LaborActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span> <span class="o">=</span> <span class="n">GoodsActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_kg</span> <span class="o">=</span> <span class="n">KGActionSet</span><span class="p">()</span>
+
+<div class="viewcode-block" id="KG_Firm.step"><a class="viewcode-back" href="../agents.html#agents.KG_Firm.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Step for the KG agent &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_step</span> <span class="o">=</span> <span class="n">this_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">compute_desired_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;kg&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">decide_offered_wage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_kg</span><span class="o">.</span><span class="n">calculate_labor_demand</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span><span class="o">.</span><span class="n">contract_labor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># NOTE: Needs to deal with turnover</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Labor_market&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ready_to_produce</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pf</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desired_output</span><span class="o">.</span><span class="n">quantity</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">offer_gs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_step</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;KG_market&#39;</span><span class="p">],</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+        <span class="c1"># self.my_actions_goods.produce(self)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">offer_production</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">sell_production</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">compute_sales_revenue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">decide_investment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">contract_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">buy_equipment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_salaries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_suppliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_interest_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">pay_interest_loans</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">pay_taxes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KG_Firm.show_offer"><a class="viewcode-back" href="../agents.html#agents.KG_Firm.show_offer">[docs]</a>    <span class="k">def</span> <span class="nf">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; I, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+              <span class="s2">&quot;am getting&quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">total_contracted_labor</span><span class="p">,</span>
+              <span class="s2">&quot;hours of work at &quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_goods</span><span class="o">.</span><span class="n">average_wage</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span>
+              <span class="s2">&quot; average wage, from a total demmand of &quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">desired_output</span><span class="o">.</span><span class="n">value</span>
+              <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Bank"><a class="viewcode-back" href="../agents.html#agents.Bank">[docs]</a><span class="k">class</span> <span class="nc">Bank</span><span class="p">(</span><span class="n">Economic_Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A Bank&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span> <span class="o">=</span> <span class="n">MacroEcoActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span> <span class="o">=</span> <span class="n">CreditActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_dep</span> <span class="o">=</span> <span class="n">DepositsActionSet</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Bank.step"><a class="viewcode-back" href="../agents.html#agents.Bank.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_step</span> <span class="o">=</span> <span class="n">this_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cb</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_government</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">decide_cr_target</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">decide_interest_rate_strategy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">offer_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">calculate_exposure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">receive_advances_CB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ammount</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">buy_gov_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gov</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ammount</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">pay_taxes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Credit_market&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Bank.show_offer"><a class="viewcode-back" href="../agents.html#agents.Bank.show_offer">[docs]</a>    <span class="k">def</span> <span class="nf">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; I, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+              <span class="s2">&quot; am working in this model&quot;</span>
+              <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bank.get_cb"><a class="viewcode-back" href="../agents.html#agents.Bank.get_cb">[docs]</a>    <span class="k">def</span> <span class="nf">get_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get Central Bank from model &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">agents_of_type</span><span class="p">(</span><span class="s1">&#39;Central_Bank&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bank.get_government"><a class="viewcode-back" href="../agents.html#agents.Bank.get_government">[docs]</a>    <span class="k">def</span> <span class="nf">get_government</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get government from model &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">agents_of_type</span><span class="p">(</span><span class="s1">&#39;Government&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Government"><a class="viewcode-back" href="../agents.html#agents.Government">[docs]</a><span class="k">class</span> <span class="nc">Government</span><span class="p">(</span><span class="n">Economic_Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The Government&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span> <span class="o">=</span> <span class="n">MacroEcoActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span> <span class="o">=</span> <span class="n">CreditActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_dep</span> <span class="o">=</span> <span class="n">DepositsActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span> <span class="o">=</span> <span class="n">LaborActionSet</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Government.step"><a class="viewcode-back" href="../agents.html#agents.Government.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_step</span> <span class="o">=</span> <span class="n">this_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculate_available_resources</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span><span class="o">.</span><span class="n">contract_gov_labor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_dep</span><span class="o">.</span><span class="n">pay_unempl_benefits</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_labor</span><span class="o">.</span><span class="n">pay_wages</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">pay_gov_bonds_interest</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">offer_new_bonds</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Credit_market&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Government.show_offer"><a class="viewcode-back" href="../agents.html#agents.Government.show_offer">[docs]</a>    <span class="k">def</span> <span class="nf">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; I, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+              <span class="s2">&quot; am working in this model  BCBCBCBBCBCBCBCBCBCBCBCBCBC&quot;</span>
+              <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Government.calculate_available_resources"><a class="viewcode-back" href="../agents.html#agents.Government.calculate_available_resources">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_available_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Government Calculates Available resources&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="Central_Bank"><a class="viewcode-back" href="../agents.html#agents.Central_Bank">[docs]</a><span class="k">class</span> <span class="nc">Central_Bank</span><span class="p">(</span><span class="n">Economic_Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The Central Bank&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simulation</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">agent_number</span><span class="p">,</span> <span class="n">agent_def</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span> <span class="o">=</span> <span class="n">MacroEcoActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span> <span class="o">=</span> <span class="n">CreditActionSet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_dep</span> <span class="o">=</span> <span class="n">DepositsActionSet</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Central_Bank.step"><a class="viewcode-back" href="../agents.html#agents.Central_Bank.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">this_step</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_step</span> <span class="o">=</span> <span class="n">this_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decide_monetary_policy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">contract_cash_advances</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_credit</span><span class="o">.</span><span class="n">buy_gov_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_government</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">ammount</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_dep</span><span class="o">.</span><span class="n">transfer_profits_gov</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Credit_market&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Central_Bank.show_offer"><a class="viewcode-back" href="../agents.html#agents.Central_Bank.show_offer">[docs]</a>    <span class="k">def</span> <span class="nf">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; I, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+              <span class="s2">&quot; am working in this model GOVGOVGOVGOVGOVGOVGOVGOVGOV&quot;</span>
+              <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Central_Bank.decide_monetary_policy"><a class="viewcode-back" href="../agents.html#agents.Central_Bank.decide_monetary_policy">[docs]</a>    <span class="k">def</span> <span class="nf">decide_monetary_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Central Bank decides monetary policy&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Central_Bank.get_government"><a class="viewcode-back" href="../agents.html#agents.Central_Bank.get_government">[docs]</a>    <span class="k">def</span> <span class="nf">get_government</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get government from model &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">agents_of_type</span><span class="p">(</span><span class="s1">&#39;Government&#39;</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

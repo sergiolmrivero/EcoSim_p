@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>macro_Caiani_action_set &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for macro_Caiani_action_set</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Macro Model Action Set</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">actions</span> <span class="k">import</span> <span class="n">ActionSet</span>
+
+
+<div class="viewcode-block" id="MacroEcoActionSet"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet">[docs]</a><span class="k">class</span> <span class="nc">MacroEcoActionSet</span><span class="p">(</span><span class="n">ActionSet</span><span class="p">):</span>
+    <span class="c1"># TODO: maybe this methods belongs to the market in the market protocol implementation</span>
+    <span class="sd">&quot;&quot;&quot; Common actions for the economic model &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MacroEcoActionSet.form_expectations"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.form_expectations">[docs]</a>    <span class="k">def</span> <span class="nf">form_expectations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">z_t_1</span><span class="p">,</span> <span class="n">z_e_t_1</span><span class="p">,</span> <span class="n">lmbda</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; The agent forms zie expectation using</span>
+<span class="sd">            the following equation:</span>
+<span class="sd">                z^e = z^e_{t-1} + lambda(z_{t-1} - z^e_{t-1})</span>
+<span class="sd">                where: z is the value of the voi and lambda(lmbda)</span>
+<span class="sd">                       is the impact of the variable of interest</span>
+<span class="sd">                       in the expectation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">z_e</span> <span class="o">=</span> <span class="n">z_t_1</span> <span class="o">+</span> <span class="n">lmbda</span> <span class="o">*</span> <span class="p">(</span><span class="n">z_t_1</span> <span class="o">-</span> <span class="n">z_e_t_1</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">z_e</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.offer_gs"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.offer_gs">[docs]</a>    <span class="k">def</span> <span class="nf">offer_gs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">market</span><span class="p">,</span> <span class="n">gs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; include an  offer in the market &quot;&quot;&quot;</span>
+        <span class="n">market</span><span class="o">.</span><span class="n">offers</span><span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">gs</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.has_offers"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.has_offers">[docs]</a>    <span class="k">def</span> <span class="nf">has_offers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">market</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A market answers if is has offers (True or False) &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">market</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.no_of_offers"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.no_of_offers">[docs]</a>    <span class="k">def</span> <span class="nf">no_of_offers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">market</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A market answers the number of offers it has &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">market</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.get_lowest_offer"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.get_lowest_offer">[docs]</a>    <span class="k">def</span> <span class="nf">get_lowest_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">market</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A market answers the offer with the lowest value (in the market.offers ordered dict) &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">popitem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.get_highest_offer"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.get_highest_offer">[docs]</a>    <span class="k">def</span> <span class="nf">get_highest_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">market</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A market answers the offer with the highest value (in the market.offers ordered dict) &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">offers</span><span class="o">.</span><span class="n">popitem</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.return_offer"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.return_offer">[docs]</a>    <span class="k">def</span> <span class="nf">return_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">market</span><span class="p">,</span> <span class="n">gs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A market receives an offer of a good or service &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offer_gs</span><span class="p">(</span><span class="n">market</span><span class="p">,</span> <span class="n">gs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.show_offer"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.show_offer">[docs]</a>    <span class="k">def</span> <span class="nf">show_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an_agent</span><span class="p">,</span> <span class="n">market</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Show offer &quot;&quot;&quot;</span>
+        <span class="n">an_agent</span><span class="o">.</span><span class="n">show_offer</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model: &quot;</span><span class="p">,</span> <span class="n">an_agent</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.compute_production_price"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.compute_production_price">[docs]</a>    <span class="k">def</span> <span class="nf">compute_production_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Agent compute production price &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MacroEcoActionSet.pay_taxes"><a class="viewcode-back" href="../macro_Caiani_action_set.html#macro_Caiani_action_set.MacroEcoActionSet.pay_taxes">[docs]</a>    <span class="k">def</span> <span class="nf">pay_taxes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an_agent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; An agent pay taxes &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>
