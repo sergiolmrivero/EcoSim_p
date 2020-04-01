@@ -1,0 +1,100 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[brazil]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[round]{natbib}
+\author{Sérgio Rivero}
+\title{Nota de Desenvolvimento 02 (nd02) \\ 
+		Git - Conceitos Básicos e Instalação}
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+%\tableofcontents
+
+\pagebreak
+
+\section{Introdução}
+
+Olá pessoal. Aqui estamos na nossa nota de desenvolvimento 02. 
+
+Discutiremos nesta nota a utilidade e a forma de usar de umas das principais ferramentas de controle de versão de \textit{software} que existe por aí, o \textbf{Git}. 
+
+Há muitas formas de utilização do \textbf{Git} e uma grande diversidade ferramentas para seu uso, desde o nosso velho e conhecido terminal  (shell) até as próprias IDEs (como o pycharm) que tornam o processo de controle de versões relativamente transparente para o desenvolvedor.
+
+Neste documento utilizarei principalmente o material que está no livro do git de  \citet*{Chacon2014} disponível \href{https://git-scm.com/book/en/v2}{aqui}. Também iremos ver um pouco de detalhe sobre o uso do github, material que pode ser encontrado \href{https://lab.github.com/githubtraining/introduction-to-github}{aqui}.
+
+\section{O que é controle de versões e o que é o Git}
+
+Um dos maiores desafios da produção de software, quando se trabalha em equipe é o controle de versões. Muitas vezes alterações em um componente do software tem impacto em outro. Além disso, há diferentes alterações que, eventualmente são feitas em partes diferentes do mesmo programa por mais de uma pessoa. Manter a consistência do software e cobrir as possibilidades de alteração e de voltar a um estado anterior do programa, caso ocorra algum erro, é uma tarefa complexa que, felizmente, pode ser feita utilizando-se um sistema de controle de versões (VCS).
+
+\citet[p. 9]{Chacon2014} colocaram sobre controle de versões que: 
+\begin{quotation}
+	\textit{
+	``\dots é um sistema que registra alterações em um arquivo ou conjunto de arquivos ao longo do tempo, para que você possa recuperar versões específicas mais tarde.''}
+\end{quotation}
+
+Há muitos \textit{VCS} por aí, mas o Git acabou se tornando um principal sistema para este tipo de tarefa no mundo. Isso se deve principalmente ao fato de que seu projeto foi especificado de maneira a atender a demanda de desenvolvedores de software em um ambiente distribuído, aberto, para \textit{software} complexo e em um projeto de larga escala (no caso, este projeto era o kernel do Linux). Isto produziu um VCS fácil de usar e eficaz em projetos com muitos \textit{ramos}\footnote{Vamos usar o termo inglês \textbf{branch} traduzido como ``ramo''.} (figura \ref{fig:gitbranching}). Um ramo é um subcomponente de um projeto ou um projeto derivado de um projeto principal que pode ou não ser reincorporado no código principal (merge) depois de várias alterações (staged changes) incorporadas no ramo (commit).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{figs/git_branching}
+	\caption[git branching]{Um exemplo de git branching o projeto principal é o tronco maior e os ramos são subcomponentes do projeto ou projetos derivados desenvolvidos em paralelo\citep{Burke2015}}.
+	\label{fig:gitbranching}
+\end{figure}
+
+O Git foi criado em 2005, em um projeto liderado por Linus Tovalds, para atender as necessidades citadas acima. Git, é um VCS distribuído, isto é, as versões do software ficam armazenadas, não apenas num servidor central, mas também em todos os computadores que têm versões do software. O banco de dados registra as alterações localmente e permite a atualização dos outros bancos de dados dos desenvolvedores do software, registrando as diferenças entre os programas e possibilitando inclusive o retorno a um estágio anterior do desenvolvimento, na ocorrência de um eventual erro (figura \ref{fig:dvcs}).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/dvcs}
+	\caption{Um sistema de controle de versões distribuído \citep[p. 12]{Chacon2014}}
+	\label{fig:dvcs}
+\end{figure}
+
+O Git funciona fazendo \textit{``snapshots''} do código, guardando um status do desenvolvimento da aplicação a cada \textit{checkin} no VCS. A maioria das operações de atualização do Git é local, apenas a operação de atualização em outros servidores é remota (pull-push, por exemplo).  A integridade do código é garantida por um mecanismo de checksum que gera uma string de 40 caracteres a partir do código existente naquela versão do código.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/gitEstados}
+	\caption{Estrutura do trabalho no Git \citep[p. 16]{Chacon2014}}
+	\label{fig:gitestados}
+\end{figure}
+
+
+O Git tem apenas 3 estdos para os seus arquivos compreender estes estados permite entender claramente o funcionamento do sistema. Estes estados são:
+\begin{itemize}
+	\item \textbf{Modificado} (\textit{modified}) - Onde você mudou localmente algum arquivos da sua aplicação mas ainda não informou o Git desta modificação (não fez o commit)
+	\item \textbf{Encenado} (\textit{staged}) - Neste estágio você modificou o arquivo e informou sistema que o arquivo foi modificado (com um add, por exemplo ou com os arquivos que o git automaticamente observa). Estes arquivos serão incluídos no próximo commit.
+	\item \textbf{``Cometido''} (\textit{commited}) - Os seus dados foram armazenados com segurança no seu banco de dados local (que está na pasta .git  dentro da árvore de diretório da sua aplicação)
+\end{itemize}
+
+O fluxo de trabalho básico do Git é, em geral \citep[p.16]{Chacon2014}: 
+\begin{enumerate}
+	\item Após o checkout do seu projeto você modifica arquivos no seu diretório de trabalho
+	\item Você ``encena'' as mudanças feitas, adicionando seletivamente os aquivos que quer incluir no próximo commit.
+	\item Você faz um commit armazenando uma ``foto'' da sua aplicação no diretório local do Git.
+\end{enumerate}
+
+\section{Download e Instalação do Git} 
+
+
+Você pode baixar os programas necessários para executar o Git no \textit{Windows} \href{https://gitforwindows.org/}{aqui} nesta página ou nesta \href{https://git-scm.com/download/win}{aqui}. Pode ser utilizado tanto em um terminal \href{https://www.laptopmag.com/articles/use-bash-shell-windows-10}{\textit{bash}}  para o windows quanto numa interface gráfica, quanto no próprio PyCharm. Para um tutorial sobre o uso do Git com PyCharm, vocês podem ir \href{https://blog.softhints.com/pycharm-version-control-and-git-complete-tutorial/}{aqui}.
+
+Para o linux é só baixar o Git diretamente do repositório de seu sabor linux via comando de atualização de sofware (apt nos sistemas Debian)
+
+\begin{verbatim}
+sudo apt install git-all
+\end{verbatim}
+
+\bibliographystyle{apalike}
+\bibliography{/home/rivero/Dropbox/Workspace_Current/Bib/Library/library_r.bib}
+
+\end{document}
