@@ -15,7 +15,7 @@ sys.path.insert(0, '../../kernel')
 
 from simulation import Simulation
 
-dumbSim = Simulation('dumb_model_init.yml')
+dumbSim = Simulation('dumb_model_init.json')
 myDumbModel = dumbSim.model
 
 dumbSim.execute_simulation()
