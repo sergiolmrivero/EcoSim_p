@@ -20,7 +20,7 @@ sys.path.insert(0, '../../kernel')
 
 from simulation import Simulation
 
-macro_sim = Simulation('macro_Caiani.yml')
+macro_sim = Simulation('macro_Caiani.json')
 eco_m = macro_sim.model
 #yappi.start()
 macro_sim.execute_simulation()

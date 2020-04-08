@@ -3,11 +3,11 @@
 """
 Definition of the class Model
 
-This class receives a yaml file with the definition of the simulation scenario and then creates the simulation with all
+This class receives a json file with the definition of the simulation scenario and then creates the simulation with all
 simulation objects
 
 """
-import yaml
+import json
 import random as rnd
 import time
 from collections import OrderedDict
@@ -20,20 +20,18 @@ from observerCreation import ObserverCreator
 class Model:
     """
     Model Basic Class
-    Receives the yaml file name and read it
+    Receives the json file name and read it
     Creates all objects in the Simulation
     """
 
-    def __init__(self, yaml_file):
-        """Load the definitions of the yaml file"""
+    def __init__(self, json_simulation_defs):
+        """Load the definitions of the json file"""
         self.seed = time.time()
         self.random = rnd.Random(self.seed)
         self.simulation = None
-        self.init_file = yaml_file
-        with open(self.init_file, "r") as read_file:
-            self.yaml_defs = yaml.load(read_file, Loader=yaml.FullLoader)
-        self.name = self.yaml_defs['model_name']
-        self.schedule_def = self.yaml_defs['schedule']
+        self.json_defs = json_simulation_defs
+        self.name = self.json_defs['model_name']
+        self.schedule_def = self.json_defs['schedule']
         self.create_schedule(self.schedule_def)
         self.spaces = dict()
         self.create_spaces()
@@ -42,14 +40,14 @@ class Model:
         self.agent_observers = {}
 
     def create_schedule(self, schedule_def):
-        """ Creates the model schedule using the yaml schedule definition """
+        """ Creates the model schedule using the json schedule definition """
         self.schedule_factory = ScheduleCreator(self,
                                                 schedule_def)
         self.schedule = self.schedule_factory.provided_schedule
 
     def create_spaces(self):
-        """ Access SpaceFactory (SpaceCreator) and create space objects for the simulation from the yaml definition """
-        self.spaces_def = self.yaml_defs['spaces']
+        """ Access SpaceFactory (SpaceCreator) and create space objects for the simulation from the json definition """
+        self.spaces_def = self.json_defs['spaces']
         self.spaces_factory = SpaceCreator(self, self.spaces_def)
         self.spaces = self.spaces_factory.spaces
 
@@ -97,7 +95,7 @@ class Model:
         Access the AgentFactory (AgentPopulationCreator).
         Create the agents
         """
-        self.agents_def = self.yaml_defs['agents']
+        self.agents_def = self.json_defs['agents']
         self.agents_pop = AgentPopulationCreator(self.simulation, self,
                                                  self.agents_def)
         self.agents = self.agents_pop.agents
@@ -109,7 +107,7 @@ class Model:
         Create the Observers
         """
         self.agent_observers = {}
-        self.agent_observers_def = self.yaml_defs['observers']
+        self.agent_observers_def = self.json_defs['observers']
         self.agent_observers_pop = ObserverCreator(self, self.simulation,
                                                    self.agent_observers_def)
         self.agent_observers = self.agent_observers_pop.observers
