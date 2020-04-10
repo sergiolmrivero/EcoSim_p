@@ -1,0 +1,45 @@
+### Notas do Desenvolvimento do Trabalho
+
+2019-10-02
+
+1) O modelo parece estar muito complexo - Haveria solução para isso?
+
+2) No modelo do agente - Implementar uma função (script) - para organizar as ações 
+   (eventualmente implementar isso no agente) 
+
+3) IMPLEMENTAR O MODELO DE AGENTES ECONOMICOS
+
+
+2019-12-28
+
+1) Implementar as ações nos espaços (mercados)
+
+   - Decidir quais ações vão em que mercados (parcialmente feito)
+   - Checar a consistência do mercado em termos de compra-venda (realização)
+
+2) Implementar algoritmos de previsão e decisão dos agentes
+   - Chamar "Strategies" como jmab-jabm?
+   - Fazer um algoritmo de previsão simples (expectativas adaptativas)
+   - Construir algoritmo de decisão simples (oferecer o disponível, aceitar a oferta do mercado)
+   - HH e CG_Firms:
+     . oferecem trabalho a partir de uma dotação inicial aleatoria
+     . Ajustam suas ofertas de acordo com a demanda observada
+     . Vale notar que famílias tem que receber uma quantidade mínima de salários
+       Salário de subsistência. ?????
+     
+
+2) Implementar mercado de trabalho primeiro (Parcialmente feito)
+   - Implementar famílias ofertando trabalho (com o trabalho aleatoriamente comprado)
+   - Implementar recebimento de salários (pelo trabalho feito (de maneira do teste)
+
+
+3) Implementar os protótipos de todos os agentes.
+
+4) Implementar uma estrutura de visualização.
+
+Done
+
+3) Implementar inicialmente household posteriormente CG_Firms OK!!!
+
+
+
