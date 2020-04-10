@@ -13,6 +13,7 @@ import sys
 
 sys.path.insert(0, '../../kernel')
 
+
 from simulation import Simulation
 
 dumbSim = Simulation('dumb_model_init.json')
