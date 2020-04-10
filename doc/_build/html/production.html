@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>production module &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-production">
+<span id="production-module"></span><h1>production module<a class="headerlink" href="#module-production" title="Permalink to this headline">¶</a></h1>
+<p>The production Functions for the Firms</p>
+<p>&#64;author: rivero</p>
+<dl class="class">
+<dt id="production.Equipment">
+<em class="property">class </em><code class="sig-prename descclassname">production.</code><code class="sig-name descname">Equipment</code><span class="sig-paren">(</span><em class="sig-param">owner</em>, <em class="sig-param">K=None</em>, <em class="sig-param">Y_L=None</em>, <em class="sig-param">Y_P=None</em>, <em class="sig-param">L_P=None</em>, <em class="sig-param">Y=None</em>, <em class="sig-param">L=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#Equipment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.Equipment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The equipment used in the production function</p>
+<dl class="method">
+<dt id="production.Equipment.produce">
+<code class="sig-name descname">produce</code><span class="sig-paren">(</span><em class="sig-param">Y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#Equipment.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.Equipment.produce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Production</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="production.ProductionFunction">
+<em class="property">class </em><code class="sig-prename descclassname">production.</code><code class="sig-name descname">ProductionFunction</code><span class="sig-paren">(</span><em class="sig-param">firm</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#ProductionFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.ProductionFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The production function class is used by the firms to produce.</p>
+<dl class="method">
+<dt id="production.ProductionFunction.add_equipment">
+<code class="sig-name descname">add_equipment</code><span class="sig-paren">(</span><em class="sig-param">a_capital_good</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#ProductionFunction.add_equipment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.ProductionFunction.add_equipment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ad an equipment to the firm production capacity</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="production.ProductionFunction.calculate_production_value">
+<code class="sig-name descname">calculate_production_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#ProductionFunction.calculate_production_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.ProductionFunction.calculate_production_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the production value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="production.ProductionFunction.get_contracted_labor">
+<code class="sig-name descname">get_contracted_labor</code><span class="sig-paren">(</span><em class="sig-param">firm_contracted_labor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#ProductionFunction.get_contracted_labor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.ProductionFunction.get_contracted_labor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all contracted labor to produce</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="production.ProductionFunction.produce">
+<code class="sig-name descname">produce</code><span class="sig-paren">(</span><em class="sig-param">goods_quantity</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#ProductionFunction.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.ProductionFunction.produce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce using labor and equipment</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="production.ProductionFunction.produce_goods">
+<code class="sig-name descname">produce_goods</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/production.html#ProductionFunction.produce_goods"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#production.ProductionFunction.produce_goods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private Method - Produce goods</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/production.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

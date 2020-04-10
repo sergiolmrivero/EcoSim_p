@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>macro_Caiani_action_set_Labor &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for macro_Caiani_action_set_Labor</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Labor Market Action Set</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">actions</span> <span class="k">import</span> <span class="n">ActionSet</span>
+<span class="kn">from</span> <span class="nn">agents_accounting</span> <span class="k">import</span> <span class="n">GoodOrService</span>
+
+
+<div class="viewcode-block" id="LaborActionSet"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet">[docs]</a><span class="k">class</span> <span class="nc">LaborActionSet</span><span class="p">(</span><span class="n">ActionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Labor Market action set &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LaborActionSet.bid_labor_demand"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet.bid_labor_demand">[docs]</a>    <span class="k">def</span> <span class="nf">bid_labor_demand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A firm ask for a quantity of labor at a price &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="LaborActionSet.contract_labor"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet.contract_labor">[docs]</a>    <span class="k">def</span> <span class="nf">contract_labor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_firm</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A Firm contracts labor in the labor market at a price &quot;&quot;&quot;</span>
+        <span class="n">offers_available</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">a_firm</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">no_of_offers</span><span class="p">(</span><span class="n">a_firm</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Labor_market&#39;</span><span class="p">]))</span>
+        <span class="k">while</span> <span class="n">offers_available</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">a_firm</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">has_offers</span><span class="p">(</span><span class="n">a_firm</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Labor_market&#39;</span><span class="p">]):</span>
+                <span class="n">a_firm</span><span class="o">.</span><span class="n">an_offer</span> <span class="o">=</span> <span class="n">a_firm</span><span class="o">.</span><span class="n">my_actions_macro</span><span class="o">.</span><span class="n">get_lowest_offer</span><span class="p">(</span><span class="n">a_firm</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="s1">&#39;Labor_market&#39;</span><span class="p">])</span>
+                <span class="n">a_firm</span><span class="o">.</span><span class="n">offer_owner</span> <span class="o">=</span> <span class="n">a_firm</span><span class="o">.</span><span class="n">an_offer</span><span class="o">.</span><span class="n">asset_owner</span>
+                <span class="n">a_firm</span><span class="o">.</span><span class="n">contracted_labor</span><span class="p">[</span><span class="n">a_firm</span><span class="o">.</span><span class="n">offer_owner</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_firm</span><span class="o">.</span><span class="n">an_offer</span>
+                <span class="n">a_firm</span><span class="o">.</span><span class="n">total_contracted_labor</span> <span class="o">+=</span> <span class="n">a_firm</span><span class="o">.</span><span class="n">an_offer</span><span class="o">.</span><span class="n">value</span>
+                <span class="k">if</span> <span class="n">a_firm</span><span class="o">.</span><span class="n">total_contracted_labor</span> <span class="o">&gt;=</span> <span class="n">a_firm</span><span class="o">.</span><span class="n">desired_output_value</span><span class="p">:</span>
+                    <span class="n">a_firm</span><span class="o">.</span><span class="n">ready_to_produce</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">offers_available</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">offers_available</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Labor Market has no offers&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LaborActionSet.pay_salary"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet.pay_salary">[docs]</a>    <span class="k">def</span> <span class="nf">pay_salary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Agent pay salaries &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Check if duplicated</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="LaborActionSet.generate_offer"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet.generate_offer">[docs]</a>    <span class="k">def</span> <span class="nf">generate_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; The Household decides wage to offer &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decide_hourly_wage</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
+        <span class="n">hh</span><span class="o">.</span><span class="n">labor_offer</span> <span class="o">=</span> <span class="n">GoodOrService</span><span class="p">(</span><span class="n">hh</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span>
+                                       <span class="n">hh</span><span class="o">.</span><span class="n">labor_capacity</span><span class="p">,</span>
+                                       <span class="n">hh</span><span class="o">.</span><span class="n">hourly_wage</span><span class="p">,</span>
+                                       <span class="n">asset_owner_of_gs</span><span class="o">=</span><span class="n">hh</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LaborActionSet.decide_hourly_wage"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet.decide_hourly_wage">[docs]</a>    <span class="k">def</span> <span class="nf">decide_hourly_wage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; The Household decides wage to offer &quot;&quot;&quot;</span>
+        <span class="n">hh</span><span class="o">.</span><span class="n">hourly_wage</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="n">expected_wage</span></div>
+
+<div class="viewcode-block" id="LaborActionSet.pay_wages"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet.pay_wages">[docs]</a>    <span class="k">def</span> <span class="nf">pay_wages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Agent pay wages &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="LaborActionSet.contract_gov_labor"><a class="viewcode-back" href="../macro_Caiani_action_set_Labor.html#macro_Caiani_action_set_Labor.LaborActionSet.contract_gov_labor">[docs]</a>    <span class="k">def</span> <span class="nf">contract_gov_labor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Government get household labor &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>accounting module &#8212; EcoSim_p 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-agents_accounting">
+<span id="accounting-module"></span><h1>accounting module<a class="headerlink" href="#module-agents_accounting" title="Permalink to this headline">¶</a></h1>
+<p>This is the accounting module
+This module contains all the necessary classes to do</p>
+<dl class="class">
+<dt id="agents_accounting.CapitalGood">
+<em class="property">class </em><code class="sig-prename descclassname">agents_accounting.</code><code class="sig-name descname">CapitalGood</code><span class="sig-paren">(</span><em class="sig-param">name_of_gs</em>, <em class="sig-param">quantity_of_gs</em>, <em class="sig-param">value_of_gs</em>, <em class="sig-param">asset_owner_of_gs=None</em>, <em class="sig-param">liability_owner_of_gs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents_accounting.html#CapitalGood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#agents_accounting.CapitalGood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="agents_accounting.html#agents_accounting.GoodOrService" title="agents_accounting.GoodOrService"><code class="xref py py-class docutils literal notranslate"><span class="pre">agents_accounting.GoodOrService</span></code></a></p>
+<p>Capital Good represents production equipment
+Its used to produce consumer goods</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="agents_accounting.GoodOrService">
+<em class="property">class </em><code class="sig-prename descclassname">agents_accounting.</code><code class="sig-name descname">GoodOrService</code><span class="sig-paren">(</span><em class="sig-param">name_of_gs</em>, <em class="sig-param">type_of_gs</em>, <em class="sig-param">quantity_of_gs</em>, <em class="sig-param">value_of_gs</em>, <em class="sig-param">asset_owner_of_gs=None</em>, <em class="sig-param">liability_owner_of_gs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents_accounting.html#GoodOrService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#agents_accounting.GoodOrService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Basic Class representing a good or service.
+This class includes all types of goods or services of an economy
+Types of Goods:</p>
+<blockquote>
+<div><p>w  - Wages
+cg - Consumer_Good
+k  - Capital
+ph - Dividends
+d  - Deposit
+l  - Loan
+id - Interests on deposits
+il - Interests on loans
+b  - Bonds
+ib - Interests on bonds
+gw - Government wages
+gt - Government transfers (to households)</p>
+</div></blockquote>
+<dl class="method">
+<dt id="agents_accounting.GoodOrService.estimated_value">
+<code class="sig-name descname">estimated_value</code><span class="sig-paren">(</span><em class="sig-param">a_quantity_of_gs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents_accounting.html#GoodOrService.estimated_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#agents_accounting.GoodOrService.estimated_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the estimated value of a good given a quantity as input</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="agents_accounting.GoodOrService.total_value">
+<code class="sig-name descname">total_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents_accounting.html#GoodOrService.total_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#agents_accounting.GoodOrService.total_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the estimated value of a good for the existing quantity</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/accounting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">EcoSim_p 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ecos_p Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>
