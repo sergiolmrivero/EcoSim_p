@@ -1,0 +1,46 @@
+Metadata-Version: 1.1
+Name: accounting
+Version: 1.0.0
+Summary: accounting is a Python package providing simple and advanced number, money and currency formatting.
+Home-page: https://github.com/ojengwa/accounting
+Author: Bernard Ojengwa
+Author-email: bernardojengwa@gmail.com
+License: MIT
+Download-URL: https://github.com/ojengwa/accounting/tarball/1.0.0
+Description: accounting
+        ===============================
+        
+        version number: 0.0.1
+        author: Bernard Ojengwa
+        
+        Overview
+        --------
+        
+        accounting is a Python package providing simple and advanced number, money and currency formatting.
+        
+        Installation / Usage
+        --------------------
+        
+        To install use pip:
+        
+            $ pip install accounting
+        
+        
+        Or clone the repo:
+        
+            $ git clone https://github.com/ojengwa/accounting.git
+            $ python setup.py install
+            
+        Contributing
+        ------------
+        
+        TBD
+        
+        Example
+        -------
+        
+        TBD
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
