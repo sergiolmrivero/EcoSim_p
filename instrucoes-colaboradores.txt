@@ -1,0 +1,104 @@
+rivero@jamari$ mkdir versao-Colaboradores
+
+nota: O comando acima é para criar o diretório que vai armazenar o código que você vai baixar do github
+
+rivero@jamari$ cd versao-Colaboradores
+
+
+nota: Aqui você está entrando no diretório que criou
+
+
+
+rivero@jamari$ pwd
+/home/joaninha/myapps/versao-Colaboradores
+
+
+nota: checando se está no diretório correto
+
+
+
+rivero@jamari$ git clone https://github.com/sergiolmrivero/EcoSim_p.git
+
+
+nota: Clonando o diretorio
+
+
+Cloning into 'EcoSim_p'...
+Username for 'https://github.com': sergiolmrivero
+Password for 'https://sergiolmrivero@github.com': 
+remote: Enumerating objects: 30, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (25/25), done.
+remote: Total 8505 (delta 10), reused 14 (delta 4), pack-reused 8475
+Receiving objects: 100% (8505/8505), 98.05 MiB | 4.85 MiB/s, done.
+Resolving deltas: 100% (949/949), done.
+Checking out files: 100% (7551/7551), done.
+
+
+nota: A resposta correta do git
+
+
+
+rivero@jamari$ ls
+EcoSim_p
+
+nota: Ele cria um diretório chamado "EcoSim_p" onde está a app
+
+rivero@jamari$ cd EcoSim_p/
+
+
+nota: Mudando para o diretório EcoSim_p
+
+
+
+rivero@jamari$ ls
+changenames.sh  Desenvolvimento  doc  Ecos_p  LICENSE  notas_desenvolvimento  README.md  venv
+
+nota: Checando o que está no diretório
+
+
+
+rivero@jamari$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+
+nota: Checando o status do git. Note que você ainda está no branch "master"
+
+
+
+
+rivero@jamari$ git checkout versao-Colaboradores 
+Branch 'versao-Colaboradores' set up to track remote branch 'versao-Colaboradores' from 'origin'.
+Switched to a new branch 'versao-Colaboradores'
+rivero@jamari$ git status
+On branch versao-Colaboradores
+Your branch is up to date with 'origin/versao-Colaboradores'.
+
+nothing to commit, working tree clean
+
+
+nota: Mudando para o "branch" "versao-Colaboradores"
+nota: Neste ramo você pode fazer commits e eventualmente merges sem autorização do administrador.
+
+
+rivero@jamari$ ls -la
+total 56
+drwxr-xr-x 8 rivero rivero  4096 abr 11 13:37 .
+drwxr-xr-x 3 rivero rivero  4096 abr 11 13:37 ..
+-rwxr-xr-x 1 rivero rivero    48 abr 11 13:37 changenames.sh
+drwxr-xr-x 4 rivero rivero  4096 abr 11 13:37 Desenvolvimento
+drwxr-xr-x 3 rivero rivero  4096 abr 11 13:37 doc
+drwxr-xr-x 6 rivero rivero  4096 abr 11 13:37 Ecos_p
+drwxr-xr-x 8 rivero rivero  4096 abr 11 13:38 .git
+drwxr-xr-x 3 rivero rivero  4096 abr 11 13:37 .github
+-rw-r--r-- 1 rivero rivero 11357 abr 11 13:37 LICENSE
+-rw-r--r-- 1 rivero rivero  1496 abr 11 13:37 notas_desenvolvimento
+-rw-r--r-- 1 rivero rivero   172 abr 11 13:37 README.md
+drwxr-xr-x 4 rivero rivero  4096 abr 11 13:37 venv
+
+
+Nota: Checando novamente os arquivos
+
