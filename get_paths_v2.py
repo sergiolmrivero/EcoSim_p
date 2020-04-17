@@ -4,6 +4,7 @@ import sys
 os.chdir(os.path.dirname(__file__))
 print(f'cwd: {os.getcwd()}')
 
+
 def get_paths(model_name_from_json):
 
     dir_separator = os.sep

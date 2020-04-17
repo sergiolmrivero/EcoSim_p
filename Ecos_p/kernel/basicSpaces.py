@@ -5,13 +5,13 @@ The space class and the associated classes
 from importlib import import_module
 from collections import OrderedDict
 
-
 class Space(object):
     """ The space class """
     def __init__(self, model, name,
                  actions_set_file,
                  action_class):
         """ Initialize Space Class """
+
         self.model = model
         self.name = name
         self.agents = OrderedDict()

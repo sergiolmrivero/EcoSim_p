@@ -7,7 +7,7 @@ Simulation Class (This implements a batch simulation)
 import json
 from model import Model
 from scenarioCreation import ScenarioCreator
-
+from Ecos_p.kernel.get_paths import get_paths
 
 class Simulation(object):
     """This class implements a simulation"""
@@ -16,6 +16,10 @@ class Simulation(object):
         """ Initialize the simulation from a json file"""
         with open(simulation_file) as read_file:
             self.json_simulation_defs = json.load(read_file)
+        # Get Simulation Paths
+        self.simulation_folder = self.json_simulation_defs['simulation_folder']
+        print(self.simulation_folder)
+        get_paths(self.simulation_folder)
         self.model = Model(self.json_simulation_defs)
         self.initialize_simulation()
 
