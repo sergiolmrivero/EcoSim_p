@@ -6,17 +6,17 @@ Definition of the class Observer
 Inspired on datacollection.py from mesa abm
 https://mesa.readthedocs.io/en/master/
 """
-
-import dependency_injector.providers as providers
-import dependency_injector.errors as errors
 import basicObservers as obs
+import dependency_injector.errors as errors
+import dependency_injector.providers as providers
 
 
 class ObserverCreator(object):
     """ Observer Generator - Observer Implemented Subclass must be used"""
-    def __init__(self, model, simulation, observer_def):
+    def __init__(self, model, simulation, observer_def, path_to_results):
         self.model = model
         self.simulation = simulation
+        self.path_to_results = path_to_results
         self.observers = {}
         for observer in observer_def:
             self.observer_type = observer['observer_type']
@@ -36,7 +36,8 @@ class ObserverCreator(object):
                                            self.observer_model,
                                            self.observer_simulation,
                                            self.observer_agent,
-                                           self.observable_vars)
+                                           self.observable_vars,
+                                           self.path_to_results)
             try:
                 self.new_observer = self.observer_Factory()
                 self.observers[self.observer_name] = self.new_observer

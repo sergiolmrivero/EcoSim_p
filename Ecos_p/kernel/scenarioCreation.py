@@ -6,8 +6,8 @@ Scenario Creation
 The Scenarios are created using dependency injection
 The definition of the Scenarios that will be used in the simulation are in the yaml file
 """
-import dependency_injector.providers as providers
 import dependency_injector.errors as errors
+import dependency_injector.providers as providers
 import basicScenarios as scn
 
 

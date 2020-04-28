@@ -9,9 +9,9 @@ The definition of the schedule that will be used in the simulation is in the yam
 
 """
 
-import dependency_injector.providers as providers
-import dependency_injector.errors as errors
 import basicSchedule as schd
+import dependency_injector.errors as errors
+import dependency_injector.providers as providers
 
 
 class ScheduleCreator(object):

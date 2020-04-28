@@ -2,7 +2,6 @@
 """
 The space class and the associated classes
 """
-from importlib import import_module
 from collections import OrderedDict
 
 class Space(object):
