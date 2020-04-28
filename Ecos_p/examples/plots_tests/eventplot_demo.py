@@ -7,9 +7,10 @@ An eventplot showing sequences of events with various line properties.
 The plot is shown in both horizontal and vertical orientations.
 """
 
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib
+
 matplotlib.rcParams['font.size'] = 8.0
 
 # Fixing random state for reproducibility

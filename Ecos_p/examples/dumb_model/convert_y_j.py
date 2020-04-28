@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """ This is the Util to Convert a yaml file to a json file """
 
-import yaml
 import json
+
+import yaml
 
 input_file = 'dumb_model_init.yml'
 output_file = 'dumb_model_init.json'

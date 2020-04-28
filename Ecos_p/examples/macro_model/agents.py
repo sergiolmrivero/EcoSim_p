@@ -1,19 +1,24 @@
 # -*- coding: utf-8 -*-
 """ Agents from the basic macroeconomic model """
 
-from Ecos_p.kernel.basicAgents import DiscreteEventAgent
+from basicAgents import DiscreteEventAgent
+from spaces import Macro, Market, CG_market, KG_market, Credit_market, Deposits_market
 from macro_Caiani_action_set import MacroEcoActionSet
-from macro_Caiani_action_set_Labor import LaborActionSet
 from macro_Caiani_action_set_Goods import GoodsActionSet
 from macro_Caiani_action_set_CG import CGActionSet
-from macro_Caiani_action_set_KG import KGActionSet
 from macro_Caiani_action_set_Credit import CreditActionSet
 from macro_Caiani_action_set_Deposits import DepositsActionSet
+from macro_Caiani_action_set_KG import KGActionSet
+from macro_Caiani_action_set_Labor import LaborActionSet
+from agents_accounting import GoodOrService, CapitalGood
 from production import ProductionFunction
 
 
 class EconomicAgent(DiscreteEventAgent):
     """ A basic economic agent"""
+    def __init__(self, simulation, model, agent_number, agent_def):
+        super().__init__(simulation, model, agent_number, agent_def)
+
     def step(self, this_step):
         """ Implemented by subclass"""
         pass

@@ -2,8 +2,9 @@
 """
 Definition of the class Observer
 """
-import pandas as pd
 import datetime as dt
+
+import pandas as pd
 
 
 class Observer(object):
@@ -11,7 +12,7 @@ class Observer(object):
     The observer classs - This class observe the agents and collects data
     """
 
-    def __init__(self, name, model, simulation, entity_class, agent_vars):
+    def __init__(self, name, model, simulation, entity_class, agent_vars, path_to_results):
         """ Initialize the observer class """
         self.name = name
         self.model = model
@@ -30,6 +31,7 @@ class Observer(object):
         self.define_observable_vars()
         self.observables = None
         self.create_observables()
+        self.path_to_results = path_to_results
 
     def define_observable_entity(self, entity_class):
         """ Defines the type of agent that will be observed by this observer """
@@ -93,7 +95,7 @@ class Observer(object):
 
     def save_dataframe(self, df_name):
         """  Create a dataframe to update the observations """
-        self.filename = 'runs/' + df_name
+        self.filename = self.path_to_results + df_name
         self.observations.to_csv(self.filename, index_label='index_no')
 
     def observe(self, step):

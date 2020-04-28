@@ -2,8 +2,6 @@
 """
 Definition of the class Agent
 """
-from event import Event
-
 
 class Agent(object):
     """ This is the basic agent class"""
