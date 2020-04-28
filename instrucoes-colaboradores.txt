@@ -102,3 +102,15 @@ drwxr-xr-x 4 rivero rivero  4096 abr 11 13:37 venv
 
 Nota: Checando novamente os arquivos
 
+
+<<<<<<< versao-0.0.2
+=======
+
+
+rivero@jamari$ git checkout -b rivero versao-Colaboradores
+
+nota: Isso cria a versão do seu branch embaixo do branch versao-Colaboradores
+
+
+
+>>>>>>> master
