@@ -1,0 +1,9 @@
+{
+  "Description": "Configuration file for the Ecos_p Economic Simulation",
+  "paths":
+    {
+    "kernel": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\kernel",
+    "interface": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\interface",
+    "tests": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\tests"
+    }
+}
