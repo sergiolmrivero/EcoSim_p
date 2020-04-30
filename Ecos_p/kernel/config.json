@@ -1,10 +1,9 @@
 {
   "Description": "Configuration file for the Ecos_p Economic Simulation",
-  "Paths":
+  "paths":
     {
-    "kernel": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/kernel",
-    "interface": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/interface",
-    "examples": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/interface",
-    "tests": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/tests"
+    "interface": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/interface/",
+    "examples": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/examples/",
+    "tests": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/tests/"
     }
 }

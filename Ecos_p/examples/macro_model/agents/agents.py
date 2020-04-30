@@ -2,16 +2,10 @@
 """ Agents from the basic macroeconomic model """
 
 from basicAgents import DiscreteEventAgent
-from spaces import Macro, Market, CG_market, KG_market, Credit_market, Deposits_market
-from macro_Caiani_action_set import MacroEcoActionSet
-from macro_Caiani_action_set_Goods import GoodsActionSet
-from macro_Caiani_action_set_CG import CGActionSet
-from macro_Caiani_action_set_Credit import CreditActionSet
-from macro_Caiani_action_set_Deposits import DepositsActionSet
-from macro_Caiani_action_set_KG import KGActionSet
-from macro_Caiani_action_set_Labor import LaborActionSet
-from agents_accounting import GoodOrService, CapitalGood
-from production import ProductionFunction
+
+from .production import ProductionFunction
+
+from .actions import *
 
 
 class EconomicAgent(DiscreteEventAgent):
@@ -36,10 +30,10 @@ class Household(EconomicAgent):
         self.my_step = this_step
         self.my_actions_labor.generate_offer(self)
         self.my_actions_macro.offer_gs(self.my_step,
-                                       self.spaces['Labor_market'],
+                                       self.spaces['LaborMarket'],
                                        self.labor_offer)
         self.my_actions_macro.show_offer(self,
-                                         self.spaces['Labor_market'])
+                                         self.spaces['LaborMarket'])
 
     def show_offer(self):
         """ Show Offer The agent show an offer in some market """
@@ -99,11 +93,11 @@ class CG_Firm(Firm):
         self.my_actions_cg.calculate_capacity_utilization(self)
         self.my_actions_goods.decide_offered_wage(self)
         self.my_actions_labor.contract_labor(self)
-        self.my_actions_macro.show_offer(self, self.spaces['Labor_market'])
+        self.my_actions_macro.show_offer(self, self.spaces['LaborMarket'])
         if self.ready_to_produce:
             self.output = self.pf.produce(self.desired_output.quantity)
             self.my_actions_macro.offer_gs(self.my_step,
-                                           self.spaces['CG_market'],
+                                           self.spaces['CGMarket'],
                                            self.output)
         # self.my_actions_goods.offer_production(self, self.output)
         self.my_actions_goods.sell_production(self)
@@ -154,11 +148,11 @@ class KG_Firm(EconomicAgent):
         self.my_actions_kg.calculate_labor_demand(self)
         self.my_actions_labor.contract_labor(self)
         # NOTE: Needs to deal with turnover
-        self.my_actions_macro.show_offer(self, self.spaces['Labor_market'])
+        self.my_actions_macro.show_offer(self, self.spaces['LaborMarket'])
         if self.ready_to_produce:
             self.output = self.pf.produce(self.desired_output.quantity)
             self.my_actions_macro.offer_gs(self.my_step,
-                                           self.spaces['KG_market'],
+                                           self.spaces['KGMarket'],
                                            self.output)
         # self.my_actions_goods.produce(self)
         self.my_actions_goods.offer_production(self)
@@ -205,7 +199,7 @@ class Bank(EconomicAgent):
         self.my_actions_credit.receive_advances_CB(self, self.cb, self.ammount)
         self.my_actions_credit.buy_gov_bonds(self, self.gov, self.ammount)
         self.my_actions_macro.pay_taxes(self)
-        self.my_actions_macro.show_offer(self, self.spaces['Credit_market'])
+        self.my_actions_macro.show_offer(self, self.spaces['CreditMarket'])
 
     def show_offer(self):
         """ A bank show offer """
@@ -240,7 +234,7 @@ class Government(EconomicAgent):
         self.my_actions_labor.pay_wages()
         self.my_actions_credit.pay_gov_bonds_interest()
         self.my_actions_credit.offer_new_bonds()
-        self.my_actions_macro.show_offer(self, self.spaces['Credit_market'])
+        self.my_actions_macro.show_offer(self, self.spaces['CreditMarket'])
 
     def show_offer(self):
         """ Government show offer"""
@@ -268,7 +262,7 @@ class Central_Bank(EconomicAgent):
         self.my_actions_credit.contract_cash_advances()
         self.my_actions_credit.buy_gov_bonds(self, self.get_government(), self.ammount)
         self.my_actions_dep.transfer_profits_gov()
-        self.my_actions_macro.show_offer(self, self.spaces['Credit_market'])
+        self.my_actions_macro.show_offer(self, self.spaces['CreditMarket'])
 
     def show_offer(self):
         """ Central Bank Show Offer """

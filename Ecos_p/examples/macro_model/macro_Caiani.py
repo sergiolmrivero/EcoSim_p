@@ -24,6 +24,5 @@ import simulation as sim
 model_config = PATH_TO_MODEL + 'macro_model_config.json'
 model_defs = PATH_TO_MODEL + 'macro_Caiani.json'
 macro_sim = sim.Simulation(model_config, model_defs )
-eco_m = macro_sim.model
 
 macro_sim.execute_simulation()

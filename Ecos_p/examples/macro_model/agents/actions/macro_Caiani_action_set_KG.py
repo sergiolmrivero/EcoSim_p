@@ -4,7 +4,7 @@ Capital Goods Market Action Set
 
 """
 
-from macro_Caiani_action_set_Goods import GoodsActionSet
+from .macro_Caiani_action_set_Goods import GoodsActionSet
 
 
 class KGActionSet(GoodsActionSet):

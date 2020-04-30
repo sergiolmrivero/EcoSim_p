@@ -7,7 +7,7 @@ The production Functions for the Firms
 
 """
 
-from agents_accounting import GoodOrService
+from .agents_accounting import GoodOrService
 
 
 class ProductionFunction:

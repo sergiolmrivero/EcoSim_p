@@ -5,7 +5,7 @@ Consumer Goods Action Set
 """
 # TODO: needs more work
 
-from macro_Caiani_action_set_Goods import GoodsActionSet
+from .macro_Caiani_action_set_Goods import GoodsActionSet
 
 
 class CGActionSet(GoodsActionSet):

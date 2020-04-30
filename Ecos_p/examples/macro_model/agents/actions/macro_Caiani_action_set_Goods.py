@@ -5,7 +5,7 @@ Goods Action Set
 
 
 from actions import ActionSet
-from agents_accounting import GoodOrService
+from ..agents_accounting import GoodOrService
 
 
 class GoodsActionSet(ActionSet):
