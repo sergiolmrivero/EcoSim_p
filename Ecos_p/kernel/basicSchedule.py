@@ -66,6 +66,8 @@ class PoolSchedule(Schedule):
             for this_step in range(0, no_of_steps, step_interval):
                 for agent_name, agent in self.model.agents.items():
                     agent.step(this_step)
+                for space_name, space in self.model.spaces.items():
+                    space.update()
                 for observer_name, observer in self.model.agent_observers.items():
                     observer.observe(this_step)
         else:
@@ -92,6 +94,8 @@ class MixedSchedule(Schedule):
             for this_step in range(0, no_of_steps, step_interval):
                 for agent in self.model.mixed_agents():
                     agent.step(this_step)
+                for space in self.model.mixed_spaces():
+                    space.update()
                 for observer_name, observer in self.model.agent_observers.items():
                     observer.observe(this_step)
         else:

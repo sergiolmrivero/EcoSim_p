@@ -58,22 +58,22 @@ class Model:
         Access the AgentFactory (AgentPopulationCreator).
         Create the agents
         """
-        self.agents_def=self.json_defs['agents']
-        self.agents_pop=AgentPopulationCreator(self.simulation, self,
-                                               self.agents_def, self.simulation_folder)
-        self.agents=self.agents_pop.agents
-        self.agents_by_type=self.agents_pop.agents_by_type
+        self.agents_def = self.json_defs['agents']
+        self.agents_pop = AgentPopulationCreator(self.simulation, self,
+                                                 self.agents_def, self.simulation_folder)
+        self.agents = self.agents_pop.agents
+        self.agents_by_type = self.agents_pop.agents_by_type
 
     def create_observers(self, path_to_results):
         """
         Access the ObserverFactory (ObserverCreator).
         Create the Observers
         """
-        self.agent_observers={}
-        self.agent_observers_def=self.json_defs['observers']
-        self.agent_observers_pop=ObserverCreator(self, self.simulation,
-                                                 self.agent_observers_def, path_to_results)
-        self.agent_observers=self.agent_observers_pop.observers
+        self.agent_observers = {}
+        self.agent_observers_def = self.json_defs['observers']
+        self.agent_observers_pop = ObserverCreator(self, self.simulation,
+                                                   self.agent_observers_def, path_to_results)
+        self.agent_observers = self.agent_observers_pop.observers
 
     def enter_model(self, agent_name, agent):
         """ An agent enters the model (is included in agents dict) """
@@ -113,3 +113,12 @@ class Model:
         for agent_name in agents_names:
             if agent_name in self.agents:
                 yield self.agents[agent_name]
+
+    def mixed_spaces(self):
+        """ Returns a randomly shuffled list of spaces (from spaces dict) """
+        spaces_names = list(self.spaces.keys())
+        self.random.shuffle(spaces_names)
+
+        for space_name in spaces_names:
+            if space_name in self.spaces:
+                yield self.spaces[space_name]

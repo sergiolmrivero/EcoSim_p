@@ -4,6 +4,75 @@
 This is the accounting module
 This module contains all the necessary classes to do
 """
+##########################################
+# Quais os tipos específicos de bens?
+# Que possíveis métodos ainda são necessários???
+# Como implementar os protocolos de mercado????
+# Ver nd-004 e nd-005
+###########################################
+
+
+class Good(object):
+    """A Basic Class representing a good."""
+    TYPE = ["real", "financial"]
+    
+    """
+        w  - Wages
+        cg - Consumer_Good
+        k  - Capital
+        ph - Dividends
+        d  - Deposit
+        l  - Loan
+        id - Interests on deposits
+        il - Interests on loans
+        b  - Bonds
+        ib - Interests on bonds
+        gw - Government wages
+        gt - Government transfers (to households)
+    """
+
+    ASSET_CATEGORY = ['w', 'cg', 'k', 'ph', 'd', 'l', 'id', 'il', 'b', 'ib', 'gw', 'gt']
+
+    CONSUME = ["immediate", "depreciable", "debt", "continuous"]
+
+    def __init__(self, name_of_g,
+                 type_of_g,      # real or financial
+                 asset_category_of_g,
+                 consume_of_g,   # immediate, depreciable, debt or continuous
+                 quantity_of_g,
+                 value_of_g,
+                 owner_of_g=None,
+                 producer_of_g=None):
+        """" Init method for a generic good """
+        self.name_of_g = name_of_g
+
+        if type_of_g in self.TYPE:
+            self.type_of_g = type_of_g
+        else:
+            raise Exception("Type of ", name_of_g, " not valid - type: ", type_of_g)
+
+        if asset_category_of_g in self.ASSET_CATEGORY:
+            self.asset_category_of_g = asset_category_of_g
+        else:
+            raise Exception("Type of asset of :  ", name_of_g, "  not valid - type: ", asset_category_of_g)
+
+        if consume_of_g in self.CONSUME:
+            self.consume_of_g = consume_of_g
+        else:
+            raise Exception("Type of consume from ", name_of_g, " not valid - consume: ", consume_of_g)
+
+        self.quantity_of_g = quantity_of_g
+        self.value_of_g = value_of_g
+        self.owner_of_g = owner_of_g
+        self.producer_of_g = producer_of_g
+
+    def estimated_value(self, a_quantity_of_g):
+        """ Calculates the estimated value of a good given a quantity as input """
+        return self.value_of_g * a_quantity_of_g
+
+    def total_value(self):
+        """ Calculates the estimated value of a good for the existing quantity """
+        return self.value_of_g * self.quantity_of_g
 
 
 class GoodOrService(object):

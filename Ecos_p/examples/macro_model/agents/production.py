@@ -7,7 +7,7 @@ The production Functions for the Firms
 
 """
 
-from .agents_accounting import GoodOrService
+from .agents_accounting import Good
 
 
 class ProductionFunction:
@@ -46,10 +46,14 @@ class ProductionFunction:
         self.produced_quantity = self.quantity_to_produce
         self.production_value = self.calculate_production_value()
         self.production_not_finished = False
-        self.produced_goods = GoodOrService("a_cg", "cg",
-                                            self.production_value,
-                                            self.produced_quantity,
-                                            self.owner)
+        self.produced_goods = Good('consumer_good',
+                                   'real',
+                                   'cg',
+                                   'immediate',
+                                   self.produced_quantity,
+                                   self.production_value,
+                                   self.owner,
+                                   self.owner)
 
     def calculate_production_value(self):
         """ Calculates the production value """

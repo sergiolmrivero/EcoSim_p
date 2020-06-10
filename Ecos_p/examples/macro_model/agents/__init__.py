@@ -1,4 +1,14 @@
 
-from .agents import EconomicAgent, Household, Firm, CG_Firm, KG_Firm, Bank, Central_Bank, Government
+from .agents import EconomicAgent
 
-__all__ = ["EconomicAgent", "Household", "Firm", "CG_Firm", "KG_Firm", "Bank", "Central_Bank", "Government"]
+from .household import Household
+
+from .firms import Firm, CGFirm, KGFirm
+
+from .bank import Bank
+
+from .government import Government
+
+from .central_bank import CentralBank
+
+__all__ = ["EconomicAgent", "Household", "Firm", "CGFirm", "KGFirm", "Bank", "CentralBank", "Government"]

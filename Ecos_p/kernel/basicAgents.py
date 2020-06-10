@@ -3,6 +3,7 @@
 Definition of the class Agent
 """
 
+
 class Agent(object):
     """ This is the basic agent class"""
     def __init__(self, simulation, model, agent_number, agent_def):

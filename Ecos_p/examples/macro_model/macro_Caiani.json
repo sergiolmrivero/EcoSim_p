@@ -81,7 +81,7 @@
       "no_of_agents": 500
     },
     {
-      "agent_type": "CG_Firm",
+      "agent_type": "CGFirm",
       "agent_prefix": "CG",
       "agent_spaces": [
         "CGMarket",
@@ -91,7 +91,7 @@
       "no_of_agents": 10
     },
     {
-      "agent_type": "KG_Firm",
+      "agent_type": "KGFirm",
       "agent_prefix": "KG",
       "agent_spaces": [
         "KGMarket",
@@ -109,7 +109,7 @@
       "no_of_agents": 2
     },
     {
-      "agent_type": "Central_Bank",
+      "agent_type": "CentralBank",
       "agent_prefix": "CB",
       "agent_spaces": [
         "DepositsMarket",
@@ -333,7 +333,7 @@
             "var_value": 0.0
           }
         ],
-        "CG_Firm": [
+        "CGFirm": [
           {
             "var_name": "labor_demand",
             "var_type": "stochastic",
@@ -473,7 +473,7 @@
             "var_value": 0.0
           }
         ],
-        "KG_Firm": [
+        "KGFirm": [
           {
             "var_name": "labor_demand",
             "var_type": "stochastic",
@@ -597,7 +597,7 @@
             "var_value": 0.0
           }
         ],
-        "Central_Bank": [
+        "CentralBank": [
           {
             "var_name": "ammount",
             "var_type": "stochastic",

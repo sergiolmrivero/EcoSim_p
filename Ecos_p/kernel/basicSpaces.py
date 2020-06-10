@@ -4,6 +4,7 @@ The space class and the associated classes
 """
 from collections import OrderedDict
 
+
 class Space(object):
     """ The space class """
     def __init__(self, model, name,
@@ -24,3 +25,10 @@ class Space(object):
         """ An agent exits a space object """
         if agent_name in self.agents:
             del self.agents[agent_name]
+
+    def update(self):
+        """
+        A Space updates its values and execute methods
+        This method is impmented by space subclass
+        """
+        pass
