@@ -79,6 +79,10 @@ class Firm(EconomicAgent):
             for worker, labor in self.contracted_offers.items():
                 self.total_contracted_labor += labor.quantity_of_g
 
+    def pay_salaries(self):
+        """ A firm pay the salaries """
+        pass
+
 
 class CGFirm(Firm):
     """ A Consumer Goods Firm"""
@@ -102,7 +106,7 @@ class CGFirm(Firm):
             self.calculate_contracted_labor()
             self.show_offer()
             self.output = self.pf.produce(self.desired_output)
-            self.pay
+            self.pay_salaries()
             self.cg_market.offer_gs(self.output)
         # self.my_actions_goods.offer_production(self, self.output)
         self.cg_market.sell_production(self)
