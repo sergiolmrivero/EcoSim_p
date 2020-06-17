@@ -15,8 +15,8 @@ The results of the scenarios are writen in files in the folder runs
 import sys
 import importlib
 
-PATH_TO_MODEL = 'C:\Users\Sergio Rivero\Documents\GitHub\EcoSim_p-versao-0.0.2\Ecos_p\examples\macro_model'
-PATH_TO_KERNEL = 'C:\Users\Sergio Rivero\Documents\GitHub\EcoSim_p-versao-0.0.2\Ecos_p\kernel'
+PATH_TO_MODEL = 'C:\Users\Sergio Rivero\Documents\GitHub\EcoSim_p\Ecos_p\examples\macro_model'
+PATH_TO_KERNEL = 'C:\Users\Sergio Rivero\Documents\GitHub\EcoSim_p\Ecos_p\kernel'
 
 sys.path.insert(0, PATH_TO_KERNEL)
 

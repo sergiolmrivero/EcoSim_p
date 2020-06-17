@@ -1,7 +1,7 @@
 {
   "simulation_name": "macro_Caiani",
   "simulation_model": "macro_Caiani",
-  "simulation_folder": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\examples\\macro_model",
+  "simulation_folder": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p\\Ecos_p\\examples\\macro_model",
   "simulation_parameters": [
     {
       "parameter_name": "M1",
