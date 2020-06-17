@@ -1,0 +1,10 @@
+[default]
+name=Default
+runtime=host
+config-opts=
+run-opts=
+prefix=/home/rivero/.cache/gnome-builder/install/dumb_model/host
+app-id=
+postbuild=
+prebuild=
+default=true
