@@ -40,16 +40,22 @@ class Market(Space):
                 while self.demmand_not_satisfied:
                     if self.has_offers():
                         self.an_offer = self.get_lowest_offer()
-                        self.contracted_offers[self.an_offer.owner_of_g] = self.an_offer
+                        self.an_offer.owner_of_g = self.demmand_owner
+                        self.contracted_offers[self.an_offer.producer_of_g] = self.an_offer
                         self.total_contracted_value += self.an_offer.value_of_g
                         if self.total_contracted_value >= self.an_offer.value_of_g:
                             self.demmand_not_satisfied = False
                     else:
                         self.demmand_not_satisfied = False
+                        self.release_demmand()
+                        self.demmand.clear()
 
                 self.notify_match(self.a_demmand, self.contracted_offers)
+                self.register_contract(self.a_demmand, self.contracted_offers)
             else:
                 self.bids_not_matched = False
+                self.release_offers()
+                self.offers.clear()
 
     def bid_market(self, bid_type, a_good):
         """ include an  offer in the market """
@@ -57,21 +63,33 @@ class Market(Space):
             if bid_type == 'O':
                 self.offers[a_good.value_of_g] = a_good
             else:
-                self.demmand[a_good.value_of_g] = a_good
-        else:
-            raise Exception("Type of bid not valid - type: ", bid_type)
+                if bid_type == 'D':
+                    self.demmand[a_good.value_of_g] = a_good
+                else:
+                    raise Exception("Type of bid not valid - type: ", bid_type)
 
     def notify_match(self, a_demmand, contracted_offers):
         """ Notify the agents that their bids where matched """
-        a_demmand.owner_of_g.get_contracted_offers(contracted_offers)
+        self.contractor = a_demmand.owner_of_g
+        self.contractor.get_contracted_offers(contracted_offers)
+        for offer in contracted_offers.values():
+            offer.producer_of_g.got_contract()
 
-    def release_bid():
-        """ When some bid passed the timeout of the system, the market release the bid """
-        pass
-
-    def register_contract():
+    def register_contract(self, a_demmand, contracted_offers):
         """ The matched bids become contracts """
-        pass
+        self.contractor = a_demmand.owner_of_g
+        self.contracts[self.contractor] = contracted_offers
+        self.contractor.get_contracted_offers(contracted_offers)
+
+    def release_offers(self):
+        """ When some bid passed the timeout of the system, the market release the bid """
+        for bid, an_offer in self.offers.items():
+            an_offer.producer_of_g.release_offer()
+
+    def release_demmand(self):
+        """ When some bid passed the timeout of the system, the market release the bid """
+        for bid, a_demmand in self.demmand.items():
+            a_demmand.producer_of_g.release_demmand()
 
     def init_offers(self, new_offers):
         """ Get new offers dict and check if is a sorted dict - if yes, set it """

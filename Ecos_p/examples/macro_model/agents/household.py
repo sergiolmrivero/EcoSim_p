@@ -11,12 +11,19 @@ class Household(EconomicAgent):
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
         self.labor_market = self.spaces['LaborMarket']
+        self.employed = False
 
     def step(self, this_step):
         """ Household Agent Step method """
         self.my_step = this_step
-        self.generate_offer()
-        self.labor_market.bid_market('O', self.labor_offer)
+        if not self.employed:
+            self.generate_offer()
+            self.offer_workforce()
+        self.formulate_price_expectations()
+        self.calculate_income()
+        self.establish_demmand()
+        self.buy_goods()
+        self.pay_taxes()
 
     def show_offer(self):
         """ Show Offer The agent show an offer in some market """
@@ -40,13 +47,42 @@ class Household(EconomicAgent):
                                 self,
                                 self)
 
-        # self.labor_offer = GoodOrService(self.name, 'w',
-        #                                  self.labor_capacity,
-        #                                  self.hourly_wage,
-        #                                  asset_owner_of_gs=self)
-
     def decide_hourly_wage(self):
         """ The Household decides wage to offer """
         self.hourly_wage = self.labor_market.average_labor_price()
         if self.hourly_wage == 0.0:
             self.hourly_wage = self.expected_wage
+
+    def offer_workforce(self):
+        """ The Household offer its workforce """
+        self.labor_market.bid_market('O', self.labor_offer)
+        self.offered_workforce = True
+
+    def formulate_price_expectations(self):
+        """ The household formulates price expectations for consumer goods """
+        pass
+
+    def calculate_income(self):
+        """ The household calculates its income """
+        pass
+
+    def establish_demmand(self):
+        """ The HH establish its demmand """
+        pass
+
+    def buy_goods(self):
+        """ The HH buy goods in the goods market """
+        pass
+
+    def pay_taxes(self):
+        """ The HH pay taxes to the government """
+        pass
+
+    def got_contract(self):
+        """ The household is employed """
+        self.employed = True
+
+    def reslease_bid(self):
+        """ The agent now is unemployed """
+        self.labor_offer = None
+        self.employed = False

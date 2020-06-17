@@ -19,10 +19,6 @@ class LaborMarket(Market):
         # TODO: Check if duplicated
         pass
 
-    def decide_hourly_wage(self, hh):
-        """ The Household decides wage to offer """
-        hh.hourly_wage = hh.expected_wage
-
     def pay_wages(self):
         """ Agent pay wages """
         pass

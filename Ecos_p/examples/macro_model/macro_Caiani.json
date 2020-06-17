@@ -337,43 +337,43 @@
           {
             "var_name": "labor_demand",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(30.0,1.0)",
+            "var_dist": "np.random.normal(80.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_productivity",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(30.0,1.0)",
+            "var_dist": "np.random.normal(80.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "desired_output",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(40.0,0.2)",
+            "var_dist": "np.random.normal(100.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "expected_sales",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(40.0,0.2)",
+            "var_dist": "np.random.normal(100.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "expected_price",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(1.0,0.2)",
+            "var_dist": "np.random.normal(10.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "expected_wage",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(1.0,0.2)",
+            "var_dist": "np.random.normal(5.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "offered_wage",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(1.0,0.2)",
+            "var_dist": "np.random.normal(5.0,0.2)",
             "var_value": 0.0
           },
           {
@@ -385,55 +385,55 @@
           {
             "var_name": "output",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,0.2)",
+            "var_dist": "np.random.normal(100.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "inventory",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,0.2)",
+            "var_dist": "np.random.normal(100.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "inventory_t_1",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,0.2)",
+            "var_dist": "np.random.normal(100.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_to_contract",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,1.0)",
+            "var_dist": "np.random.normal(100.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_contracted",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,1.0)",
+            "var_dist": "np.random.normal(100.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "unitary_cost",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,1.0)",
+            "var_dist": "np.random.normal(20.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "price",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,1.0)",
+            "var_dist": "np.random.normal(50.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "deposits_cash",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,1.0)",
+            "var_dist": "np.random.normal(1000.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "capital_stock",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,1.0)",
+            "var_dist": "np.random.normal(1000.0,1.0)",
             "var_value": 0.0
           },
           {
@@ -451,7 +451,7 @@
           {
             "var_name": "mark_up",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(0.09,0.05)",
+            "var_dist": "np.random.normal(1.0,0.05)",
             "var_value": 0.0
           },
           {
@@ -463,13 +463,13 @@
           {
             "var_name": "capital_labor_ratio",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(0.09,0.05)",
+            "var_dist": "np.random.normal(1.09,0.05)",
             "var_value": 0.0
           },
           {
             "var_name": "capital_productivity",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(0.09,0.05)",
+            "var_dist": "np.random.normal(0.9,0.05)",
             "var_value": 0.0
           }
         ],
@@ -477,13 +477,13 @@
           {
             "var_name": "labor_demand",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,1.0)",
+            "var_dist": "np.random.normal(100.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_productivity",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(0.5,0.5)",
+            "var_dist": "np.random.normal(0.1,0.5)",
             "var_value": 0.0
           },
           {

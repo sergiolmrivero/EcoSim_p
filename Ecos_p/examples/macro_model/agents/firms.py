@@ -60,6 +60,9 @@ class Firm(EconomicAgent):
 
     def generate_demmand(self):
         """ The Firm decides the labor demmand """
+        # Check if labor demmand is gt labor contracted
+        # Or if contracts are expired
+
         self.labor_demand_g = Good('Labor',
                                    'real',
                                    'w',
@@ -98,7 +101,8 @@ class CGFirm(Firm):
         if self.demmand_satisfied:
             self.calculate_contracted_labor()
             self.show_offer()
-            self.output = self.pf.produce(self.desired_output.quantity_of_g)
+            self.output = self.pf.produce(self.desired_output)
+            self.pay
             self.cg_market.offer_gs(self.output)
         # self.my_actions_goods.offer_production(self, self.output)
         self.cg_market.sell_production(self)

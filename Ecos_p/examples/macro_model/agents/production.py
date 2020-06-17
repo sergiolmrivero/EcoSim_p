@@ -14,6 +14,7 @@ class ProductionFunction:
     """
     The production function class is used by the firms to produce.
     """
+    # TODO: Especifica de maneira mais completa a função de produção.
     def __init__(self, firm):
         """ Initialize class with labor and equipment """
         self.owner = firm
@@ -31,40 +32,28 @@ class ProductionFunction:
         """ Get all contracted labor to produce """
         self.labor = firm_contracted_labor
 
-    def produce(self, goods_quantity):
+    def produce(self, goods):
         """ Produce using labor and equipment """
-        self.quantity_to_produce = goods_quantity
+        # TODO: O componente de capital precisa ser feito.
+        # TODO: A função de produção precisa ser rescrita de maneira a corresponde ao esquema teórico de produção
+        self.goods_to_produce = goods
         self.produced_quantity = 0
-        self.production_not_finished = True
-        while self.production_not_finished:
-            self.produce_goods()
-        return self.produced_goods
-
-    def produce_goods(self):
-        """ Private Method - Produce goods """
-        # Needs Implementation
-        self.produced_quantity = self.quantity_to_produce
-        self.production_value = self.calculate_production_value()
-        self.production_not_finished = False
-        self.produced_goods = Good('consumer_good',
-                                   'real',
-                                   'cg',
-                                   'immediate',
-                                   self.produced_quantity,
-                                   self.production_value,
+        self.produced_goods = Good(self.goods_to_produce.name_of_g,
+                                   self.goods_to_produce.type_of_g,
+                                   self.goods_to_produce.asset_category_of_g,
+                                   self.goods_to_produce.consume_of_g,
+                                   self.goods_to_produce.quantity_of_g,
+                                   self.goods_to_produce.value_of_g,
                                    self.owner,
                                    self.owner)
-
-    def calculate_production_value(self):
-        """ Calculates the production value """
-        # Needs implementation
-        return 10.0
+        return self.produced_goods
 
 
 class Equipment:
     """
     The equipment used in the production function
     """
+    # TODO: Equipamento (e a produtividade do equipamento, precisam entrar n função 
     def __init__(self, owner, K=None, Y_L=None, Y_P=None, L_P=None, Y=None, L=None):
         """ Create Equipment"""
         self.owner = owner
