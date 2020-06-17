@@ -15,6 +15,7 @@ The results of the scenarios are writen in files in the folder runs
 import sys
 import importlib
 
+# Needs to be changed to your directory structure
 PATH_TO_MODEL = 'C:\Users\Sergio Rivero\Documents\GitHub\EcoSim_p\Ecos_p\examples\ipd_model'
 PATH_TO_KERNEL = 'C:\Users\Sergio Rivero\Documents\GitHub\EcoSim_p\Ecos_p\kernel'
 
@@ -24,6 +25,6 @@ import simulation as sim
 
 model_config = PATH_TO_MODEL + '\ipd_model_config.json'
 model_defs = PATH_TO_MODEL + '\ipd.json'
-macro_sim = sim.Simulation(model_config, model_defs)
+ipd_sim = sim.Simulation(model_config, model_defs)
 
-macro_sim.execute_simulation()
+ipd_sim.execute_simulation()

@@ -8,7 +8,7 @@
       "parameter_value": 0.0
     }
   ],
-  "model_name": "macro_Caiani",
+  "model_name": "ipd",
   "schedule": [
     {
       "schedule_type": "MixedSchedule",
@@ -16,41 +16,84 @@
     }
   ],
   "spaces": [
-    {
-      "space_type": "Ipd",
-      "space_name": "Ipd",
-      "action_set": "ipd_action_set",
-      "action_class": "IpdActionSet"
-      "space_variables": {
-        "payoffs": 0.0
-      }
-    },
+      {
+	"space_type": "IpdGame",
+	"space_name": "IpdGame",
+	"action_set": "ipd_action_set",
+	"action_class": "IpdActionSet",
+	"space_variables": {
+            "payoffs": 0.0
+	}
+    }
   ],
   "agents": [
     {
-      "agent_type": "Player",
-      "agent_prefix": "HH",
+      "agent_type": "GoodPlayer",
+      "agent_prefix": "GPl",
       "agent_spaces": [
-        "Ipd"
+          "IpdGame"
       ],
-      "no_of_agents": 500
+	"no_of_agents": 20
     },
+    {
+      "agent_type": "BadPlayer",
+      "agent_prefix": "BPl",
+      "agent_spaces": [
+          "IpdGame"
+      ],
+      "no_of_agents": 20
+    },
+    {
+      "agent_type": "RandomPlayer",
+      "agent_prefix": "RPl",
+      "agent_spaces": [
+          "IpdGame"
+      ],
+      "no_of_agents": 20
     }
+
   ],
   "observers": [
     {
       "observer_type": "Observer",
-      "observer_name": "Obs",
+      "observer_name": "GPObs",
       "observer_actions": [
-        "obs_pl"
+        "obs_gpl"
       ],
-      "observer_agent": "Player",
+      "observer_agent": "GoodPlayer",
       "observable_vars": [
-        "payoffs",
-        "my_strategies",
-        "other_strategies",
+        "payoff",
+        "my_play",
+        "other_play"
+      ]
+    },
+    {
+      "observer_type": "Observer",
+      "observer_name": "BPObs",
+      "observer_actions": [
+        "obs_bpl"
+      ],
+      "observer_agent": "BadPlayer",
+      "observable_vars": [
+        "payoff",
+        "my_play",
+        "other_play"
+      ]
+    },
+    {
+      "observer_type": "Observer",
+      "observer_name": "RObs",
+      "observer_actions": [
+        "obs_bpl"
+      ],
+      "observer_agent": "RandomPlayer",
+      "observable_vars": [
+        "payoff",
+        "my_play",
+        "other_play"
       ]
     }
+
   ],
   "scenarios": [
     {
@@ -86,26 +129,31 @@
         }
       ],
       "agents_init": {
-        "Player": [
-          {
-            "var_name": "payoffs",
-            "var_type": "stochastic",
-            "var_dist": "np.random.normal(1.0,0.2)",
-            "var_value": 0.0
-          },
-          {
-            "var_name": "my_strategies",
-            "var_type": "stochastic",
-            "var_dist": "np.random.normal(2.0,0.2)",
-            "var_value": 0.0
-          },
-          {
-            "var_name": "other_strategies",
-            "var_type": "stochastic",
-            "var_dist": "np.random.normal(2.0,0.2)",
-            "var_value": 0.0
-          }
+        "GoodPlayer": [
+            {
+		"var_name": "payoff",
+		"var_type": "integer",
+		"var_dist": "none",
+		"var_value": 1
+            }
+        ],
+	"BadPlayer": [
+            {
+		"var_name": "payoff",
+		"var_type": "integer",
+		"var_dist": "none",
+		"var_value": 1
+            }
+        ],
+	"RandomPlayer": [
+	    {
+		"var_name": "payoff",
+		"var_type": "integer",
+		"var_dist": "none",
+		"var_value": 1
+            }
         ]
+
       }
     }
   ]
