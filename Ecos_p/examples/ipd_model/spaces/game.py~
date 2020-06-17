@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+""" Basic Market Class implementation """
+
+from basicSpaces import Space
+from sortedcontainers import SortedDict
+
+
+class IpdGame(Space):
+    """ Abstract Market """
+    STRATEGY = ['C', 'D']
+    PAYOFFS = {'CC':3,
+               'CD':0,
+               'DC':5,
+               'DD':1}
+    
+    def __init__(self, model, name, actions_set_file, action_class):
+        """ Intialize abstract market """
+        super().__init__(model, name, actions_set_file, action_class)
+        self.players = SortedDict()
+        self.games = SortedDict()
+        
+        def update(self):
+            """ Implemented by subclass - Testing update """
+            self.play()
+            
+        def play(self):
+            """ here the players play the game """
+            print("Player space game")
+            
+            

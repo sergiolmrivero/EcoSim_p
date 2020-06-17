@@ -1,0 +1,9 @@
+{
+  "Description": "Configuration file for the macroeconomic model",
+  "paths":
+    {
+      "kernel": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/kernel/",
+      "model": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/examples/ipd_model/",
+      "results": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/examples/ipd_model/runs/"
+    }
+}

@@ -57,4 +57,3 @@ class AgentPopulationCreator(object):
 
 class AgentProvider(providers.Factory):
     """ Agent Provider Class"""
-
