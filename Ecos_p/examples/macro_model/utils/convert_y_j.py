@@ -5,8 +5,8 @@ import json
 
 import yaml
 
-input_file = 'dumb_model_init.yml'
-output_file = 'dumb_model_init.json'
+input_file ='macro_Caiani.yml'
+output_file ='../macro_Caiani.json'
 
 with open(input_file, "r") as read_file:
     yaml_defs = yaml.load(read_file, Loader=yaml.FullLoader)

@@ -104,9 +104,11 @@ Nota: Checando novamente os arquivos
 
 
 
-rivero@jamari$ git checkout -b rivero versao-Colaboradores 
+Nota: Checando novamente os arquivos
+
+
+
+rivero@jamari$ git checkout -b rivero versao-Colaboradores
 
 nota: Isso cria a versão do seu branch embaixo do branch versao-Colaboradores
-
-
 

@@ -1,0 +1,53 @@
+# -*- coding: utf-8 -*-
+""" Household Agents from the basic macroeconomic model """
+
+from .agents import EconomicAgent
+
+from .agents_accounting import Good
+
+
+class Household(EconomicAgent):
+    """ Household Agent """
+    def __init__(self, simulation, model, agent_number, agent_def):
+        super().__init__(simulation, model, agent_number, agent_def)
+        self.labor_market = self.spaces['LaborMarket']
+
+    def step(self, this_step):
+        """ Household Agent Step method """
+        self.my_step = this_step
+        self.generate_offer()
+        self.labor_market.bid_market('O', self.labor_offer)
+        self.show_offer()
+
+    def show_offer(self):
+        """ Show Offer The agent show an offer in some market """
+        print(" I, ", self.name,
+              "am offering ",
+              self.labor_offer.quantity_of_g,
+              "hour of work at ",
+              self.labor_offer.value_of_g,
+              "hourly wage."
+              )
+
+    def generate_offer(self):
+        """ The Household decides wage to offer """
+        self.decide_hourly_wage()
+        self.labor_offer = Good('Labor',
+                                'real',
+                                'w',
+                                'immediate',
+                                self.labor_capacity,
+                                self.hourly_wage,
+                                self,
+                                self)
+
+        # self.labor_offer = GoodOrService(self.name, 'w',
+        #                                  self.labor_capacity,
+        #                                  self.hourly_wage,
+        #                                  asset_owner_of_gs=self)
+
+    def decide_hourly_wage(self):
+        """ The Household decides wage to offer """
+        self.hourly_wage = self.labor_market.average_labor_price()
+        if self.hourly_wage == 0.0:
+            self.hourly_wage = self.expected_wage

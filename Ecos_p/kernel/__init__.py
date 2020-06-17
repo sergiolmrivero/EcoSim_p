@@ -8,6 +8,7 @@ This is an abm engine for economic simulation in python
 import datetime
 
 
+
 __title__ = 'kernel'
 __version__ = '0.0.0.Alpha'
 __license__ = 'gnu'

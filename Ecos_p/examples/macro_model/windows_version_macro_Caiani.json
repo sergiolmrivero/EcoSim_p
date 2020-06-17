@@ -1,7 +1,7 @@
 {
   "simulation_name": "macro_Caiani",
   "simulation_model": "macro_Caiani",
-  "simulation_folder": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/v_0-0-2/EcoSim_p/Ecos_p/examples/macro_model",
+  "simulation_folder": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\examples\\macro_model",
   "simulation_parameters": [
     {
       "parameter_name": "M1",
@@ -17,8 +17,8 @@
   ],
   "spaces": [
     {
-      "space_type": "Market",
-      "space_name": "Market",
+      "space_type": "Macro",
+      "space_name": "Macro",
       "action_set": "macro_Caiani_action_set",
       "action_class": "MacroEcoActionSet",
       "space_variables": {
@@ -26,8 +26,8 @@
       }
     },
     {
-      "space_type": "LaborMarket",
-      "space_name": "LaborMarket",
+      "space_type": "Labor_market",
+      "space_name": "Labor_market",
       "action_set": "macro_Caiani_action_set_Labor",
       "action_class": "LaborActionSet",
       "space_variables": {
@@ -35,8 +35,8 @@
       }
     },
     {
-      "space_type": "CGMarket",
-      "space_name": "CGMarket",
+      "space_type": "CG_market",
+      "space_name": "CG_market",
       "action_set": "macro_Caiani_action_set_CG",
       "action_class": "CGActionSet",
       "space_variables": {
@@ -44,8 +44,8 @@
       }
     },
     {
-      "space_type": "KGMarket",
-      "space_name": "KGMarket",
+      "space_type": "KG_market",
+      "space_name": "KG_market",
       "action_set": "macro_Caiani_action_set_KG",
       "action_class": "KGActionSet",
       "space_variables": {
@@ -53,8 +53,8 @@
       }
     },
     {
-      "space_type": "CreditMarket",
-      "space_name": "CreditMarket",
+      "space_type": "Credit_market",
+      "space_name": "Credit_market",
       "action_set": "macro_Caiani_action_set_Credit",
       "action_class": "CreditActionSet",
       "space_variables": {
@@ -62,8 +62,8 @@
       }
     },
     {
-      "space_type": "DepositsMarket",
-      "space_name": "DepositsMarket",
+      "space_type": "Deposits_market",
+      "space_name": "Deposits_market",
       "action_set": "macro_Caiani_action_set_Deposits",
       "action_class": "DepositsActionSet",
       "space_variables": {
@@ -76,26 +76,29 @@
       "agent_type": "Household",
       "agent_prefix": "HH",
       "agent_spaces": [
-        "LaborMarket"
+        "Macro",
+        "Labor_market"
       ],
       "no_of_agents": 500
     },
     {
-      "agent_type": "CGFirm",
+      "agent_type": "CG_Firm",
       "agent_prefix": "CG",
       "agent_spaces": [
-        "CGMarket",
-        "LaborMarket",
-        "KGMarket"
+        "Macro",
+        "CG_market",
+        "Labor_market",
+        "KG_market"
       ],
       "no_of_agents": 10
     },
     {
-      "agent_type": "KGFirm",
+      "agent_type": "KG_Firm",
       "agent_prefix": "KG",
       "agent_spaces": [
-        "KGMarket",
-        "LaborMarket"
+        "Macro",
+        "KG_market",
+        "Labor_market"
       ],
       "no_of_agents": 5
     },
@@ -103,17 +106,19 @@
       "agent_type": "Bank",
       "agent_prefix": "Ba",
       "agent_spaces": [
-        "DepositsMarket",
-        "CreditMarket"
+        "Macro",
+        "Deposits_market",
+        "Credit_market"
       ],
       "no_of_agents": 2
     },
     {
-      "agent_type": "CentralBank",
+      "agent_type": "Central_Bank",
       "agent_prefix": "CB",
       "agent_spaces": [
-        "DepositsMarket",
-        "CreditMarket"
+        "Macro",
+        "Deposits_market",
+        "Credit_market"
       ],
       "no_of_agents": 1
     },
@@ -121,9 +126,10 @@
       "agent_type": "Government",
       "agent_prefix": "Gov",
       "agent_spaces": [
-        "DepositsMarket",
-        "CreditMarket",
-        "LaborMarket"
+        "Macro",
+        "Deposits_market",
+        "Credit_market",
+        "Labor_market"
       ],
       "no_of_agents": 1
     }
@@ -333,47 +339,47 @@
             "var_value": 0.0
           }
         ],
-        "CGFirm": [
+        "CG_Firm": [
           {
             "var_name": "labor_demand",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(80.0,1.0)",
+            "var_dist": "np.random.normal(30.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_productivity",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(80.0,1.0)",
+            "var_dist": "np.random.normal(30.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "desired_output",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,0.2)",
+            "var_dist": "np.random.normal(40.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "expected_sales",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,0.2)",
+            "var_dist": "np.random.normal(40.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "expected_price",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(10.0,0.2)",
+            "var_dist": "np.random.normal(1.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "expected_wage",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(5.0,0.2)",
+            "var_dist": "np.random.normal(1.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "offered_wage",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(5.0,0.2)",
+            "var_dist": "np.random.normal(1.0,0.2)",
             "var_value": 0.0
           },
           {
@@ -385,55 +391,55 @@
           {
             "var_name": "output",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,0.2)",
+            "var_dist": "np.random.normal(10.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "inventory",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,0.2)",
+            "var_dist": "np.random.normal(10.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "inventory_t_1",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,0.2)",
+            "var_dist": "np.random.normal(10.0,0.2)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_to_contract",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,1.0)",
+            "var_dist": "np.random.normal(10.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_contracted",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,1.0)",
+            "var_dist": "np.random.normal(10.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "unitary_cost",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(20.0,1.0)",
+            "var_dist": "np.random.normal(10.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "price",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(50.0,1.0)",
+            "var_dist": "np.random.normal(10.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "deposits_cash",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(1000.0,1.0)",
+            "var_dist": "np.random.normal(10.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "capital_stock",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(1000.0,1.0)",
+            "var_dist": "np.random.normal(10.0,1.0)",
             "var_value": 0.0
           },
           {
@@ -451,7 +457,7 @@
           {
             "var_name": "mark_up",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(1.0,0.05)",
+            "var_dist": "np.random.normal(0.09,0.05)",
             "var_value": 0.0
           },
           {
@@ -463,27 +469,27 @@
           {
             "var_name": "capital_labor_ratio",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(1.09,0.05)",
+            "var_dist": "np.random.normal(0.09,0.05)",
             "var_value": 0.0
           },
           {
             "var_name": "capital_productivity",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(0.9,0.05)",
+            "var_dist": "np.random.normal(0.09,0.05)",
             "var_value": 0.0
           }
         ],
-        "KGFirm": [
+        "KG_Firm": [
           {
             "var_name": "labor_demand",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(100.0,1.0)",
+            "var_dist": "np.random.normal(10.0,1.0)",
             "var_value": 0.0
           },
           {
             "var_name": "labor_productivity",
             "var_type": "stochastic",
-            "var_dist": "np.random.normal(0.1,0.5)",
+            "var_dist": "np.random.normal(0.5,0.5)",
             "var_value": 0.0
           },
           {
@@ -597,7 +603,7 @@
             "var_value": 0.0
           }
         ],
-        "CentralBank": [
+        "Central_Bank": [
           {
             "var_name": "ammount",
             "var_type": "stochastic",

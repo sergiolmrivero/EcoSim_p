@@ -7,14 +7,15 @@ This class receives a json file with the definition of the simulation scenario a
 simulation objects
 
 """
-import json
 import random as rnd
 import time
 from collections import OrderedDict
-from spaceCreation import SpaceCreator
+
+
 from agentCreation import AgentPopulationCreator
-from scheduleCreation import ScheduleCreator
 from observerCreation import ObserverCreator
+from scheduleCreation import ScheduleCreator
+from spaceCreation import SpaceCreator
 
 
 class Model:
@@ -31,6 +32,7 @@ class Model:
         self.simulation = None
         self.json_defs = json_simulation_defs
         self.name = self.json_defs['model_name']
+        self.simulation_folder = self.json_defs['simulation_folder']
         self.schedule_def = self.json_defs['schedule']
         self.create_schedule(self.schedule_def)
         self.spaces = dict()
@@ -48,8 +50,30 @@ class Model:
     def create_spaces(self):
         """ Access SpaceFactory (SpaceCreator) and create space objects for the simulation from the json definition """
         self.spaces_def = self.json_defs['spaces']
-        self.spaces_factory = SpaceCreator(self, self.spaces_def)
+        self.spaces_factory = SpaceCreator(self, self.spaces_def, self.simulation_folder)
         self.spaces = self.spaces_factory.spaces
+
+    def create_agents(self):
+        """
+        Access the AgentFactory (AgentPopulationCreator).
+        Create the agents
+        """
+        self.agents_def = self.json_defs['agents']
+        self.agents_pop = AgentPopulationCreator(self.simulation, self,
+                                                 self.agents_def, self.simulation_folder)
+        self.agents = self.agents_pop.agents
+        self.agents_by_type = self.agents_pop.agents_by_type
+
+    def create_observers(self, path_to_results):
+        """
+        Access the ObserverFactory (ObserverCreator).
+        Create the Observers
+        """
+        self.agent_observers = {}
+        self.agent_observers_def = self.json_defs['observers']
+        self.agent_observers_pop = ObserverCreator(self, self.simulation,
+                                                   self.agent_observers_def, path_to_results)
+        self.agent_observers = self.agent_observers_pop.observers
 
     def enter_model(self, agent_name, agent):
         """ An agent enters the model (is included in agents dict) """
@@ -90,24 +114,11 @@ class Model:
             if agent_name in self.agents:
                 yield self.agents[agent_name]
 
-    def create_agents(self):
-        """
-        Access the AgentFactory (AgentPopulationCreator).
-        Create the agents
-        """
-        self.agents_def = self.json_defs['agents']
-        self.agents_pop = AgentPopulationCreator(self.simulation, self,
-                                                 self.agents_def)
-        self.agents = self.agents_pop.agents
-        self.agents_by_type = self.agents_pop.agents_by_type
+    def mixed_spaces(self):
+        """ Returns a randomly shuffled list of spaces (from spaces dict) """
+        spaces_names = list(self.spaces.keys())
+        self.random.shuffle(spaces_names)
 
-    def create_observers(self):
-        """
-        Access the ObserverFactory (ObserverCreator).
-        Create the Observers
-        """
-        self.agent_observers = {}
-        self.agent_observers_def = self.json_defs['observers']
-        self.agent_observers_pop = ObserverCreator(self, self.simulation,
-                                                   self.agent_observers_def)
-        self.agent_observers = self.agent_observers_pop.observers
+        for space_name in spaces_names:
+            if space_name in self.spaces:
+                yield self.spaces[space_name]
