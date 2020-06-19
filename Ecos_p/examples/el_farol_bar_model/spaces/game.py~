@@ -15,6 +15,10 @@ class IpdGame(Space):
     def __init__(self, model, name, actions_set_file, action_class):
         """ Intialize abstract market """
         super().__init__(model, name, actions_set_file, action_class)
+        self.players = {}
+        self.played = {}
+        self.games = {}
+        self.game = ""
 
     def update(self):
         """ Implemented by subclass - Testing update """
