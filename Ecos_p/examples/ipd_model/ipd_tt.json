@@ -28,30 +28,6 @@
   ],
   "agents": [
     {
-      "agent_type": "GoodPlayer",
-      "agent_prefix": "GPl",
-      "agent_spaces": [
-          "IpdGame"
-      ],
-	"no_of_agents": 20
-    },
-    {
-      "agent_type": "BadPlayer",
-      "agent_prefix": "BPl",
-      "agent_spaces": [
-          "IpdGame"
-      ],
-      "no_of_agents": 20
-    },
-    {
-      "agent_type": "RandomPlayer",
-      "agent_prefix": "RPl",
-      "agent_spaces": [
-          "IpdGame"
-      ],
-      "no_of_agents": 20
-    },
-    {
       "agent_type": "TitForTatPlayer",
       "agent_prefix": "TTPl",
       "agent_spaces": [
@@ -64,52 +40,7 @@
   "observers": [
     {
       "observer_type": "Observer",
-      "observer_name": "GPObs",
-      "observer_actions": [
-        "obs_gpl"
-      ],
-      "observer_agent": "GoodPlayer",
-      "observable_vars": [
-          "my_payoff",
-          "my_play",
-	  "other_name",
-          "other_play",
-	  "other_payoff"
-      ]
-    },
-    {
-      "observer_type": "Observer",
-      "observer_name": "BPObs",
-      "observer_actions": [
-        "obs_bpl"
-      ],
-      "observer_agent": "BadPlayer",
-      "observable_vars": [
-          "my_payoff",
-          "my_play",
-	  "other_name",
-          "other_play",
-	  "other_payoff"
-      ]
-    },
-    {
-      "observer_type": "Observer",
-      "observer_name": "RObs",
-      "observer_actions": [
-        "obs_bpl"
-      ],
-      "observer_agent": "RandomPlayer",
-      "observable_vars": [
-          "my_payoff",
-          "my_play",
-	  "other_name",
-          "other_play",
-	  "other_payoff"
-      ]
-    },
-    {
-      "observer_type": "Observer",
-      "observer_name": "TTObs",
+      "observer_name": "TTTTObs",
       "observer_actions": [
         "obs_bpl"
       ],
@@ -158,36 +89,12 @@
         }
       ],
       "agents_init": {
-        "GoodPlayer": [
-            {
-		"var_name": "payoff",
-		"var_type": "integer",
-		"var_dist": "none",
-		"var_value": 1
-            }
-        ],
-	"BadPlayer": [
-            {
-		"var_name": "payoff",
-		"var_type": "integer",
-		"var_dist": "none",
-		"var_value": 1
-            }
-        ],
-	"RandomPlayer": [
-	    {
-		"var_name": "payoff",
-		"var_type": "integer",
-		"var_dist": "none",
-		"var_value": 1
-            }
-        ],
 	"TitForTatPlayer": [
 	    {
 		"var_name": "payoff",
 		"var_type": "integer",
 		"var_dist": "none",
-		"var_value": 1
+		"var_value": 3
             }
         ]
 
