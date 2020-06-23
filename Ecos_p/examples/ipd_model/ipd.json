@@ -131,7 +131,7 @@
       "scenario_parameters": [
         {
           "parameter_name": "no_of_runs",
-          "parameter_value": 1
+          "parameter_value": 10
         },
         {
           "parameter_name": "reset_each_run",
