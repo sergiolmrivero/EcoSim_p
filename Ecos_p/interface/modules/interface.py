@@ -16,6 +16,7 @@ class ParameterProvider():
 		self.models = {'models': []}
 		self.spaces = {'spaces': []}
 		self.agents = {'agents': []}
+		self.action_sets = {'action set 1': ['Action A', 'Action B'], 'action set 2': ['Action X', 'Action Y']}
 		self.scenarios = {'scenarios': []}
 		
 	def get_models(self):		
@@ -79,6 +80,11 @@ class ParameterProvider():
 	                    self.agents['agents'].append(agent)
 
 	    return self.agents
+
+
+	#TODO
+	def get_action_set(self, model_name):
+		pass
 
 	#TODO
 	def get_scenarios(self, model_name):
