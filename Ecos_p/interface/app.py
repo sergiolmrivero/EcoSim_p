@@ -36,13 +36,14 @@ Routes for rendering pages
 def homepage():
     return render_template('/homepage.html')
 
-@app.route('/parametrization', methods=['GET'])
-def parametrization():
+@app.route('/parametrization', methods=['GET', 'POST'])
+def parametrization():    
+    parameters.model_name = request.form["model"]
     return render_template('/parametrization.html')
 
 @app.route('/simulation', methods=['GET'])
-def simulation():
-    parameters_resolution = ParameterResolution(parameters)
+# parameters_resolution = ParameterResolution(parameters)
+def simulation():    
     return render_template('/simulation.html')
 
 @app.route('/results', methods=['GET'])
@@ -54,8 +55,8 @@ RESTful APIs
 """
 class ModelList(Resource):
     def get(self):                
-        # return parameter_provider.get_models(), 200
-        return {'models': ['model A', 'model B']}, 200
+        return parameter_provider.get_models(), 200
+        # return {'models': ['model A', 'model B']}, 200
 
 
 class SpacelList(Resource):
@@ -72,10 +73,12 @@ class AgentList(Resource):
 #TODO
 class ScenarioList(Resource):
     def get(self):
+
+        # TODO
         # return parameter_provider.get_scenarios(), 200
         return {'scenarios': ['scenario A', 'scenario B']}, 200
 
-
+# may be not used
 class ModelItem(Resource):
     def get(self, name):
         print(name)           
@@ -109,6 +112,17 @@ class ParameterList(Resource):
 
         return {'json_file_name': 'will be implemented (received from the user interface)', 'parameters': request.get_json()}
 
+    #TODO: get parameters from an existent JSON file
+    def get(self):
+        pass
+
+#TODO
+class ActionSetList(Resource):
+    def get(self, model):
+        return {'action set name 1': ['Action A', 'Action B'], 'action set name 2': ['Action X', 'Action Y']}
+
+        #TODO
+        # return parameter_provider.get_action_set(model)
 
 """
 Creating/Associating endpoint to each API
@@ -124,6 +138,8 @@ api.add_resource(ScenarioList, '/scenarios')
 api.add_resource(ModelItem, '/model/<string:name>')
 
 # Lists - Choosen Model
+# api.add_resource(ActionSetList, '/actionSet') # can change
+api.add_resource(ActionSetList, '/actionSet/<model>') # can change
 api.add_resource(ParameterList, '/parameters')
 
 """
