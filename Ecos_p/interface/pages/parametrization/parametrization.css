@@ -1,0 +1,361 @@
+body{
+	font-family: sans-serif;
+	background-color: black;
+	color: #CFD8DC;
+}
+
+h2{
+    background-color: #CFD8DC;
+    color: black;
+    height: 30px;
+    margin: 0px;
+
+
+}
+
+.number_input{
+	width: 25px;
+	height: 24px;
+	background-color: #CFD8DC;
+	color: black;
+}
+
+.combobox{
+	height: 30px;
+	width: 240px;
+	background-color: #CFD8DC;
+	color: black;
+	border-radius: 20px;
+}
+
+.panel-default{
+	position: fixed;
+	width: 350px;
+	top: 10%;
+	background-color: #bd8c7d;
+	
+}
+
+#panel1{
+	position: fixed;
+	left: 10%;
+	animation: fadein 1s;
+  	-moz-animation: fadein 1s; 
+  	-webkit-animation: fadein 1s; 
+  	-o-animation: fadein 1s;
+
+
+}
+
+#panel2{
+	position: fixed;
+	left: 40%;
+	display: none;
+	animation: fadein 1s;
+  	-moz-animation: fadein 1s; 
+  	-webkit-animation: fadein 1s; 
+  	-o-animation: fadein 1s;
+
+}
+
+#panel3{
+	position: fixed;
+	left: 70%;
+	display: none;
+	animation: fadein 1s;
+  	-moz-animation: fadein 1s; 
+  	-webkit-animation: fadein 1s; 
+  	-o-animation: fadein 1s;
+
+
+}
+
+.panel-heading{
+	background-color: #bd8c7d;
+
+
+
+}
+#panel-title{
+	background-color: #bd8c7d;
+}
+
+#collapse1{
+	padding-left: 0px;
+	background-color: #49494b;
+	}
+
+#collapse2{
+	padding-left: 0px;
+	background-color: #49494b;
+}
+
+#collapse3{
+	padding-left: 0px;
+	background-color: #49494b;
+}
+
+#container0{
+	min-height: 400px;
+
+
+}
+
+
+.button{
+	border-radius: 30px;
+	width: 30px;
+	height: 30px;
+	background-color: #CFD8DC;
+	border: none;
+	font-size: 18px;
+	color: black;
+	cursor: pointer;
+}
+
+.container{
+    width: 320px;
+    min-height: 10px;
+    max-height: 10000px;
+}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 30%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  min-height: 10px;
+  max-height: 10000px;
+  width: 348px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #49494b;
+
+
+}
+
+#spaces{
+	border: 1px solid white;
+	width: 348px;
+	  min-height: 10px;
+  max-height: 10000px;
+  border-bottom: 0px;
+    padding-top: 0px;
+}
+
+#agents{
+	border: 1px solid white;
+	width: 348px;
+	  min-height: 10px;
+  max-height: 10000px;
+  	border-bottom: 0px;
+
+    padding-top: 0px;
+}
+
+#scenarios{
+	border: 1px solid white;
+	width: 348px;
+  padding-top: 0px;
+  min-height: 10px;
+  max-height: 10000px;
+}
+
+.checkbox{
+	float: right;
+	padding-right: 40px;
+}
+
+.list_item{
+	border: 1px solid black;
+	height: 48px;
+	width: 308px;
+	padding-left: 10px;]
+	padding-right: 10px;
+	text-align: left;
+	background-color: #CFD8DC;
+	color: black;
+	animation: fadein 1s;
+  	-moz-animation: fadein 1s; 
+  	-webkit-animation: fadein 1s; 
+  	-o-animation: fadein 1s;
+  	transition: 1s;
+
+}
+
+.agent_list_item{
+	border: 1px solid black;
+	min-height: 48px;
+	max-height: 198px;
+	width: 308px;
+	padding-left: 10px;]
+	padding-right: 10px;
+	text-align: left;
+	background-color: #CFD8DC;
+	color: black;
+  	animation: fadein 1s;
+  	-moz-animation: fadein 1s; 
+  	-webkit-animation: fadein 1s; 
+  	-o-animation: fadein 1s;
+ 
+}
+
+.img{
+	float: right;
+	padding-top: 10px;
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+#run{
+	position: fixed;
+	top: 40px;
+	right: 10%;
+	height: 30px;
+	cursor: pointer;
+	background-color: #8e8e90; 
+	border-radius: 5px;
+	display: none;
+	animation: fadein 1s;
+  	-moz-animation: fadein 1s; 
+  	-webkit-animation: fadein 1s; 
+  	-o-animation: fadein 1s;
+}
+
+.toggle {
+    margin-bottom: 20px;
+    float: right;
+    padding-right: 20px; 
+}
+
+.toggle > input {
+    display: none;
+}
+
+.toggle > label {
+    position: relative;
+    display: block;
+    height: 28px;
+    width: 52px;
+    background-color: #f7f7f7;
+    border: 1px #a2e3e6 solid;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.toggle > label:after {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    background: #fff;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: all 0.3s ease;
+}
+.toggle > label:active:after {
+    transform: scale(1.15, 0.85);
+}
+.toggle > input:checked ~ label {
+    background-color: #4cda64;
+    border-color: #4cda64;
+}
+.toggle > input:checked ~ label:after {
+    left: 25px;
+}
+.toggle > input:disabled ~ label {
+    background-color: #d5d5d5;
+    pointer-events: none;
+}
+.toggle > input:disabled ~ label:after {
+    background-color: rgba(255, 255, 255, 0.3);
+
+
+
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { 
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { 
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { 
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeout {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+@-moz-keyframes fadeout { 
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadeout { 
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+@-o-keyframes fadeout { 
+    from {
+        opacity:1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+

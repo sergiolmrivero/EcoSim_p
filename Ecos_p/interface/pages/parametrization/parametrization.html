@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<script src="parametrization.js"> </script>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="parametrization.css" rel="stylesheet">
+	<title>EcoSim Parametrization</title>
+</head>
+<body onload="get_parameters(); collapse2();">
+	<h1 id="header_text"  style="margin-left: 250px;"></h1>
+
+
+	<hr>
+		<button id="run" onclick="check_parameters();">Run Simulation</button>
+
+		  <div class="panel-group" id="panel1">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse1">Scenarios</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        
+		
+		<div id="scenarios" class="content">
+			<div id="scenarios_container">
+				
+				<br><br>
+				&nbsp;<select class="combobox" id="scenarios_combo">
+					<br><br>
+		</select>
+		<button class="button" onclick="append_scenario();"><b>+</b></button>
+		<br><br>
+			</div>
+			<br>
+			&nbsp;No of runs: 
+			<input type="text" id="runs_input" class="number_input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+		</p>
+		<p>
+			&nbsp;No of steps: 
+			<input type="text" id="steps_input" class="number_input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+			</p>
+			<div>
+				
+				&nbsp;Reset after each run<div class="toggle">
+						
+		    		&nbsp;<input type="checkbox" id="foo">
+					
+		    		&nbsp;<label for="foo"></label>
+					
+		    	</div>
+
+		    	</div>
+		</div>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="panel-group" id="panel2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse2">Spaces</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        
+	
+	<div id="spaces" class="content">
+		<br><br>
+		&nbsp;<select class="combobox" id="spaces_combo">
+		</select>
+		<button class="button" onclick="append_space();"><b>+</b></button>
+		<br><br>
+
+	</div>
+<br>
+
+
+    
+      </div>
+    </div>
+  </div>
+</div>
+
+     <div class="panel-group" id="panel3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse3">Agents</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+      
+	<div id="agents" class="content" >
+
+
+		<h3>&nbsp;&nbsp;&nbsp;&nbsp;Create Agent</h3> 
+		&nbsp;<select class="combobox" id="agents_combo">
+
+		</select>
+
+		<input type="text" name="" placeholder="No of agents" class="number_input" id="number_input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+
+		<button class="button" onclick="append_agent();"><b>+</b></button>
+		<br><br>
+	</div>
+	<br>
+	</div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+	
+
+
+
+</body>
+</html>
