@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Python Economic ABM 
+Python Economic ABM
 Iterated Prisioners Dilemma Model
 
 """

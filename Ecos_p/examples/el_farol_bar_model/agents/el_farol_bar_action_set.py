@@ -12,9 +12,9 @@ class Strategy:
     def __init__(self):
         """ Init the strategy of the agent """
         self.strategy_name = "general"
-        self.strategy = self.STRATEGY[1]
-        self.perc_frequency = {'GOING': 0.0,
-                               'NOT GOING': 0.0}
+        self.strategy = self.STRATEGY[0]
+        self.perc_frequency = {'GOING': 0.9,
+                               'NOT GOING': 0.1}
 
     def select_game(self):
         return self.select_strategy()
@@ -32,15 +32,24 @@ class Strategy:
         return random.random()
 
 
-class likeCrowded(Strategy):
+class LikeCrowded(Strategy):
     """  Strategy Like Crownded """
     def __init__(self):
         super().__init__()
         self.strategy_name = "likeCrowded"
         self.strategy = self.STRATEGY[0]
 
+    def select_strategy(self):
+        """ Like Crownded Strategy """
+        if self.perc_frequency['GOING'] > 0.6:
+            self.strategy = self.STRATEGY[0]
+        else:
+            self.strategy = self.STRATEGY[1]
 
-class likeSixtyPercent(Strategy):
+        return self.strategy
+
+
+class LikeSixtyPercent(Strategy):
     """ Strategy under sixty percent """
     def __init__(self):
         super().__init__()

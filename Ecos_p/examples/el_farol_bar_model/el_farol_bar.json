@@ -33,7 +33,15 @@
       "agent_spaces": [
           "EFBGame"
       ],
-      "no_of_agents": 100
+      "no_of_agents": 10
+    },
+    {
+      "agent_type": "LikeCrowdedPlayer",
+      "agent_prefix": "LCl",
+      "agent_spaces": [
+          "EFBGame"
+      ],
+      "no_of_agents": 10
     }
 
   ],
@@ -45,6 +53,18 @@
         "obs_bpl"
       ],
       "observer_agent": "RandomPlayer",
+      "observable_vars": [
+        "payoff",
+        "my_play"
+      ]
+    },
+    {
+      "observer_type": "Observer",
+      "observer_name": "LCObs",
+      "observer_actions": [
+        "obs_bpl"
+      ],
+      "observer_agent": "LikeCrowdedPlayer",
       "observable_vars": [
         "payoff",
         "my_play"
@@ -75,7 +95,7 @@
         },
         {
           "parameter_name": "no_of_steps",
-          "parameter_value": 100
+          "parameter_value": 10
         }
       ],
       "scenario_variables": [
@@ -93,9 +113,17 @@
 		"var_dist": "none",
 		"var_value": 1.0
             }
+        ],
+	  "LikeCrowdedPlayer": [
+	    {
+		"var_name": "payoff",
+		"var_type": "float",
+		"var_dist": "none",
+		"var_value": 1.0
+            }
         ]
-
       }
+	
     }
   ]
 }

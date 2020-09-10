@@ -3,9 +3,9 @@
 """
 Model Creation
 
-exec(open('ipd.py').read())
+exec(open('el_farol_bar.py').read())
 
-This method creates reads a yaml file, creates de Simulation object
+This method creates reads a json file, creates de Simulation object
 The simulation object has all classes and specifications to execute de simulation
 The agents, schedule, spaces, observers, scenarios, initial values (for the scenarios) are all defined in the yaml file
 After the simulation object is created, the simulation is executed (all scenarios, and all runs in each scenario)
