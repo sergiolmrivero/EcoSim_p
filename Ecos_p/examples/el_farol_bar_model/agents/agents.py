@@ -2,7 +2,7 @@
 """ Agents for the iterated prisioners dilemma model """
 
 from basicAgents import DiscreteEventAgent
-from .el_farol_bar_action_set import Strategy, RandomPlay, LikeCrowded
+from .el_farol_bar_action_set import Strategy, RandomPlay, LikeCrowded, LikeSixtyPercent
 
 
 class Player(DiscreteEventAgent):
@@ -45,3 +45,10 @@ class LikeCrowdedPlayer(Player):
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
         self.strategy = LikeCrowded()
+
+
+class LikeSixtyPercentPlayer(Player):
+    """ A player that always defect """
+    def __init__(self, simulation, model, agent_number, agent_def):
+        super().__init__(simulation, model, agent_number, agent_def)
+        self.strategy = LikeSixtyPercent()

@@ -42,6 +42,14 @@
           "EFBGame"
       ],
       "no_of_agents": 10
+    },
+    {
+      "agent_type": "LikeSixtyPercentPlayer",
+      "agent_prefix": "L60p",
+      "agent_spaces": [
+          "EFBGame"
+      ],
+      "no_of_agents": 10
     }
 
   ],
@@ -69,8 +77,19 @@
         "payoff",
         "my_play"
       ]
+    },
+    {
+      "observer_type": "Observer",
+      "observer_name": "L60Obs",
+      "observer_actions": [
+        "obs_bpl"
+      ],
+      "observer_agent": "LikeSixtyPercentPlayer",
+      "observable_vars": [
+        "payoff",
+        "my_play"
+      ]
     }
-
   ],
   "scenarios": [
     {
