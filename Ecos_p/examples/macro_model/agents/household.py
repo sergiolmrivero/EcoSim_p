@@ -13,9 +13,8 @@ class Household(EconomicAgent):
         self.labor_market = self.spaces['LaborMarket']
         self.employed = False
 
-    def step(self, this_step):
+    def step(self):
         """ Household Agent Step method """
-        self.my_step = this_step
         if not self.employed:
             self.generate_offer()
             self.offer_workforce()

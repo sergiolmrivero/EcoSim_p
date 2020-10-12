@@ -12,9 +12,8 @@ class Government(EconomicAgent):
         self.credit_market = self.spaces['CreditMarket']
         self.deposits_market = self.spaces['DepositsMarket']
 
-    def step(self, this_step):
+    def step(self):
         """ Step method for Government Agent """
-        self.my_step = this_step
         self.calculate_available_resources()
         self.labor_market.contract_gov_labor()
         self.deposits_market.pay_unempl_benefits()

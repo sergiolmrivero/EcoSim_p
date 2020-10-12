@@ -1,7 +1,6 @@
 {
   "simulation_name": "macro_Caiani",
   "simulation_model": "macro_Caiani",
-  "simulation_folder": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/examples/macro_model",
   "simulation_parameters": [
     {
       "parameter_name": "M1",

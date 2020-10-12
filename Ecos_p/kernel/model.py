@@ -32,7 +32,6 @@ class Model:
         self.simulation = None
         self.json_defs = json_simulation_defs
         self.name = self.json_defs['model_name']
-        self.simulation_folder = self.json_defs['simulation_folder']
         self.schedule_def = self.json_defs['schedule']
         self.create_schedule(self.schedule_def)
         self.spaces = dict()
@@ -50,7 +49,7 @@ class Model:
     def create_spaces(self):
         """ Access SpaceFactory (SpaceCreator) and create space objects for the simulation from the json definition """
         self.spaces_def = self.json_defs['spaces']
-        self.spaces_factory = SpaceCreator(self, self.spaces_def, self.simulation_folder)
+        self.spaces_factory = SpaceCreator(self, self.spaces_def)
         self.spaces = self.spaces_factory.spaces
 
     def create_agents(self):
@@ -60,7 +59,8 @@ class Model:
         """
         self.agents_def = self.json_defs['agents']
         self.agents_pop = AgentPopulationCreator(self.simulation, self,
-                                                 self.agents_def, self.simulation_folder)
+                                                 self.agents_def)
+
         self.agents = self.agents_pop.agents
         self.agents_by_type = self.agents_pop.agents_by_type
 
@@ -97,6 +97,10 @@ class Model:
                             for key, value in self.agents.items()})
 
     def agents_number(self):
+        """ Returns how many agents we have in the simulation (size of agents dict) """
+        return len(self.agents)
+
+    def no_of_agents(self):
         """ Returns how many agents we have in the simulation (size of agents dict) """
         return len(self.agents)
 

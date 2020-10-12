@@ -11,9 +11,8 @@ class CentralBank(EconomicAgent):
         self.credit_market = self.spaces['CreditMarket']
         self.deposits_market = self.spaces['DepositsMarket']
 
-    def step(self, this_step):
+    def step(self):
         """ Step method for the Central bank Agent """
-        self.my_step = this_step
         self.decide_monetary_policy()
         self.credit_market.contract_cash_advances()
         self.credit_market.buy_gov_bonds(self, self.get_government(), self.ammount)

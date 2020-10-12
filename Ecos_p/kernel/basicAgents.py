@@ -66,7 +66,16 @@ class DiscreteEventAgent(Agent):
         super().__init__(simulation, model, agent_number, agent_def)
         self.my_step = 0
 
-    def step(self, this_step):
+    def my_step(self):
+        """ Returns the agent step """
+        return self.my_step
+
+    def dev_step(self, this_step):
+        """ Discrete Event Step - Updates the step for the agent """
+        self.my_step = this_step
+        self.step()
+        
+    def step(self):
         """ Dev Agent standard step - can be specialized by subclass
             -- The code below is only an example
         """
@@ -74,6 +83,7 @@ class DiscreteEventAgent(Agent):
         # self.my_step = this_step
         # for action in self.actions.values():
         #     action(self.my_step)
+        pass
 
 
 class EventAgent(Agent):

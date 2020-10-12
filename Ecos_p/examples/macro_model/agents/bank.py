@@ -10,9 +10,8 @@ class Bank(EconomicAgent):
         super().__init__(simulation, model, agent_number, agent_def)
         self.credit_market = self.spaces['CreditMarket']
 
-    def step(self, this_step):
+    def step(self):
         """ Step method for a bank """
-        self.my_step = this_step
         self.cb = self.get_cb()
         self.gov = self.get_government()
         self.credit_market.decide_cr_target(self)

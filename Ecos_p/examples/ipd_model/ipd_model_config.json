@@ -1,5 +1,5 @@
 {
-  "Description": "Configuration file for the macroeconomic model",
+  "Description": "Configuration file for the ipd model",
   "paths":
     {
       "kernel": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/kernel/",

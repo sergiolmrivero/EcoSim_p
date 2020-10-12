@@ -21,13 +21,13 @@ class SpaceCreator(object):
     This is the general Space class implementation
     Space implemented subclass must be used
     """
-    def __init__(self, model, spaces_def, simulation_folder):
+    def __init__(self, model, spaces_def):
         """
         The init method for space class creation
         Must be referred in the space subclass creation (using super)
         """
-        self.simulation_folder = simulation_folder
-        sys.path.insert(0, self.simulation_folder)
+        #self.simulation_folder = simulation_folder
+        #sys.path.insert(0, self.simulation_folder)
         self.sps = importlib.import_module("spaces")
         self.spaces = dict()
         self.spaces_model = model

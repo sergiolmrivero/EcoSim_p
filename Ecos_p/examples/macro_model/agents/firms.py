@@ -17,7 +17,7 @@ class Firm(EconomicAgent):
         """ Initialize a Firm """
         super().__init__(simulation, model, agent_number, agent_def)
 
-    def step(self, this_step):
+    def step(self):
         """ Step for the Firm agent """
         # Implemented by subclass
         pass
@@ -95,9 +95,8 @@ class CGFirm(Firm):
         self.labor_market = self.spaces['LaborMarket']
         self.cg_market = self.spaces['CGMarket']
 
-    def step(self, this_step):
+    def step(self):
         """ Step for the CG agent """
-        self.my_step = this_step
         self.compute_desired_output()
         self.calculate_labor_demand()
         self.calculate_capacity_utilization()
@@ -175,9 +174,8 @@ class KGFirm(Firm):
         self.labor_market = self.spaces['LaborMarket']
         self.kg_market = self.spaces['KGMarket']
 
-    def step(self, this_step):
+    def step(self):
         """ Step for the KG agent """
-        self.my_step = this_step
         self.compute_desired_output()
         self.calculate_labor_demand()
         self.labor_market.bid_market('D', self.labor_demand_g)

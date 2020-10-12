@@ -19,9 +19,7 @@ class AgentPopulationCreator(object):
     Agent Population Generator
     Agent Implemented Subclass must be used
     """
-    def __init__(self, simulation, model, agents_def, simulation_folder):
-        self.simulation_folder = simulation_folder
-        sys.path.insert(0, self.simulation_folder)
+    def __init__(self, simulation, model, agents_def):
         self.ag = importlib.import_module("agents")
         self.agents = dict()
         self.agents_by_type = dict()
@@ -34,7 +32,7 @@ class AgentPopulationCreator(object):
             try:
                 an_agent = "self.ag" + "." + self.agent_type
                 self.agent_class = eval(an_agent)
-                print(self.agent_class)
+                # print(self.agent_class)
                 self.agents_by_type[self.agent_type] = dict()
             except NameError:
                 print("class ", self.agent_type, " is not defined")

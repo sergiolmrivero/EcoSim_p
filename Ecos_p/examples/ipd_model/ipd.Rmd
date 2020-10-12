@@ -1,5 +1,5 @@
 ---
-title: "Iterater Prisioner's Dilemma"
+title: "Iterated Prisioner's Dilemma"
 author: "Sérgio Rivero"
 date: "`r Sys.time()`"
 output:
@@ -15,20 +15,6 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE, eval = TRUE)
 ### Generating the simulation Results
 rm(list=ls())
 ```
-
-
-```{r runSimulation}
-
-### Here we run the simulation - This chunk just execute the python programa
-### For a more integrated approach you can use reticulate
-
-system("rm runs/*.csv")
-
-system("python3 ipd.py")
-
-
-```
-
 
 
 ```{r loadLibs}
@@ -67,6 +53,7 @@ runs_df_or  <-  runs_df
 runs_df  <- runs_df[complete.cases(runs_df),]
 
 runs_df$diff_payoffs  <- runs_df$my_payoff - runs_df$other_payoff
+
 
 ```
 

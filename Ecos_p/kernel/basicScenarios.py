@@ -4,8 +4,9 @@
 """
 Definition of the class Scenario
 """
-import numpy as np
 import datetime as dt
+import numpy as np
+import concurrent.futures
 # import yappi #using to profile code
 
 
@@ -35,7 +36,7 @@ class Scenario(object):
         self.a_var = None
         self.var_value = None
         self.first = True
-
+  
     def initialize_parameters(self):
         """
         Initialize the scenario parameters
@@ -71,9 +72,17 @@ class Scenario(object):
             if run_nr == 0 or self.reset_each_run:
                 self.set_an_agent_vars()
             self.run(run_nr)
+            # fstats = yappi.get_func_stats()   # get statistics
+            # fstats.print_all()
+            # tstats = yappi.get_thread_stats()
+            # tstats.print_all() 
+
         self.post_scenario()
-        # yappi.get_func_stats().print_all()  # get statistics
-        # yappi.get_thread_stats().print_all()  # get statistics
+        # fstats = yappi.get_func_stats()   # get statistics
+        # fstats.print_all()
+        # tstats = yappi.get_thread_stats()
+        # tstats.print_all() 
+
 
     def pre_scenario(self):
         """ Initializes the scenario parameters, variable, shcedule, agents vars etc. """
@@ -88,11 +97,21 @@ class Scenario(object):
         This method executes the schedule
         """
         # Needs to change to be generic and depedent on the type of scheduling
-        self.schedule.execute(self.name,
-                              self.step_unit,
-                              self.step_interval,
-                              self.no_of_steps,
+        self.schedule.execute(self.name, 
+                              self.step_unit, 
+                              self.step_interval, 
+                              self.no_of_steps, 
                               run_nr)
+
+    def run_threaded(self, run_nr):
+        """
+        This method executes the schedule
+        """
+        # Needs to change to be generic and depedent on the type of scheduling
+        pars = [self.name, self.step_unit, self.step_interval, self.no_of_steps, run_nr]
+
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            executor.submit(self.schedule.execute, self.name, self.step_unit, self.step_interval, self.no_of_steps, run_nr)
 
     def post_scenario(self):
         """
@@ -112,8 +131,8 @@ class Scenario(object):
         The scenario object initializes the variables dict from the yaml agent
         variables  definition (for each scenario)
         """
-        # TODO: This probably will need revision - Using agent pool and simply resetting the agents variable
-        #  will be more efficient
+        # TODO: This probably will need revision - Using agent pool and simply
+        # resetting the agents variable will be more efficient
         # TODO: This will probably be better to be as a part of the agent class
         for agent_type, agent_vars in self.agents_init.items():
             try:
@@ -122,14 +141,14 @@ class Scenario(object):
                 if self.agents_of_type is not None:
                     self.vars_dict = dict()
                     for var in agent_vars:
-                        self.agent_var_name=var['var_name']
-                        self.agent_var_type=var['var_type']
-                        self.agent_var_dist=var['var_dist']
-                        self.agent_var_value=var['var_value']
-                        self.a_var=AgentVar(self.agent_var_name,
-                                            self.agent_var_type,
-                                            self.agent_var_dist,
-                                            self.agent_var_value)
+                        self.agent_var_name = var['var_name']
+                        self.agent_var_type = var['var_type']
+                        self.agent_var_dist = var['var_dist']
+                        self.agent_var_value = var['var_value']
+                        self.a_var = AgentVar(self.agent_var_name,
+                                              self.agent_var_type,
+                                              self.agent_var_dist,
+                                              self.agent_var_value)
                         self.vars_dict[self.a_var.name] = self.a_var
                         self.vars_by_agent_type[agent_type] = self.vars_dict
             except KeyError:

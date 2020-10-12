@@ -2,6 +2,7 @@
 """
 Definition of the class Observer
 """
+
 import datetime as dt
 
 import pandas as pd
@@ -71,6 +72,7 @@ class Observer(object):
 
     def basic_observation(self):
         """ Observer the agent variables """
+        self.first = True
         self.observation = None
         agents_to_observe = self.model.agents_of_type(self.observable_entity)
         self.update_observation_keys()
@@ -79,16 +81,26 @@ class Observer(object):
             for agent_var_name in self.agent_observables.keys():
                 self.agent_observation[agent_var_name] = getattr(agent, agent_var_name)
             self.observation = {**self.observation_keys, **self.agent_observation}
-            self.append_observation()
+            if self.first:
+                self.set_observation()
+                self.first = False
+            else:
+                self.append_observation()
 
     def create_observables(self):
         """ Create the dictionary of observable variables (for the observation file) """
         self.observables = {**self.observables_keys, **self.agent_observables}
 
     def append_observation(self):
-        """ Append and observation in the observables dictionary """
+        """ Append an observation in the observables dictionary """
         for var, value in self.observables.items():
             value.append(self.observation[var])
+    
+    def set_observation(self):
+        """ Set an observation in the observables dictionary """
+        for var, value in self.observables.items():
+            value[0] = self.observation[var]
+
 
     def create_dataframe(self):
         self.observations = pd.DataFrame(self.observables)

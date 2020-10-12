@@ -1,7 +1,6 @@
 {
   "simulation_name": "ipd",
   "simulation_model": "ipd",
-  "simulation_folder": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/examples/ipd_model/",
   "simulation_parameters": [
     {
       "parameter_name": "total_payoff",

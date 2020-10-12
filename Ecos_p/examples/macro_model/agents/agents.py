@@ -12,7 +12,7 @@ class EconomicAgent(DiscreteEventAgent):
         self.offer_accepted = False
         self.contracted_offers = {}
 
-    def step(self, this_step):
+    def step(self):
         """ Implemented by subclass"""
         pass
 

@@ -18,7 +18,7 @@ class Player(DiscreteEventAgent):
         self.game = Game(self.name, "C", 3, "", "C", 3)
         self.strategy.get_game(self.game)
 
-    def step(self, this_step):
+    def step(self):
         """ agent step """
         self.select_game()
 
@@ -41,6 +41,7 @@ class Player(DiscreteEventAgent):
         self.game.other_play = other_play
         self.game.other_payoff = other_payoff
         self.strategy.get_game(self.game)
+        # print("ag name: ", self.name, "play: ", self.my_play, "payoff: ", self.my_payoff)
 
 
 class GoodPlayer(Player):

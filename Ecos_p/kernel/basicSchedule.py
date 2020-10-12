@@ -2,7 +2,7 @@
 """
 Definition of the class Schedule
 """
-
+from tqdm import trange
 
 class Schedule(object):
     """ Schedule Class """
@@ -53,6 +53,7 @@ class PoolSchedule(Schedule):
         """ PoolSchedule initialization """
         super().__init__(name, model)
         self.run_nr = " "
+        self.step = 0
 
     def execute(self, scenario_name,
                 step_unit,
@@ -62,14 +63,16 @@ class PoolSchedule(Schedule):
         """ Executes the Pool Schedule """
         self.run_nr = run_nr
         self.scenario_name = scenario_name
+        self.status = "Scenario: " + self.scenario_name + " Run nr.: " + str(self.run_nr)        
         if step_unit == 'step':
-            for this_step in range(0, no_of_steps, step_interval):
+            for this_step in trange(0, no_of_steps, step_interval, desc = self.status):
+                self.step = this_step
                 for agent_name, agent in self.model.agents.items():
-                    agent.step(this_step)
+                    agent.dev_step(self.step)
                 for space_name, space in self.model.spaces.items():
                     space.update()
                 for observer_name, observer in self.model.agent_observers.items():
-                    observer.observe(this_step)
+                    observer.observe(self.step)
         else:
             raise Exception(step_unit,
                             "is not valid as step unity")
@@ -90,10 +93,12 @@ class MixedSchedule(Schedule):
         """ Executes the Mixed Schedule """
         self.run_nr = run_nr
         self.scenario_name = scenario_name
+        self.status = "Scenario: " + self.scenario_name + " Run nr.: " + str(self.run_nr)        
         if step_unit == 'step':
-            for this_step in range(0, no_of_steps, step_interval):
+            for this_step in trange(0, no_of_steps, step_interval, desc = self.status):
+                self.step = this_step
                 for agent in self.model.mixed_agents():
-                    agent.step(this_step)
+                    agent.dev_step(this_step)
                 for space in self.model.mixed_spaces():
                     space.update()
                 for observer_name, observer in self.model.agent_observers.items():
