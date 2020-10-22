@@ -34,12 +34,11 @@ class Firm(EconomicAgent):
               )
 
     def form_expectations(self, step, z_t_1, z_e_t_1, lmbda):
-        """ The agent forms zie expectation using
-            the following equation:
-                z^e = z^e_{t-1} + lambda(z_{t-1} - z^e_{t-1})
-                where: z is the value of the voi and lambda(lmbda)
-                       is the impact of the variable of interest
-                       in the expectation.
+        """ The agent forms zie expectation using the following equation:
+            z^e = z^e_{t-1} + lambda(z_{t-1} - z^e_{t-1})
+            where: z is the value of the voi and lambda(lmbda)
+            is the impact of the variable of interest
+            in the expectation.
         """
         z_e = z_t_1 + lmbda * (z_t_1 - z_e_t_1)
         return (z_e)

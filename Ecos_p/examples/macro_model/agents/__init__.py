@@ -11,4 +11,6 @@ from .government import Government
 
 from .central_bank import CentralBank
 
-__all__ = ["EconomicAgent", "Household", "Firm", "CGFirm", "KGFirm", "Bank", "CentralBank", "Government"]
+from .agents_accounting import Good
+
+__all__ = ["EconomicAgent", "Household", "Firm", "CGFirm", "KGFirm", "Bank", "CentralBank", "Government", "Good"]

@@ -76,7 +76,7 @@
         },
         {
           "parameter_name": "no_of_steps",
-          "parameter_value": 500
+          "parameter_value": 100
         }
       ],
       "scenario_variables": [

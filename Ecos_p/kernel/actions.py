@@ -1,16 +1,9 @@
 # -*- coding: utf-8 -*-
 
-"""
-Definition of the class Model
-
-*SLMR
-REMEMBER TO USE DEPENDENCE INJECTION IN THE CODE.
-http://python-dependency-injector.ets-labs.org/index.html
-
-"""
+""" Definition of the class ActionSet """
 
 
 class ActionSet(object):
-    """ The action set of the model """
+    """ The action set of the agent """
     def __init__(self):
         """ ActionSet Initialization"""

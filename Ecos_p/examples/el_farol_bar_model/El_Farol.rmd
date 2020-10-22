@@ -3,8 +3,8 @@ title: "El Farol Bar Problem Results"
 author: "Sergio"
 date: "10/5/2020"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}

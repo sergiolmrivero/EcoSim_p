@@ -11,8 +11,8 @@ The results of the scenarios are writen in files in the folder runs
 """
 # TODO: Generalize the location specs for the simulation results files (actually in the folder runs)
 import sys
-import importlib
-import simulation as sim
+import simulation
+
 
 def execute_simulation(path_to_model, model_config, simulation_defs):
     """ This is the main simulation method without a graphical interface.
@@ -25,12 +25,13 @@ def execute_simulation(path_to_model, model_config, simulation_defs):
     config_file = path_to_model + model_config
     simulation_file = path_to_model + simulation_defs
 
-    new_sim = sim.Simulation(config_file, simulation_file)
+    new_sim = simulation.Simulation(config_file, simulation_file)
 
     new_sim.execute_simulation()
 
+
 if __name__ == "__main__":
-    
+
     path_to_model = str(sys.argv[1])
     model_config = str(sys.argv[2])
     simulation_defs = str(sys.argv[3])
