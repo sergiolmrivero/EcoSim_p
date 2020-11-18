@@ -7,7 +7,7 @@ import random
 
 
 class Player(DiscreteEventAgent):
-    """ A basic player in the Iterated Prisioners Dilemma """
+    """ A basic player in the El Farol Bar Problem """
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
         self.payoff = 0
@@ -40,7 +40,7 @@ class Player(DiscreteEventAgent):
     def game_payoff(self):
         """ Get the game payoff """
         self.payoff = self.strategy.payoff(self.my_play)
-    
+
     def get_frequency(self, frequency):
         """"Get the frequency in the bar """
         self.memory.append(frequency)
@@ -74,7 +74,6 @@ class LikeCrowdedPlayer(Player):
         self.predictor_fitness = selected_predictor[1][self.my_step]
         self.predictor_prediction = selected_predictor[2][self.my_step]
         self.my_play = self.strategy.select_game()
-
 
 
 class LikeSixtyPercentPlayer(Player):

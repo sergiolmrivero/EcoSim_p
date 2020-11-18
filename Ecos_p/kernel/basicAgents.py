@@ -74,7 +74,7 @@ class DiscreteEventAgent(Agent):
         """ Discrete Event Step - Updates the step for the agent """
         self.my_step = this_step
         self.step()
-        
+       
     def step(self):
         """ Dev Agent standard step - can be specialized by subclass
             -- The code below is only an example

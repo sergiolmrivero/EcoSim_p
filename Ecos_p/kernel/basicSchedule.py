@@ -4,6 +4,7 @@ Definition of the class Schedule
 """
 from tqdm import trange
 
+
 class Schedule(object):
     """ Schedule Class """
 
@@ -93,9 +94,9 @@ class MixedSchedule(Schedule):
         """ Executes the Mixed Schedule """
         self.run_nr = run_nr
         self.scenario_name = scenario_name
-        self.status = "Scenario: " + self.scenario_name + " Run nr.: " + str(self.run_nr)        
+        self.status = "Scenario: " + self.scenario_name + " Run nr.: " + str(self.run_nr)
         if step_unit == 'step':
-            for this_step in trange(0, no_of_steps, step_interval, desc = self.status):
+            for this_step in trange(0, no_of_steps, step_interval, desc=self.status):
                 self.step = this_step
                 for agent in self.model.mixed_agents():
                     agent.dev_step(this_step)

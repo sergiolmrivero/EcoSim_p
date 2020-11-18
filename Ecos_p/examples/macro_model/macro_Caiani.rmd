@@ -37,7 +37,7 @@ o  <-  "results"
 ```{r getFiles}
 
 ### Getting the files 
-csv_files <- fs::dir_ls(i, regexp = "\\.csv$")
+csv_files <- fs::dir_ls(i, regexp = "macro_Caiani_HH*")
 
 ```
 
@@ -52,7 +52,6 @@ runs_df  <- csv_files %>%
 runs_df_or  <-  runs_df
 runs_df  <- runs_df[complete.cases(runs_df),]
 
-runs_df$diff_payoffs  <- runs_df$my_payoff - runs_df$other_payoff
 
 
 ```
@@ -83,8 +82,7 @@ ggplot(runs_df, aes(x = step, y = consumption)) +
     geom_line()
 
 ggplot(runs_df, aes(x = step, y = total_cash)) +
-    geom_line() +
-    facet_grid(as.factor(run)~.)
+    geom_line()
    
 
 ggplot(runs_df, aes(x = consumption, y = total_cash)) +

@@ -3,8 +3,9 @@
 """
 Definition of the class Model
 
-This class receives a json file with the definition of the simulation scenario and then creates the simulation with all
-simulation objects
+This class receives a json file with the definition 
+of the simulation scenario and then creates the simulation 
+with all simulation objects
 
 """
 import random as rnd
@@ -25,20 +26,25 @@ class Model:
     Creates all objects in the Simulation
     """
 
-    def __init__(self, json_simulation_defs):
+    def __init__(self, simulation, json_simulation_defs, path_to_results):
         """Load the definitions of the json file"""
         self.seed = time.time()
         self.random = rnd.Random(self.seed)
-        self.simulation = None
+        self.simulation = simulation
         self.json_defs = json_simulation_defs
+
         self.name = self.json_defs['model_name']
         self.schedule_def = self.json_defs['schedule']
-        self.create_schedule(self.schedule_def)
+
         self.spaces = dict()
-        self.create_spaces()
         self.agents = OrderedDict()
         # self.model_observers = {}
         self.agent_observers = {}
+
+        self.create_schedule(self.schedule_def)
+        self.create_spaces()
+        self.create_agents()
+        self.create_observers(path_to_results)
 
     def create_schedule(self, schedule_def):
         """ Creates the model schedule using the json schedule definition """
@@ -47,7 +53,9 @@ class Model:
         self.schedule = self.schedule_factory.provided_schedule
 
     def create_spaces(self):
-        """ Access SpaceFactory (SpaceCreator) and create space objects for the simulation from the json definition """
+        """ Access SpaceFactory (SpaceCreator) and create space objects
+            for the simulation from the json definition
+        """
         self.spaces_def = self.json_defs['spaces']
         self.spaces_factory = SpaceCreator(self, self.spaces_def)
         self.spaces = self.spaces_factory.spaces
@@ -92,7 +100,9 @@ class Model:
                 if value.type == agent_type}
 
     def agents_by_type(self):
-        """ Returns a dict with all agents in the simulation  ordered by type (agent specific class) """
+        """ Returns a dict with all agents in the simulation
+            ordered by type (agent specific class)
+        """
         return OrderedDict({value.__class__.__name__ + "_" + str(key): value
                             for key, value in self.agents.items()})
 

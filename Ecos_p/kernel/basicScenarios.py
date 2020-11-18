@@ -5,7 +5,6 @@
 Definition of the class Scenario
 """
 import datetime as dt
-import numpy as np
 import concurrent.futures
 # import yappi #using to profile code
 
@@ -36,7 +35,7 @@ class Scenario(object):
         self.a_var = None
         self.var_value = None
         self.first = True
-  
+
     def initialize_parameters(self):
         """
         Initialize the scenario parameters
@@ -75,14 +74,13 @@ class Scenario(object):
             # fstats = yappi.get_func_stats()   # get statistics
             # fstats.print_all()
             # tstats = yappi.get_thread_stats()
-            # tstats.print_all() 
+            # tstats.print_all()
 
         self.post_scenario()
         # fstats = yappi.get_func_stats()   # get statistics
         # fstats.print_all()
         # tstats = yappi.get_thread_stats()
-        # tstats.print_all() 
-
+        # tstats.print_all()
 
     def pre_scenario(self):
         """ Initializes the scenario parameters, variable, shcedule, agents vars etc. """
@@ -97,10 +95,10 @@ class Scenario(object):
         This method executes the schedule
         """
         # Needs to change to be generic and depedent on the type of scheduling
-        self.schedule.execute(self.name, 
-                              self.step_unit, 
-                              self.step_interval, 
-                              self.no_of_steps, 
+        self.schedule.execute(self.name,
+                              self.step_unit,
+                              self.step_interval,
+                              self.no_of_steps,
                               run_nr)
 
     def run_threaded(self, run_nr):
@@ -108,10 +106,14 @@ class Scenario(object):
         This method executes the schedule
         """
         # Needs to change to be generic and depedent on the type of scheduling
-        pars = [self.name, self.step_unit, self.step_interval, self.no_of_steps, run_nr]
 
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            executor.submit(self.schedule.execute, self.name, self.step_unit, self.step_interval, self.no_of_steps, run_nr)
+            executor.submit(self.schedule.execute,
+                            self.name,
+                            self.step_unit,
+                            self.step_interval,
+                            self.no_of_steps,
+                            run_nr)
 
     def post_scenario(self):
         """

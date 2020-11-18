@@ -1,6 +1,5 @@
 {
   "simulation_name": "ipd",
-  "simulation_model": "ipd",
   "simulation_parameters": [
     {
       "parameter_name": "total_payoff",

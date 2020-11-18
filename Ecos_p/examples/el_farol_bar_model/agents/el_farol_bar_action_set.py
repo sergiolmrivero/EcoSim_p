@@ -72,7 +72,6 @@ class Strategy:
             else:
                 return -1
 
-
     def update_fitness(self):
         """ Updates the payoffs of the strategies """
         self.prediction_model.update_fitness(

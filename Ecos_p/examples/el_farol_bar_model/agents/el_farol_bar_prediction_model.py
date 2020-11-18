@@ -62,31 +62,30 @@ class PredictionModel:
         for name in predictors:
             fitness = self.get_fitness_of_predictor(name, going, target_no)
             self.predictors_fitness[name].append(fitness)
-        
 
     def get_fitness_of_predictor(self, predictor_name, going, target_no):
         """ Updates the fitness of one predictor """
         if len(going) < self.recall:
-           fitness = self.fitness_function.fitness(going, self.predictions[predictor_name])
+            fitness = self.fitness_function.fitness(going, self.predictions[predictor_name])
         else:
-           fitness = self.fitness_function.fitness(going[0:self.recall], 
-                                                   self.predictions[predictor_name][0:self.recall]
-                                                   ) 
+            fitness = self.fitness_function.fitness(going[0:self.recall],
+                                                    self.predictions[predictor_name][0:self.recall]
+                                                    )
 
         return fitness
 
     def get_best_prediction(self):
         """ Get the prediction from the fittest predictor """
-        predictors_fitness=self.predictors_fitness
-        fittest_predictor=max(predictors_fitness, key = predictors_fitness.get)
+        predictors_fitness = self.predictors_fitness
+        fittest_predictor = max(predictors_fitness, key=predictors_fitness.get)
         return(self.predictions[fittest_predictor][self.step()])
 
     def get_best_predictor(self, predictors):
         """ Get the prediction from the fittest predictor """
-        max_fitness=max(self.predictors_fitness.values())
-        fittest_predictor=max(self.predictors_fitness,
-                              key = self.predictors_fitness.get)
-        prediction=self.predictions[fittest_predictor]
+        max_fitness = max(self.predictors_fitness.values())
+        fittest_predictor = max(self.predictors_fitness,
+                                key=self.predictors_fitness.get)
+        prediction = self.predictions[fittest_predictor]
         return [fittest_predictor, max_fitness, prediction]
 
     def get_fitness(self, predictor_name):
@@ -95,21 +94,21 @@ class PredictionModel:
 
     def st_same_lw(self):
         """ Strategy 1. the same as last week's """
-        last=len(self.agent.memory) - 1
+        last = len(self.agent.memory) - 1
         return self.agent.memory[last]
 
     def st_mirror_50_lw(self):
         """ Strategy 2. a mirror image around 50 of last week's """
-        no_of_agents=self.agent.model.no_of_agents()
-        last=len(self.agent.memory) - 1
-        prediction=no_of_agents - self.agent.memory[last]
+        no_of_agents = self.agent.model.no_of_agents()
+        last = len(self.agent.memory) - 1
+        prediction = no_of_agents - self.agent.memory[last]
         if prediction < 0:
-            prediction=0
+            prediction = 0
         return prediction
 
     def st_round_avg_4w(self):
         """ Strategy 3. a (rounded) average of the last four weeks """
-        recall=len(self.agent.memory)
+        recall = len(self.agent.memory)
         if recall < 4:
             return round(np.mean(self.agent.memory))
         else:
@@ -126,7 +125,7 @@ class PredictionModel:
 
     def st_same_2w(self):
         """ Strategy 5. the same as 2 weeks ago (2-period cycle detector) """
-        recall=len(self.agent.memory)
+        recall = len(self.agent.memory)
         if recall < 2:
             return random.randint(0, recall)
         else:
@@ -134,7 +133,7 @@ class PredictionModel:
 
     def st_same_5w(self):
         """ Strategy 6. the same as 5 weeks ago (5-period cycle detector) """
-        recall=len(self.agent.memory)
+        recall = len(self.agent.memory)
         if recall < 5:
             return random.randint(0, recall)
         else:
@@ -154,19 +153,19 @@ class FitnessFunction:
 
     def __init__(self, owner):
         """ Fitness Function for the El Farol Bar Model Strategies """
-        self.owner=owner
+        self.owner = owner
 
     def fitness(self, observed, predicted):
         """Calculate Strategy fitness """
-        fitness=0
-        difference=[]
+        fitness = 0
+        difference = []
 
         for psi, ai in zip(predicted, observed):
             difference.append(psi - ai)
 
         sum_diff = sum([abs(diff) for diff in difference])
         if sum_diff != 0:
-            fitness = 1/sum_diff
+            fitness = 1 / sum_diff
         else:
             fitness = 0
 

@@ -2,8 +2,8 @@
   "Description": "Configuration file for the el farol model",
   "paths":
     {
-      "kernel": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/kernel/",
-      "model": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/examples/el_farol_bar_model/",
-      "results": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/EcoSim_p/Ecos_p/examples/el_farol_bar_model/runs/"
+      "kernel": "../kernel/",
+      "model": "../examples/el_farol_bar_model/",
+      "results": "../examples/el_farol_bar_model/runs/"
     }
 }

@@ -28,23 +28,18 @@ class Simulation(object):
         self.path_to_model = self.simulation_config['paths']['model']
         self.path_to_results = self.simulation_config['paths']['results']
         sys.path.insert(0, self.path_to_model)
-        self.model = Model(self.json_simulation_defs)
         self.initialize_simulation()
 
     def initialize_simulation(self):
         """ Factory pattern to create a simulation"""
-        self.model.simulation = self
         self.name = self.json_simulation_defs["simulation_name"]
-        self.simulation_model = self.json_simulation_defs["simulation_model"]
-        if self.model.name != self.simulation_model:
-            raise Exception(self.model.name,
-                            "is not defined in the simulation file")
+
+        self.model = Model(self, self.json_simulation_defs, self.path_to_results)
+
         for parameter in self.json_simulation_defs['simulation_parameters']:
             self.parameter_name = parameter['parameter_name']
             self.parameter_value = parameter['parameter_value']
             setattr(self, self.parameter_name, self.parameter_value)
-        self.model.create_agents()
-        self.model.create_observers(self.path_to_results)
         self.create_scenarios()
 
     def create_scenarios(self):
