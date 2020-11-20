@@ -58,14 +58,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">other_payoff</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">Strategy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">get_game</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">update_game</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Player.step"><a class="viewcode-back" href="../../../../apis/examples.ipd_model.agents.html#examples.ipd_model.agents.agents.Player.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; agent step &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">select_game</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Player.select_game"><a class="viewcode-back" href="../../../../apis/examples.ipd_model.agents.html#examples.ipd_model.agents.agents.Player.select_game">[docs]</a>    <span class="k">def</span> <span class="nf">select_game</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; The agent select a play from a strategy &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot; The agent selects a play from a strategy &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">my_play</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">select_game</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Player.play"><a class="viewcode-back" href="../../../../apis/examples.ipd_model.agents.html#examples.ipd_model.agents.agents.Player.play">[docs]</a>    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -82,7 +78,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">other_name</span> <span class="o">=</span> <span class="n">other_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">other_play</span> <span class="o">=</span> <span class="n">other_play</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">other_payoff</span> <span class="o">=</span> <span class="n">other_payoff</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">get_game</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">update_game</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="p">)</span></div></div>
         <span class="c1"># print(&quot;ag name: &quot;, self.name, &quot;play: &quot;, self.my_play, &quot;payoff: &quot;, self.my_payoff)</span>
 
 

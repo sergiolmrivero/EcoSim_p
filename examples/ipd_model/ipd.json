@@ -18,7 +18,7 @@
 	"space_type": "IpdGame",
 	"space_name": "IpdGame",
 	"action_set": "ipd_action_set",
-	"action_class": "IpdActionSet",
+	"action_class": "Strategy",
 	"space_variables": {
             "payoffs": 0.0
 	}

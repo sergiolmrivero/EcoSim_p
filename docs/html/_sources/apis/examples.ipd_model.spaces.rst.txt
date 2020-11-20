@@ -4,10 +4,10 @@ examples.ipd\_model.spaces package
 Submodules
 ----------
 
-examples.ipd\_model.spaces.game module
---------------------------------------
+examples.ipd\_model.spaces.ipd_game_space module
+------------------------------------------------
 
-.. automodule:: examples.ipd_model.spaces.game
+.. automodule:: examples.ipd_model.spaces.ipd_game_space
     :members:
     :undoc-members:
     :show-inheritance:

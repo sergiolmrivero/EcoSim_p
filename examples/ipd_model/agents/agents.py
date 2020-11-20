@@ -16,14 +16,10 @@ class Player(DiscreteEventAgent):
         self.other_payoff = 0
         self.strategy = Strategy()
         self.game = Game(self.name, "C", 3, "", "C", 3)
-        self.strategy.get_game(self.game)
+        self.strategy.update_game(self.game)
 
     def step(self):
-        """ agent step """
-        self.select_game()
-
-    def select_game(self):
-        """ The agent select a play from a strategy """
+        """ The agent selects a play from a strategy """
         self.my_play = self.strategy.select_game()
 
     def play(self):
@@ -40,7 +36,7 @@ class Player(DiscreteEventAgent):
         self.game.other_name = other_name
         self.game.other_play = other_play
         self.game.other_payoff = other_payoff
-        self.strategy.get_game(self.game)
+        self.strategy.update_game(self.game)
         # print("ag name: ", self.name, "play: ", self.my_play, "payoff: ", self.my_payoff)
 
 

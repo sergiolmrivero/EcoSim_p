@@ -72,13 +72,9 @@ Or alternatively you can clone the framework using github client, or other clonn
 Tutorial
 ========
 
-Agents
+Here we show a turorial for the `Iterated Prisioners' dilemma game`_
 
-ActionSet
-
-Spaces
-
-Exectution
+.. _`Iterated Prisioners' dilemma game` : tutorials/ipd_tutorial.html
 
 
 Examples
@@ -121,7 +117,7 @@ Integration with R and Jupyter
    El-Farol Bar Problem : <examples/el_farol.rst>
    Iterated Prisioners Dilemma : <examples/ipd.rst>
    Macroeconomic Model : <examples/macro_caiani.rst>
-
+   Tutorial : <tutorials/ipd_tutorial.rst>
 
 Indices and tables
 ==================

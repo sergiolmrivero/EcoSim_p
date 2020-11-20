@@ -52,34 +52,28 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-examples.ipd_model.spaces.game">
-<span id="examples-ipd-model-spaces-game-module"></span><h2>examples.ipd_model.spaces.game module<a class="headerlink" href="#module-examples.ipd_model.spaces.game" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-examples.ipd_model.spaces.ipd_game_space">
+<span id="examples-ipd-model-spaces-ipd-game-space-module"></span><h2>examples.ipd_model.spaces.ipd_game_space module<a class="headerlink" href="#module-examples.ipd_model.spaces.ipd_game_space" title="Permalink to this headline">¶</a></h2>
 <p>Basic IPD game space implementation</p>
 <dl class="class">
-<dt id="examples.ipd_model.spaces.game.IpdGame">
-<em class="property">class </em><code class="descclassname">examples.ipd_model.spaces.game.</code><code class="descname">IpdGame</code><span class="sig-paren">(</span><em>model</em>, <em>name</em>, <em>actions_set_file</em>, <em>action_class</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/examples/ipd_model/spaces/game.html#IpdGame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.ipd_model.spaces.game.IpdGame" title="Permalink to this definition">¶</a></dt>
+<dt id="examples.ipd_model.spaces.ipd_game_space.IpdGame">
+<em class="property">class </em><code class="descclassname">examples.ipd_model.spaces.ipd_game_space.</code><code class="descname">IpdGame</code><span class="sig-paren">(</span><em>model</em>, <em>name</em>, <em>actions_set_file</em>, <em>action_class</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/examples/ipd_model/spaces/ipd_game_space.html#IpdGame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.ipd_model.spaces.ipd_game_space.IpdGame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
 <p>Abstract Market</p>
 <dl class="attribute">
-<dt id="examples.ipd_model.spaces.game.IpdGame.PAYOFFS">
-<code class="descname">PAYOFFS</code><em class="property"> = {'CC': [3, 3], 'CD': [0, 5], 'DC': [5, 0], 'DD': [1, 1]}</em><a class="headerlink" href="#examples.ipd_model.spaces.game.IpdGame.PAYOFFS" title="Permalink to this definition">¶</a></dt>
+<dt id="examples.ipd_model.spaces.ipd_game_space.IpdGame.PAYOFFS">
+<code class="descname">PAYOFFS</code><em class="property"> = {'CC': [3, 3], 'CD': [0, 5], 'DC': [5, 0], 'DD': [1, 1]}</em><a class="headerlink" href="#examples.ipd_model.spaces.ipd_game_space.IpdGame.PAYOFFS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="examples.ipd_model.spaces.game.IpdGame.STRATEGY">
-<code class="descname">STRATEGY</code><em class="property"> = ['C', 'D']</em><a class="headerlink" href="#examples.ipd_model.spaces.game.IpdGame.STRATEGY" title="Permalink to this definition">¶</a></dt>
+<dt id="examples.ipd_model.spaces.ipd_game_space.IpdGame.STRATEGY">
+<code class="descname">STRATEGY</code><em class="property"> = ['C', 'D']</em><a class="headerlink" href="#examples.ipd_model.spaces.ipd_game_space.IpdGame.STRATEGY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="examples.ipd_model.spaces.game.IpdGame.play">
-<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/examples/ipd_model/spaces/game.html#IpdGame.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.ipd_model.spaces.game.IpdGame.play" title="Permalink to this definition">¶</a></dt>
+<dt id="examples.ipd_model.spaces.ipd_game_space.IpdGame.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/examples/ipd_model/spaces/ipd_game_space.html#IpdGame.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.ipd_model.spaces.ipd_game_space.IpdGame.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>here the players play the game</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="examples.ipd_model.spaces.game.IpdGame.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/examples/ipd_model/spaces/game.html#IpdGame.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.ipd_model.spaces.game.IpdGame.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implemented by subclass - Testing update</p>
 </dd></dl>
 
 </dd></dl>
@@ -87,6 +81,29 @@
 </div>
 <div class="section" id="module-examples.ipd_model.spaces">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-examples.ipd_model.spaces" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="examples.ipd_model.spaces.IpdGame">
+<em class="property">class </em><code class="descclassname">examples.ipd_model.spaces.</code><code class="descname">IpdGame</code><span class="sig-paren">(</span><em>model</em>, <em>name</em>, <em>actions_set_file</em>, <em>action_class</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/examples/ipd_model/spaces/ipd_game_space.html#IpdGame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.ipd_model.spaces.IpdGame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockObject</span></code></p>
+<p>Abstract Market</p>
+<dl class="attribute">
+<dt id="examples.ipd_model.spaces.IpdGame.PAYOFFS">
+<code class="descname">PAYOFFS</code><em class="property"> = {'CC': [3, 3], 'CD': [0, 5], 'DC': [5, 0], 'DD': [1, 1]}</em><a class="headerlink" href="#examples.ipd_model.spaces.IpdGame.PAYOFFS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="examples.ipd_model.spaces.IpdGame.STRATEGY">
+<code class="descname">STRATEGY</code><em class="property"> = ['C', 'D']</em><a class="headerlink" href="#examples.ipd_model.spaces.IpdGame.STRATEGY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="examples.ipd_model.spaces.IpdGame.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/examples/ipd_model/spaces/ipd_game_space.html#IpdGame.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.ipd_model.spaces.IpdGame.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>here the players play the game</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -100,7 +117,7 @@
   <ul>
 <li><a class="reference internal" href="#">examples.ipd_model.spaces package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-examples.ipd_model.spaces.game">examples.ipd_model.spaces.game module</a></li>
+<li><a class="reference internal" href="#module-examples.ipd_model.spaces.ipd_game_space">examples.ipd_model.spaces.ipd_game_space module</a></li>
 <li><a class="reference internal" href="#module-examples.ipd_model.spaces">Module contents</a></li>
 </ul>
 </li>

@@ -5,6 +5,19 @@ import random
 import copy
 
 
+class Game:
+    """ Class Representing a Game """
+
+    def __init__(self, my_name=None, my_play=None, my_payoff=None,
+                 other_name=None, other_play=None, other_payoff=None):
+        self.my_name = my_name
+        self.my_play = my_play
+        self.my_payoff = my_payoff
+        self.other_name = other_name
+        self.other_play = other_play
+        self.other_payoff = other_payoff
+
+
 class Strategy:
     """ Implementation of the strategy class """
     def __init__(self):
@@ -14,12 +27,9 @@ class Strategy:
         self.last_game = Game("", "C", 3, "", "C", 3)
 
     def select_game(self):
-        return self.select_strategy()
-
-    def select_strategy(self):
         return self.strategy
 
-    def get_game(self, aGame):
+    def update_game(self, aGame):
         """ Get a game """
         self.last_game = copy.copy(self.game)
         self.game = aGame
@@ -46,7 +56,7 @@ class RandomPlay(Strategy):
         self.strategy_name = "random"
         self.strategy = ["D", "C"]
 
-    def select_strategy(self):
+    def select_game(self):
         """ Random Strategy """
         return random.choice(self.strategy)
 
@@ -58,7 +68,7 @@ class SimpleTitForTat(Strategy):
         self.other_last_strategy = "C"
         self.selected_strategy = "C"
 
-    def select_strategy(self):
+    def select_game(self):
         """ Simple Tit for tat strategy """
         if self.last_game.other_play == "C":
             self.selected_strategy = "C"
@@ -66,16 +76,3 @@ class SimpleTitForTat(Strategy):
             self.selected_strategy = "D"
 
         return self.selected_strategy
-
-
-class Game:
-    """ Class Representing a Game """
-
-    def __init__(self, my_name=None, my_play=None, my_payoff=None,
-                 other_name=None, other_play=None, other_payoff=None):
-        self.my_name = my_name
-        self.my_play = my_play
-        self.my_payoff = my_payoff
-        self.other_name = other_name
-        self.other_play = other_play
-        self.other_payoff = other_payoff
