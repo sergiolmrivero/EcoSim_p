@@ -1,0 +1,8 @@
+pandas
+datetime
+dependency_injector
+pyyaml
+scipy
+numpy
+tqdm
+yappi

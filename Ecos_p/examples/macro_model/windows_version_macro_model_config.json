@@ -1,9 +1,0 @@
-{
-  "Description": "Configuration file for the macroeconomic model",
-  "paths":
-    {
-      "kernel": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\kernel",
-      "model": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\examples\\macro_model",
-      "results": "C:\\Users\\Sergio Rivero\\Documents\\GitHub\\EcoSim_p-versao-0.0.2\\Ecos_p\\examples\\macro_model\\runs"
-    }
-}
