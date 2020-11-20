@@ -28,7 +28,13 @@ class IpdGame(Space):
                 p1 = player1.play()
                 p2 = player2.play()
                 game = p1 + p2
-                player1.game_payoff(player2.name, p2, self.PAYOFFS[game][1], self.PAYOFFS[game][0])
-                player2.game_payoff(player1.name, p1, self.PAYOFFS[game][0], self.PAYOFFS[game][1])
+                player1.game_payoff(player2.name, p2,
+                                    self.PAYOFFS[game][1],
+                                    self.PAYOFFS[game][0]
+                                    )
+                player2.game_payoff(player1.name,
+                                    p1, self.PAYOFFS[game][0],
+                                    self.PAYOFFS[game][1]
+                                    )
             else:
                 player1.game_payoff("NA", 0)
