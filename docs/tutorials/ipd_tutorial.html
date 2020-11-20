@@ -51,6 +51,29 @@
 <p>Here is the strucuture of the app files and folders. This is a typical directory structure of an app.</p>
 <img alt="Folders structure of a typical app" src="../_images/app_dir_stru.png" />
 <p>Folders structure of a typical app</p>
+<div class="section" id="executing-the-model">
+<h3>Executing the model<a class="headerlink" href="#executing-the-model" title="Permalink to this headline">¶</a></h3>
+<p>To execute the model we simply run the following command in a bash shell terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./ipd.sh
+</pre></div>
+</div>
+<p>This shell script executes the simulation and the R markdown file that shows the results in a html (or pdf) file.</p>
+<p>The script is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm runs/*.csv
+
+<span class="nb">cd</span> ../../kernel
+
+python3 main.py ../examples/ipd_model/ config.json ipd.json
+
+<span class="nb">cd</span> ../examples/ipd_model
+
+Rscript -e <span class="s1">&#39;rmarkdown::render(&quot;ipd.Rmd&quot;, output_format=&quot;html_document&quot;)&#39;</span>
+</pre></div>
+</div>
+<p>First the scrip deletes all the <em>.csv</em> files from prior simulations, after the directory is changed to the kernel to execute the script <em>main.py</em></p>
+<p>For the <em>main.py</em> we pass the model folder location, and the names of the app configuration file (<em>config.json</em>) and the name of the simulation definition file (ipd.json).</p>
+<p><strong>python3 main.py</strong> &lt;<em>model_folder</em>&gt; &lt;<em>model_config_folder</em>&gt; &lt;<em>simulation_config_folder</em>&gt;</p>
+</div>
 </div>
 <div class="section" id="the-agents-and-actions">
 <h2>The Agents and Actions<a class="headerlink" href="#the-agents-and-actions" title="Permalink to this headline">¶</a></h2>
@@ -482,7 +505,10 @@
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Iterated Prisioners’ Dilemma Tutorial</a><ul>
-<li><a class="reference internal" href="#the-app-directory-structure">The app directory structure</a></li>
+<li><a class="reference internal" href="#the-app-directory-structure">The app directory structure</a><ul>
+<li><a class="reference internal" href="#executing-the-model">Executing the model</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#the-agents-and-actions">The Agents and Actions</a><ul>
 <li><a class="reference internal" href="#action-set">Action Set</a></li>
 <li><a class="reference internal" href="#agents">Agents</a></li>

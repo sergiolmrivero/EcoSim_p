@@ -20,6 +20,40 @@ Here is the strucuture of the app files and folders. This is a typical directory
 
 Folders structure of a typical app
 
+Executing the model
+===================
+
+To execute the model we simply run the following command in a bash shell terminal:
+
+.. code-block:: bash
+
+   $ ./ipd.sh
+
+This shell script executes the simulation and the R markdown file that shows the results in a html (or pdf) file.
+
+The script is:
+
+.. code-block:: bash
+
+   rm runs/*.csv
+
+   cd ../../kernel
+
+   python3 main.py ../examples/ipd_model/ config.json ipd.json
+
+   cd ../examples/ipd_model
+
+   Rscript -e 'rmarkdown::render("ipd.Rmd", output_format="html_document")'
+   
+First the scrip deletes all the *.csv* files from prior simulations, after the directory is changed to the kernel to execute the script *main.py*
+
+For the *main.py* we pass the model folder location, and the names of the app configuration file (*config.json*) and the name of the simulation definition file (ipd.json).
+
+**python3 main.py** <*model_folder*> <*model_config_folder*> <*simulation_config_folder*>
+
+
+
+
 
 The Agents and Actions
 ######################
