@@ -1,4 +1,4 @@
-sphinx-build -b html source/ build/
+sphinx-build -b html source/ .
 make html
-firefox build/index.html&
+firefox index.html&
 
