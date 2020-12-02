@@ -1,0 +1,2 @@
+index_no,model,simulation,scenario,run,step,time,agent_name,labor_demand,labor_productivity,offered_wage,desired_output,desired_output_value,output,labor_to_contract,labor_contracted,unitary_cost,price,deposits_cash,desired_perc_inv,perc_inv,mark_up
+0,macro_Caiani,macro_Caiani, ,0,0,2020-11-25T11:58, ,0,0,0,0,0,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,9 @@
+{
+  "Description": "Configuration file for the Housing Market  model",
+  "paths":
+    {
+      "kernel": "../kernel/",
+      "model": "../models/ref_br/",
+      "results": "../models/ref_br/runs"
+    }
+}
