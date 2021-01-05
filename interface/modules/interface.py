@@ -1,5 +1,7 @@
 import os
 import sys
+from abc import ABCMeta, abstractmethod
+from typing import Dict
 
 class ParameterProvider():
 	"""
@@ -69,7 +71,7 @@ class ExecuteSimulationFromJson():
 		self._script_shell_file_name: str = ''
 		
 		
-	def exec_simulation(self, model_name:str) -> None:
+	def exec_simulation(self, model_name: str) -> None:
 		"""
 		Execute the simulation by the JSON
 		Execute from a script shell placed ate selected model directory
@@ -136,3 +138,58 @@ class ExecuteSimulationFromJson():
 	@script_shell_file_name.setter
 	def script_shell_file_name(self, value) -> None:
 		self._script_shell_file_name = value
+
+class Json(metaclass=ABCMeta):
+	"""
+	Json operations
+	1. save parameters
+	"""
+	__path_to_model: str = None
+	__script_shell_file_name: str = None	
+
+	# TODO
+	@abstractmethod
+	def save_parameters(parameters: str, model_name: str) -> None:
+		"""
+		Save json parameters retrieved by the user in the model path
+		"""
+		print('saving')
+		abs_path_to_storage_json_parameters = os.path.join(__path_to_model, get_json_name_of_the_model())
+		with open(__path_to_model, 'w') as f:
+			f.write(parameters)
+
+	@abstractmethod
+	def get_json_name_of_the_model(model_name) -> str:
+		"""
+		Return: str -> the json name defined by the .sh file to execute the selected model
+		"""
+				
+
+		# STEP 1: Get the .sh name files at the model directory
+		li_sh_files = [file for file in os.listdir(__path_to_model) if '.sh' in file]
+		
+		# STEP 2: Get the .sh file
+		if len(li_sh_files) == 1:
+						
+			__script_shell_file_name = li_sh_files[0]			
+
+		else:
+			sys.exit('There is more then one .sh script in the model directory\nPlease, let just one of them and exclude the other(s)')
+					
+
+		# STEP 4: Read lines of the scrip shell file
+		abs_path_to_script_shell = os.path.join(__path_to_model, __script_shell_file_name)
+
+		with open(abs_path_to_script_shell) as f:
+			for line in f.readlines():
+				if '.json' in line:
+					print(line)
+					l = line.split(sep=' ')
+					for term in line:
+						if '.json' in term:
+							print(term)
+							return 'test_' + term
+
+	@abstractmethod
+	def set_path_to_model(model_name: str, path_to_app_server: str) -> None:
+		__path_to_model = os.path.join(os.sep.join(path_to_app_server.split(sep=os.sep)[:-1]), 'examples', model_name)
