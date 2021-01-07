@@ -1,9 +1,8 @@
 import os
 import sys
 from abc import ABCMeta, abstractmethod
-from typing import Dict
-from time import sleep
-import json
+# from typing import Dict
+
 
 class ParameterProvider():
 	"""
@@ -219,4 +218,9 @@ class Json(metaclass=ABCMeta):
 
 					for term in terms_in_json_line:
 						if '.json' in term and not 'config.json' in term:
-							return term
+							print('_________\nterm\n')
+
+							if '\n' in term:
+								return term.replace('\n', '')
+							else:
+								return term
