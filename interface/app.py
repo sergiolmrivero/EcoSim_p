@@ -11,13 +11,23 @@ HTTP Status
 404 - Error
 """
 
-# storage the model name to be simulated. The user entry with this by the interface
-MODEL: str = None
+"""
+Global Variables
+"""
+MODEL: str = None                   # storage the model name to be simulated. The user entry with this by the interface
+PATH_TO_MODEL: str = None           # storage the path to the model to be simulated
 
+"""
+Server Settings
+"""
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True # To allow flask propagating exception even if debug is set to false on app
 api = Api(app)
 
+
+"""
+objects
+"""
 parameter_provider = ParameterProvider()
 executeSimulationFromJson = ExecuteSimulationFromJson(path_to_app_server=os.getcwd())
 
@@ -31,32 +41,37 @@ def homepage():
 
 @app.route('/parametrization', methods=['GET', 'POST'])
 def parametrization():
+    global MODEL
+    global PATH_TO_MODEL    
     """
     1.Recieve the model to be simulated by the homepage
     2.Open an text area to the user
         setting up the json file
         which defines the
         simulation parameters
-    3.Set the path to model
+    3.Calculate the path to model
+    4.List the files in the path to model
     """
 
     MODEL = request.form["model"]
-    Json.set_path_to_model(model_name=MODEL, path_to_app_server=os.getcwd())
+    PATH_TO_MODEL = Json.calc_path_to_model(model_name=MODEL, path_to_app_server=os.getcwd())
+    print('\n\nPATH TO MODEL: ', PATH_TO_MODEL)
 
     return render_template('/parametrization.html')
 
 
 @app.route('/simulation', methods=['GET', 'POST'])
 def simulation():
+    global PATH_TO_MODEL
     """    
     Receive the model_name from a POST Request from the homepage    
     Execute the simulation (of the choosen model) itself
     Render the simulation web page
     """
     
-    # executeSimulationFromJson.exec_simulation(model_name)
     parameters: str =  request.form["textarea-parameters"]
-    Json.save_parameters(parameters=parameters, model_name=MODEL)
+    Json.save_parameters(parameters=parameters, path_to_model=PATH_TO_MODEL)
+    # executeSimulationFromJson.exec_simulation(path_to_model=PATH_TO_MODEL)
 
     return render_template('/simulation.html')
 
