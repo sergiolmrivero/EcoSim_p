@@ -2,6 +2,8 @@ import os
 import sys
 from abc import ABCMeta, abstractmethod
 from typing import Dict
+from time import sleep
+import json
 
 class ParameterProvider():
 	"""
@@ -51,6 +53,7 @@ class ParameterProvider():
 		def models(self, value:dict) -> None:
 			self._models = value
 		
+
 class ExecuteSimulationFromJson():
 	"""
 	Execute Simulation from JSON file by one of the two ways:
@@ -71,27 +74,27 @@ class ExecuteSimulationFromJson():
 		self._script_shell_file_name: str = ''
 		
 		
-	def exec_simulation(self, model_name: str) -> None:
+	def exec_simulation(self, path_to_model: str) -> None:
 		"""
 		Execute the simulation by the JSON
 		Execute from a script shell placed ate selected model directory
 		"""
 
-		self._model_name = model_name
-		print(os.sep.join(self._PATH_TO_APP_SERVER.split(sep=os.sep)[:-1]))
-		self._path_to_model = os.path.join(os.sep.join(self._PATH_TO_APP_SERVER.split(sep=os.sep)[:-1]), 'examples', self._model_name)
-
+		print('received path to model to execute: ', path_to_model)
+		self._path_to_model = path_to_model
+		print('_path_to_model: ', self._path_to_model)		
 
 		# STEP 1: Change to the example directory	
 		os.chdir(self._path_to_model)
 
-		# STEP 2: Get the .sh name files at the model directory
+		# STEP 2: Get the .sh name files at the model directory		
 		li_sh_files = [file for file in os.listdir() if '.sh' in file]
 		
 		# STEP 3: Get the .sh file
 		if len(li_sh_files) == 1:
 						
-			self._script_shell_file_name = li_sh_files[0]			
+			self._script_shell_file_name = li_sh_files[0]
+			print('scrpit sheel: ', self._script_shell_file_name)						
 
 		else:
 			sys.exit('There is more then one .sh script in the model directory\nPlease, let just one of them and exclude the other(s)')
@@ -143,53 +146,77 @@ class Json(metaclass=ABCMeta):
 	"""
 	Json operations
 	1. save parameters
-	"""
-	__path_to_model: str = None
-	__script_shell_file_name: str = None	
+	"""		
 
 	# TODO
-	@abstractmethod
-	def save_parameters(parameters: str, model_name: str) -> None:
+	@abstractmethod	
+	def save_parameters(parameters: str, path_to_model: str) -> None:		
+		"""Save json parameters retrieved by the user in the model path
+		:parameters: str -> is the JSON parameters
+		:path_to_model: str
+		return: None
 		"""
-		Save json parameters retrieved by the user in the model path
+
+		# 1. Getting the json file name defined in .sh file of the model
+		json_name = Json.calc_json_name_of_the_model(path_to_model)
+		print('json name of the model: ', json_name)
+		
+		# 2. Form the absolute path to save the json parameters file
+		abs_path_to_storage_json_parameters = os.path.join(path_to_model, json_name)
+		print('abs path to json: ', abs_path_to_storage_json_parameters)
+
+		# 3. Deleting the old file
+		os.system(f'rm {abs_path_to_storage_json_parameters}')
+		print('deleting')
+
+		# 4. Save the parameters received from the user in the json file
 		"""
-		print('saving')
-		abs_path_to_storage_json_parameters = os.path.join(__path_to_model, get_json_name_of_the_model())
-		with open(__path_to_model, 'w') as f:
+		Note: this overrides the pre existing json paramters file by the
+		new parameters received from the user
+		"""
+		print('saving')		
+		with open(abs_path_to_storage_json_parameters, 'w') as f:							
 			f.write(parameters)
+			# json.dump(parameters.splitlines(), f, ensure_ascii=False, indent=4)
+
+		# os.system(f'chmod +r')
+	
+	@abstractmethod
+	def calc_path_to_model(model_name: str, path_to_app_server: str) -> None:
+		path_to_model = os.path.join(os.sep.join(path_to_app_server.split(sep=os.sep)[:-1]), 'examples', model_name)
+		return os.path.join(os.sep.join(path_to_app_server.split(sep=os.sep)[:-1]), 'examples', model_name)
 
 	@abstractmethod
-	def get_json_name_of_the_model(model_name) -> str:
+	def calc_json_name_of_the_model(path_to_model: str) -> str:
 		"""
+		:path_to_model: str
 		Return: str -> the json name defined by the .sh file to execute the selected model
 		"""
-				
 
 		# STEP 1: Get the .sh name files at the model directory
-		li_sh_files = [file for file in os.listdir(__path_to_model) if '.sh' in file]
-		
+		print('\n\nreceived files in path to model:\n')
+		files_in_path_to_model = os.listdir(path_to_model)
+		print(files_in_path_to_model)
+
+		li_sh_files = [file for file in files_in_path_to_model if '.sh' in file]
+		print('li_sh_files of the model', li_sh_files)        
+
 		# STEP 2: Get the .sh file
 		if len(li_sh_files) == 1:
-						
-			__script_shell_file_name = li_sh_files[0]			
+			script_shell_file_name = li_sh_files[0]
 
 		else:
 			sys.exit('There is more then one .sh script in the model directory\nPlease, let just one of them and exclude the other(s)')
-					
 
 		# STEP 4: Read lines of the scrip shell file
-		abs_path_to_script_shell = os.path.join(__path_to_model, __script_shell_file_name)
+		abs_path_to_script_shell = os.path.join(path_to_model, script_shell_file_name)
 
 		with open(abs_path_to_script_shell) as f:
 			for line in f.readlines():
 				if '.json' in line:
 					print(line)
-					l = line.split(sep=' ')
-					for term in line:
-						if '.json' in term:
-							print(term)
-							return 'test_' + term
+					terms_in_json_line = line.split(sep=' ')									
 
-	@abstractmethod
-	def set_path_to_model(model_name: str, path_to_app_server: str) -> None:
-		__path_to_model = os.path.join(os.sep.join(path_to_app_server.split(sep=os.sep)[:-1]), 'examples', model_name)
+					for term in terms_in_json_line:
+						if '.json' in term and not 'config.json' in term:
+							return term
