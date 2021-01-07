@@ -71,7 +71,7 @@ def simulation():
     
     parameters: str =  request.form["textarea-parameters"]
     Json.save_parameters(parameters=parameters, path_to_model=PATH_TO_MODEL)
-    # executeSimulationFromJson.exec_simulation(path_to_model=PATH_TO_MODEL)
+    executeSimulationFromJson.exec_simulation(path_to_model=PATH_TO_MODEL)
 
     return render_template('/simulation.html')
 
