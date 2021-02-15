@@ -1,0 +1,198 @@
+1 create mongo db database to storage
+	simulation name
+	simulation model
+	model_name
+	space_variables
+
+2 Parameters
+
+(ok) simulation_name: str (AUTOMATIC)
+
+(ok) simulation model: str (AUTOMATIC)
+
+(ok) simulation_parameters: []
+	parameter_name: Any
+	parameter_value: some widget according to the type
+
+(ok) model_name: str (SELECTED IN FIRST SCREEN)
+
+(ok)schedule:
+	schedule_type: [class MixedSchedule(Schedule): in basicSchedule.py]
+
+	schedule_name: belive it is any arbitrary string
+
+(ok) spaces: [space 1, space 2, ...] at least one space
+	space:
+	[
+		space_type: EFBGame (class in el_farol_bar_model/spaces/game.py that is in init.py)
+
+		space_name: the same of the class or an arbitrary string
+
+		action_set: el_farol_bar_action_set (refers to examples/el_farol_bar_model/agents/el_farol_bar_action_set.py)
+
+		action_class: Strategy (refers to examples/el_farol_bar_model/agents/el_farol_bar_action_set.py -> class Strategy - the class which is not subclass in the module it is defined)
+
+		space_variables: payoffs: int (for the game models - ipd and el farol.). It is not defined in code, which implies it is not defined in type and has no way to programming an interface widget according to its type
+	]
+
+(ok) agents: [
+	{
+		agent_type: RandomPlayer (subclass of DiscreteEventAgent. In this case, the RandomPlayer is subclass of Player, which is subclass of DiscreteEventAgent in examples/el_farol_bar_model/agents/agents.py)
+
+		agent_prefix: 
+		agent_spaces:
+		no_of_agents:
+	}
+]
+
+(ok) observers: [
+	{
+		observer_type: Observer class (has only it class)
+
+		observer_name: str (Arbtrary alphanumeric string)
+
+
+
+		# It is not defined in code, which implies it is not defined in type and has no way to programming an interface widget according to its type. It is defined and has its value setted directely in the json
+
+		observer_actions: (??? i believe that also could be more than an element/key) [
+
+			obs_bpl: 
+
+		]
+
+
+
+
+		# Again, I don't know if the [] can contain more than one agent. But i believe yes, and at least one should be selected
+
+		observer_agent: [
+			RandomPlayer (one of the selected agent types)
+		]
+
+
+
+
+		# attributes of RandomPlayer superclass, the Player class, which is subclass of of DiscreteEventAgent. If typehinting was used in the attributes, it will be less difficult to create an appropriated widget to the attribute. I believe that the only a checkbox
+		is necessary and solve the problem of choose variables to observer (observables by the observer).
+
+		# agent variables
+		observable_vars: [
+			payoff: 
+			my_play:
+
+			...
+		]
+	}
+]
+
+scenarios: [
+	
+	# Scenario classes (at kernel/basicScenarios/basicScenarios)	
+
+	scenario_type:
+
+
+
+	# An arbitrary string associated to the Scenario
+
+	scenario_name:
+
+
+
+	#  wll always exist these 5: no_of_runs, reset_each_run, step_unit, step_interval and no_of_steps
+
+	scenario_parameters: [
+		{
+			parameter_name: no_of_runs
+			parameter_value: int
+		}
+
+		{
+			parameter_name: reset_each_run
+			parameter_value: bool
+		}
+
+		{
+			parameter_name: step_unit
+			parameter_value: "step" ?????? (what is "step" and where it is defined)
+		}
+
+		{
+			parameter_name: step_interval
+			parameter_value: int ?????
+		}
+
+		{
+			parameter_name: no_of_steps
+			parameter_value: int
+		}
+
+	]
+
+	scenario_variables: [
+		{
+			var_name: str (textField at the interface) (could be a combobox if it had the code definition in specifc place)
+
+			var_init_value: int/str (textFielda at the interface) (could be a combobox if it had the code definition in specifc place)
+
+			var_type: "sharp" -> str (textField at the interface) (could be a combobox if it had the code definition in specifc place)
+		}
+
+		... (in fact, could exist another dictionaries, because maybe we wanna create more scenario variables)
+
+
+		agents_init:
+		{
+			<agent type>: (previosly selected agent type)
+			[
+
+				# impossible to get along the model codes,
+				beacause there is no interface or abstract class which explicity defines the attributes and its types, because there is no typehinting or any other thing to let us know what is the type of the attribute
+
+				var_name: str
+
+
+
+
+
+				# can be "stochastic", "integer" or "bynary"
+
+				var_type:
+
+
+
+
+
+				# There is 3 possibles (for the 3 var_name possibles)
+
+				# 01: var_type = "stochastic" -> var_dist = [Variance: float, Standard_Deviation: float. V and SD enter in np.random.normal(V, SD) ]
+
+				# 02: var_type = "integer" -> var_dist = "none"
+
+				# 03: var_type = "bynary" -> var_dist = "none"
+
+				var_dist:
+
+
+
+
+
+
+				# if var_type == "stochastic": var_value: numeric
+
+				# if var_type == "integer": var_value: int
+
+				# if var_type = "binary": var_value: Union[True, False]
+
+				var_value:
+
+			]
+
+			... (for each agent type selected)
+		}
+
+	]
+
+
+]
