@@ -19,12 +19,12 @@ parameter_provider = ParameterProvider()
 executeSimulationFromJson = ExecuteSimulationFromJson(path_to_app_server=os.getcwd())
 
 @app.route('/', methods=['GET'])
-def homepage():
+def parametrization():
     """
-    Route to render the homepage
+    Route to render the parametrization page
     """
 
-    return render_template('/homepage.html')
+    return render_template('/parametrization/parametrization.html')
 
 
 @app.route('/simulation', methods=['GET', 'POST'])

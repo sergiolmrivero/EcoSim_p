@@ -1,1 +1,0 @@
-window.parametrizationController = new ParametrizationController;

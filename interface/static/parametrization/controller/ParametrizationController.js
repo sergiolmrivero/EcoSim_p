@@ -1,14 +1,27 @@
 class ParametrizationController {
 
 	constructor(){
-		this._var = "var name";
+		
 		this.initializate();
+
 	}
 
-	initializate() {
-				
-		alert(this._var);
+	initializate() {	
 
+		// ok
+		let simulationMenuEl = document.querySelector("#simulation");
+
+		// ok
+		simulationMenuEl.addEventListener("click", e => {console.log('click');});
+
+	}
+
+	showElement(id) {
+		document.getElementById(id).style.display = "block";
+	}
+
+	hideElement(id) {
+		document.getElementById(id).style.display = "none";
 	}
 	
 }
