@@ -36,8 +36,6 @@ class ParametrizationController {
 			// this.addEventListenerToMenuItemToHideCorrespondingDiv(aEl, "div-" + aEl.id);
 		});
 
-
-
 	}
 
 	showElement(i) {
