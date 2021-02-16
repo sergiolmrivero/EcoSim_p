@@ -1,18 +1,26 @@
 class ParametrizationController {
 
 	constructor(){
-		this._simulationMenuEl = document.querySelector("#simulation");		
+		this._simulationMenuEl = document.querySelector("#simulation");	
 		this.initializate();
 
+	}
+
+	addEventListenerToToMenuItemToHideCorrespondingDiv(menuItemEl, id_div) {
+		menuItemEl.addEventListener("click", e => {
+			this.hideElement(id_div);
+		});		
 	}
 
 	initializate() {	
 
 		// simulation
-		this._simulationMenuEl.addEventListener("click", e => {
-			this.hideElement("div-simulation");
-		});
-		this.showElement("simulation");
+		this.addEventListenerToToMenuItemToHideCorrespondingDiv(this._simulationMenuEl, "div-simulation");
+
+		// model
+		// spaces
+		// agents
+		// observers
 
 	}
 
