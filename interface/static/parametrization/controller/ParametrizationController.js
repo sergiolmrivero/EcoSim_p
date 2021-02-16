@@ -7,6 +7,8 @@ class ParametrizationController {
 		this._agentsMenuEl = document.querySelector("#agents");
 		this._observersMenuEl = document.querySelector("#observers");
 
+		this._arrMainDivEl = Array.prototype.slice.call(document.querySelectorAll(".main > div"));
+
 		this.initializate();
 
 	}
@@ -24,21 +26,8 @@ class ParametrizationController {
 	}
 
 	initializate() {	
-
-		// hide model div
-		// this.hideElement('div-model');
-
-		// hide spaces div
-		// this.hideElement('div-spaces');
-
-		// hide agents div
-		// this.hideElement('div-agents');
-
-		// hide observers div
-		// this.hideElement('div-observers');
-
-		let arrMainDivEl = Array.prototype.slice.call(document.querySelectorAll(".main > div"));
-		arrMainDivEl.slice(1, arrMainDivEl.length).forEach(divEl => {
+		
+		this._arrMainDivEl.slice(1, this._arrMainDivEl.length).forEach(divEl => {
 			this.hideElement(divEl.id);
 		});
 
@@ -52,6 +41,15 @@ class ParametrizationController {
 	}
 
 	showElement(i) {
+
+		this._arrMainDivEl.forEach(divEl => {
+
+			// hiding displayed elements before show the clicked div corresponding
+			// to clicked menu item
+			if (divEl.style.display == "block") divEl.style.display = "none";
+
+		});
+
 		document.querySelector("#" + i).style.display = "block";
 	}
 
