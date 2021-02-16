@@ -12,16 +12,25 @@ class ParametrizationController {
 		let simulationMenuEl = document.querySelector("#simulation");
 
 		// ok
-		simulationMenuEl.addEventListener("click", e => {console.log('click');});
+		// simulationMenuEl.addEventListener("click", e => {console.log('click');});
+
+		// ok
+		// this.hideElement("div-simulation");
+
+		//
+		simulationMenuEl.addEventListener("click", e => {
+			this.hideElement("div-simulation");
+		});
+		this.showElement("simulation");		
 
 	}
 
-	showElement(id) {
-		document.getElementById(id).style.display = "block";
+	showElement(i) {
+		document.querySelector("#" + i).style.display = "block";
 	}
 
-	hideElement(id) {
-		document.getElementById(id).style.display = "none";
+	hideElement(i) {
+		document.querySelector("#" + i).style.display = "none";
 	}
 	
 }
