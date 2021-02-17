@@ -1,6 +1,9 @@
 class ParametrizationController {
 
 	constructor(){
+
+		this._parameters = {simulation: [], model: [], spaces: [], agents: [], observers: []};
+
 		this._simulationMenuEl = document.querySelector("#simulation");
 		this._modelMenuEl = document.querySelector("#model");
 		this._spacesMenuEl = document.querySelector("#spaces");
@@ -26,14 +29,13 @@ class ParametrizationController {
 	}
 
 	initializate() {	
-		
-		this._arrMainDivEl.slice(1, this._arrMainDivEl.length).forEach(divEl => {
-			this.hideElement(divEl.id);
-		});
+
+		// this._arrMainDivEl.slice(1, this._arrMainDivEl.length).forEach(divEl => {
+		// 	this.hideElement(divEl.id);
+		// });
 
 		document.querySelectorAll(".sidenav > a").forEach(aEl => {
-			this.addEventListenerToMenuItemToShowCorrespondingDiv(aEl, "div-" + aEl.id);
-			// this.addEventListenerToMenuItemToHideCorrespondingDiv(aEl, "div-" + aEl.id);
+			this.addEventListenerToMenuItemToShowCorrespondingDiv(aEl, "div-" + aEl.id);			
 		});
 
 	}
@@ -44,7 +46,9 @@ class ParametrizationController {
 
 			// hiding displayed elements before show the clicked div corresponding
 			// to clicked menu item
-			if (divEl.style.display == "block") divEl.style.display = "none";
+
+			divEl.style.display = "none";
+
 
 		});
 
