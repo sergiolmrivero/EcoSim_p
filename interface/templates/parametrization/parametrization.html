@@ -54,15 +54,36 @@ body {
       <a href="#spaces" id="spaces">Spaces</a>
       <a href="#observers" id="observers">Observers</a>
       <!-- <a href="#Simulate" id="simulate">Simulate</a> -->
-      <input type="submit" value="Submit">
+      <input type="submit" value="Simulate">
     </div>
 
     <div class="main">
+
       <h2>Parametrization</h2>
+
       <div class="container" id="div-simulation">
         <h3>Simulation</h3>
-        <p>Some text</p>
+
+        <label for="simulation-name">Simulation Name</label><br>
+        <input type="text" id="simulation-name" name="simulation-name" placeholder="Arbitrary name">        
+        <!-- <input type="text" id="simulation-name" name="simulation-name" value="SimulationName" placeholder="arbitrary simulation name">         -->
+
+        <br><br>
+        
+        <label for="models">Model: choose a model to simulate</label><br>
+        <select id="models" name="models">
+          <option value="model-elFarol">El Farol</option>
+          <option value="model-iterated-dilemma-prisoner">Iterated Dilemma Prisoner</option>
+          <option value="model-macro-caiani-model">Macro Caiani Model</option>
+        </select>
+
+        <br><br>
+
+        <label for="simulation-model">Simulation Model</label><br>
+        <input type="text" id="simulation-model" name="simulation-model" value="" placeholder="Arbitrary name">        
+        <!-- <input type="text" id="simulation-model" name="simulation-model" value="SimulationModel" placeholder="SimulationModel">         -->
       </div>
+
       <div class="container" id="div-model" style="display:none">
         <h3>Model</h3>
         <p>Some text</p>
@@ -83,10 +104,10 @@ body {
   </form>
 
 
-  <!-- <script type="text/javascript" src="/home/bruno/Documents/dev/ecosim/interface/templates/parametrization/ParametrizationController_test.js"></script>
-  <script type="text/javascript" src="/home/bruno/Documents/dev/ecosim/interface/templates/parametrization/parametrization_test.js"></script>   -->
+  <script type="text/javascript" src="/home/bruno/Documents/dev/ecosim/interface/templates/parametrization/ParametrizationController_test.js"></script>
+  <script type="text/javascript" src="/home/bruno/Documents/dev/ecosim/interface/templates/parametrization/parametrization_test.js"></script>  
    
-   <script type="text/javascript" src="/static/parametrization/controller/ParametrizationController.js"></script>
-   <script type="text/javascript" src="/static/parametrization/parametrization.js"></script>  
+<!--    <script type="text/javascript" src="/static/parametrization/controller/ParametrizationController.js"></script>
+   <script type="text/javascript" src="/static/parametrization/parametrization.js"></script>   -->
 </body>
 </html> 
