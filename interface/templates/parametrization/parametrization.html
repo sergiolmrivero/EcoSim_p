@@ -43,41 +43,47 @@ body {
 }
 </style>
 </head>
+
 <body>
 
-<div class="sidenav">
-  <a href="#simulation" id="simulation">Simulation</a>
-  <a href="#model" id="model">Model</a>
-  <a href="#agents" id="agents">Agents</a>
-  <a href="#spaces" id="spaces">Spaces</a>
-  <a href="#observers" id="observers">Observers</a>
-</div>
+  <form id="form-simulate" action="/simulate" method="post">
+    <div class="sidenav">
+      <a href="#simulation" id="simulation">Simulation</a>
+      <a href="#model" id="model">Model</a>
+      <a href="#agents" id="agents">Agents</a>
+      <a href="#spaces" id="spaces">Spaces</a>
+      <a href="#observers" id="observers">Observers</a>
+      <!-- <a href="#Simulate" id="simulate">Simulate</a> -->
+      <input type="submit" value="Submit">
+    </div>
 
-<div class="main">
-  <h2>Parametrization</h2>
-  <div class="container" id="div-simulation">
-    <h3>Simulation</h3>
-    <p>Some text</p>
-  </div>
-  <div class="container" id="div-model" style="display:none">
-    <h3>Model</h3>
-    <p>Some text</p>
-  </div>
-  <div class="container" id="div-agents" style="display:none">
-    <h3>Agents</h3>
-    <p>Some text</p>
-  </div>
-  <div class="container" id="div-spaces" style="display:none">
-    <h3>Spaces</h3>
-    <p>Some text</p>
-  </div>
-  <div class="container" id="div-observers" style="display:none">
-    <h3>Observers</h3>
-    <p>Some text</p>
-  </div>
-</div>
+    <div class="main">
+      <h2>Parametrization</h2>
+      <div class="container" id="div-simulation">
+        <h3>Simulation</h3>
+        <p>Some text</p>
+      </div>
+      <div class="container" id="div-model" style="display:none">
+        <h3>Model</h3>
+        <p>Some text</p>
+      </div>
+      <div class="container" id="div-agents" style="display:none">
+        <h3>Agents</h3>
+        <p>Some text</p>
+      </div>
+      <div class="container" id="div-spaces" style="display:none">
+        <h3>Spaces</h3>
+        <p>Some text</p>
+      </div>
+      <div class="container" id="div-observers" style="display:none">
+        <h3>Observers</h3>
+        <p>Some text</p>
+      </div>
+    </div>
+  </form>
 
-<!--   <script type="text/javascript" src="/home/bruno/Documents/dev/ecosim/interface/templates/parametrization/ParametrizationController_test.js"></script>
+
+  <!-- <script type="text/javascript" src="/home/bruno/Documents/dev/ecosim/interface/templates/parametrization/ParametrizationController_test.js"></script>
   <script type="text/javascript" src="/home/bruno/Documents/dev/ecosim/interface/templates/parametrization/parametrization_test.js"></script>   -->
    
    <script type="text/javascript" src="/static/parametrization/controller/ParametrizationController.js"></script>

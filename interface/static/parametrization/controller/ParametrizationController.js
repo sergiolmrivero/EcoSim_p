@@ -2,6 +2,7 @@ class ParametrizationController {
 
 	constructor(){
 
+		this._formEl = document.getElementById("form-simulate")
 		this._parameters = {simulation: [], model: [], spaces: [], agents: [], observers: []};
 
 		this._simulationMenuEl = document.querySelector("#simulation");
@@ -13,6 +14,8 @@ class ParametrizationController {
 		this._arrMainDivEl = Array.prototype.slice.call(document.querySelectorAll(".main > div"));
 
 		this.initializate();
+		
+		this.onSubmit();
 
 	}
 
@@ -57,6 +60,13 @@ class ParametrizationController {
 
 	hideElement(i) {
 		document.querySelector("#" + i).style.display = "none";
+	}
+
+	onSubmit() {
+		this._formEl.addEventListener("submit", event => {
+			event.preventDefault();
+			alert("submit");
+		});
 	}
 	
 }
