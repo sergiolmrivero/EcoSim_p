@@ -14,7 +14,7 @@ import sys
 import simulation
 
 
-def execute_simulation(path_to_model, model_config, simulation_defs):
+def new_simulation(path_to_model, model_config, simulation_defs):
     """ This is the main simulation method without a graphical interface.
         This method receives 3 parameters:
         path_to_model - The path to the model that is executing
@@ -35,4 +35,4 @@ if __name__ == "__main__":
     path_to_model = str(sys.argv[1])
     model_config = str(sys.argv[2])
     simulation_defs = str(sys.argv[3])
-    execute_simulation(path_to_model, model_config, simulation_defs)
+    new_simulation(path_to_model, model_config, simulation_defs)

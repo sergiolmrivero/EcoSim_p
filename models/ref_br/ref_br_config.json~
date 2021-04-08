@@ -1,9 +1,0 @@
-{
-  "Description": "Configuration file for the Housing Market  model",
-  "paths":
-    {
-      "kernel": "/home/rivero/Dropbox/Workspace_Current/Projects/Applications/EcoSim/EcoSim_p/src/0.0.3/EcoSim_p/kernel/",
-      "model": "/home/rivero/Dropbox/Workspace_Current/Alunos/Pos-Grad/Ativos/JadsonPessoa/modelo/src/",
-      "results": "/home/rivero/Dropbox/Workspace_Current/Alunos/Pos-Grad/Ativos/JadsonPessoa/modelo/src/runs/"
-    }
-}

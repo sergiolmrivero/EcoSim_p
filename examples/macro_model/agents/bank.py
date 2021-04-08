@@ -31,7 +31,7 @@ class Bank(EconomicAgent):
 
     def get_cb(self):
         """ Get Central Bank from model """
-        return self.model.agents_of_type('Central_Bank')
+        return self.model.agents_of_type('CentralBank')
 
     def get_government(self):
         """ Get government from model """

@@ -12,9 +12,9 @@ class IpdGame(Space):
                'DC': [5, 0],
                'DD': [1, 1]}
 
-    def __init__(self, model, name, actions_set_file, action_class):
+    def __init__(self, model, name, actions_set_file, action_class, variables):
         """ Intialize abstract market """
-        super().__init__(model, name, actions_set_file, action_class)
+        super().__init__(model, name, actions_set_file, action_class, variables)
 
     def update(self):
         """ here the players play the game """

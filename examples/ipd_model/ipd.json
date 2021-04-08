@@ -24,8 +24,8 @@
 	}
     }
   ],
-  "agents": [
-    {
+  "agents": {
+    "GoodPlayer": {
       "agent_type": "GoodPlayer",
       "agent_prefix": "GPl",
       "agent_spaces": [
@@ -33,7 +33,7 @@
       ],
 	"no_of_agents": 20
     },
-    {
+    "BadPlayer": {
       "agent_type": "BadPlayer",
       "agent_prefix": "BPl",
       "agent_spaces": [
@@ -41,7 +41,7 @@
       ],
       "no_of_agents": 20
     },
-    {
+    "RandomPlayer": {
       "agent_type": "RandomPlayer",
       "agent_prefix": "RPl",
       "agent_spaces": [
@@ -49,7 +49,7 @@
       ],
       "no_of_agents": 20
     },
-    {
+    "TitForTatPlayer":{
       "agent_type": "TitForTatPlayer",
       "agent_prefix": "TTPl",
       "agent_spaces": [
@@ -58,7 +58,7 @@
       "no_of_agents": 20
     }
 
-  ],
+  },
   "observers": [
     {
       "observer_type": "Observer",

@@ -4,6 +4,6 @@
     {
       "kernel": "../kernel/",
       "model": "../models/ref_br/",
-      "results": "../models/ref_br/runs"
+      "results": "../models/ref_br/runs/"
     }
 }

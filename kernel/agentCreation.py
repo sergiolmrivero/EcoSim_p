@@ -25,7 +25,7 @@ class AgentPopulationCreator(object):
         self.agents_by_type = dict()
         self.agents_simulation = simulation
         self.agents_model = model
-        for agent_def in agents_def:
+        for agent_def in agents_def.values():
             self.agent_type = agent_def['agent_type']
             self.agent_prefix = agent_def['agent_prefix']
             self.agent_population_size = int(agent_def['no_of_agents'])
@@ -51,7 +51,38 @@ class AgentPopulationCreator(object):
                     print(exception)
                     # <class '__main__.agent_Factory'>
                     # does not know <'__main__.self.agent_name'>
+        
 
+class AgentCreator(object):
+    """
+    Agent Generator
+    Agent Implemented Subclass must be used
+    """
+    def __init__(self, simulation, model, an_agent_def, agent_number):
+        self.ag = importlib.import_module("agents")
+        self.an_agent_simulation = simulation
+        self.an_agent_model = model
+        
+        self.agent_type = an_agent_def['agent_type']
+        self.agent_prefix = an_agent_def['agent_prefix']
+        try:
+            an_agent = "self.ag" + "." + self.agent_type
+            self.agent_class = eval(an_agent)
+        except NameError:
+            print("class ", self.agent_type, " is not defined")
+        self.agent_Factory = AgentProvider(self.agent_class)
+        self.agent_name = self.agent_prefix + '_' + str(agent_number)
+        self.agent_Factory.add_args(self.an_agent_simulation,
+                                    self.an_agent_model,
+                                    agent_number,
+                                    an_agent_def)
+        try:
+            self.new_agent = self.agent_Factory()
+        except errors.Error as exception:
+            print(exception)
+            # <class '__main__.agent_Factory'>
+            # does not know <'__main__.self.agent_name'>
+        
 
 class AgentProvider(providers.Factory):
     """ Agent Provider Class"""
