@@ -1,0 +1,75 @@
+{
+	"build_systems":
+	[
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "ecosim",
+			"selector": "source.python",
+			"shell_cmd": "\"/home/bruno/Documents/dev/learning-data-science/venv-learning-data-science/bin/python\" -u \"$file\""
+		},
+		{
+			"auto_close": false,
+			"env":
+			{
+				"PYTHONIOENCODING": "utf-8"
+			},
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"focus": true,
+			"name": "learning datascience terminal",
+			"post_window_hooks":
+			[
+				[
+					"carry_file_to_pane",
+					{
+						"direction": "right"
+					}
+				]
+			],
+			"selector": "source.python",
+			"shell_cmd": "\"/home/bruno/Documents/dev/learning-data-science/venv-learning-data-science/bin/python\" -u \"$file\"",
+			"target": "terminus_open",
+			"timeit": true,
+			"title": "ecosim terminal",
+			"variants":
+			[
+				{
+					"name": "Syntax Check",
+					"shell_cmd": "\"/home/bruno/Documents/dev/learning-data-science/venv-learning-data-science/bin/python\" -m py_compile \"${file}\""
+				}
+			],
+			"working_dir": "$file_path"
+		},
+		{
+			"auto_close": false,
+			"env":
+			{
+				"PYTHONIOENCODING": "utf-8"
+			},
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"focus": true,
+			"name": "ecosim ipython",
+			"post_window_hooks":
+			[
+				[
+					"carry_file_to_pane",
+					{
+						"direction": "right"
+					}
+				]
+			],
+			"selector": "source.python",
+			"shell_cmd": "\"/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/ipython\"",
+			"target": "terminus_open",
+			"timeit": true,
+			"title": "ipython",
+			"working_dir": "$file_path"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"python_interpreter": "/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python"
+}
