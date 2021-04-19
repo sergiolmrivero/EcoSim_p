@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../kernel"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}

@@ -15,18 +15,18 @@
     }
   ],
   "spaces": [
-      {
-	"space_type": "EFBGame",
-	"space_name": "EFBGame",
-	"action_set": "el_farol_bar_action_set",
-	"action_class": "Strategy",
-	"space_variables": {
-            "payoffs": 0.0
-	}
+    {
+	    "space_type": "EFBGame",
+	    "space_name": "EFBGame",
+	    "action_set": "el_farol_bar_action_set",
+	    "action_class": "Strategy",
+	    "space_variables": {
+        "payoffs": 0.0
+	    }
     }
   ],
-  "agents": [
-    {
+  "agents": {
+    "RandomPlayer": {
       "agent_type": "RandomPlayer",
       "agent_prefix": "RPl",
       "agent_spaces": [
@@ -34,7 +34,7 @@
       ],
       "no_of_agents": 5
     },
-    {
+    "LikeCrowdedPlayer": {
       "agent_type": "LikeCrowdedPlayer",
       "agent_prefix": "LCl",
       "agent_spaces": [
@@ -42,7 +42,7 @@
       ],
       "no_of_agents": 5
     },
-    {
+    "LikeSixtyPercentPlayer": {
       "agent_type": "LikeSixtyPercentPlayer",
       "agent_prefix": "L60p",
       "agent_spaces": [
@@ -50,8 +50,7 @@
       ],
       "no_of_agents": 100
     }
-
-  ],
+  },
   "observers": [
     {
       "observer_type": "Observer",
@@ -127,30 +126,30 @@
         }
       ],
       "agents_init": {
-	"RandomPlayer": [
-	    {
-		"var_name": "payoff",
-		"var_type": "float",
-		"var_dist": "none",
-		"var_value": 1.0
-            }
-        ],
-	  "LikeCrowdedPlayer": [
-	    {
-		"var_name": "payoff",
-		"var_type": "float",
-		"var_dist": "none",
-		"var_value": 1.0
-            }
-        ],
-	  "LikeSixtyPercentPlayer": [
-	    {
-		"var_name": "payoff",
-		"var_type": "float",
-		"var_dist": "none",
-		"var_value": 1.0
-            }
-        ]
+        "RandomPlayer": [
+            {
+          "var_name": "payoff",
+          "var_type": "float",
+          "var_dist": "none",
+          "var_value": 1.0
+                  }
+              ],
+        "LikeCrowdedPlayer": [
+          {
+        "var_name": "payoff",
+        "var_type": "float",
+        "var_dist": "none",
+        "var_value": 1.0
+                }
+            ],
+        "LikeSixtyPercentPlayer": [
+          {
+        "var_name": "payoff",
+        "var_type": "float",
+        "var_dist": "none",
+        "var_value": 1.0
+                }
+            ]
       }
 	
     }

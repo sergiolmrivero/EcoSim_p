@@ -9,12 +9,22 @@ class Space(object):
     """ The space class """
     def __init__(self, model, name,
                  actions_set_file,
-                 action_class):
+                 action_class,
+                 variables = None):
         """ Initialize Space Class """
 
         self.model = model
         self.name = name
+        self.actions_set_file = actions_set_file
+        self.action_class = action_class
+        self.variables = variables
         self.agents = OrderedDict()
+
+    def create_vars(self):
+        """Create Space Vars"""
+        if self.variables is not None:
+            for name, value in self.variables.items():
+                self.__setattr__(name, value)
 
     def enter(self, agent_name, agent):
         """ An agent enter the a space object """

@@ -7,4 +7,5 @@ cd ../examples/el_farol_bar_model
 
 Rscript -e 'rmarkdown::render("El_Farol.rmd", output_format="html_document", output_dir="results")'
 
-firefox results/El_Farol.html &
+#firefox results/El_Farol.html &
+sensible-browser results/El_Farol.html &

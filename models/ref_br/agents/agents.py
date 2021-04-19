@@ -8,7 +8,7 @@ class EconomicAgent(DiscreteEventAgent):
     """ A basic economic agent"""
     def __init__(self, simulation, model, agent_number, agent_def):
         super().__init__(simulation, model, agent_number, agent_def)
-        self.demmand_satisfied = False
+        self.demand_satisfied = False
         self.offer_accepted = False
         self.contracted_offers = {}
 
@@ -19,19 +19,20 @@ class EconomicAgent(DiscreteEventAgent):
     def get_contracted_offers(self, contracted_offers):
         """ The agent get the contracted_offers """
         self.contracted_offers = contracted_offers
-        self.demmand_satisfied = True
+        self.demand_satisfied = True
 
-    def got_contract(self):
+    def got_contract(self, contracted_offer):
         """ the agent got a contract for an offer """
         # TODO: define better - Implemented by subclass
         self.offer_accepted = True
+        self.contracted_offer = contracted_offer
 
     def release_offer(self):
         """ Agent releases an offer """
         # TODO: Implemented by subclass
         self.offer_accepted = False
 
-    def release_demmand(self):
+    def release_demand(self):
         """ Agent releases a demmand """
         # TODO: Implemented by subclass
-        self.demmand_satisfied = False
+        self.demand_satisfied = False

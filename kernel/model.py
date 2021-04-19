@@ -8,12 +8,15 @@ of the simulation scenario and then creates the simulation
 with all simulation objects
 
 """
+# TODO: Revisar o dicionario dos agentes. 
+# Incorporar no modelo o tratamento de agentes "mortos" (dicionario agents)
+
 import random as rnd
 import time
 from collections import OrderedDict
 
 
-from agentCreation import AgentPopulationCreator
+from agentCreation import AgentPopulationCreator, AgentCreator
 from observerCreation import ObserverCreator
 from scheduleCreation import ScheduleCreator
 from spaceCreation import SpaceCreator
@@ -37,14 +40,16 @@ class Model:
         self.schedule_def = self.json_defs['schedule']
 
         self.spaces = dict()
-        self.agents = OrderedDict()
+        self.agents = dict()
+        self.agents_by_type = dict()
         # self.model_observers = {}
         self.agent_observers = {}
 
         self.create_schedule(self.schedule_def)
         self.create_spaces()
-        self.create_agents()
+        #self.create_agents()
         self.create_observers(path_to_results)
+
 
     def create_schedule(self, schedule_def):
         """ Creates the model schedule using the json schedule definition """
@@ -59,7 +64,7 @@ class Model:
         self.spaces_def = self.json_defs['spaces']
         self.spaces_factory = SpaceCreator(self, self.spaces_def)
         self.spaces = self.spaces_factory.spaces
-
+        
     def create_agents(self):
         """
         Access the AgentFactory (AgentPopulationCreator).
@@ -71,6 +76,25 @@ class Model:
 
         self.agents = self.agents_pop.agents
         self.agents_by_type = self.agents_pop.agents_by_type
+
+    def create_one_agent(self, agent_type):
+        """
+        Create one agent and include it in the model
+        """
+        try:
+            self.an_agent_def = self.json_defs['agents'][agent_type]
+        except KeyError as e:
+            print(agent_type, ' not defined in the json file')
+
+        self.an_agent_number = self.agents_of_type_number(agent_type) + 1
+        
+        self.an_agent_creator = AgentCreator(self.simulation, self,
+                                                 self.an_agent_def,
+                                                 self.an_agent_number)    
+        self.new_agent = self.an_agent_creator.new_agent
+        self.simulation.active_scenario.initialize_one_agent_vars(agent_type,self.new_agent)
+        self.enter_model(self.new_agent.name, self.new_agent)
+
 
     def create_observers(self, path_to_results):
         """
@@ -85,26 +109,35 @@ class Model:
 
     def enter_model(self, agent_name, agent):
         """ An agent enters the model (is included in agents dict) """
-        if agent_name not in self.agents:
-            self.agents[agent_name] = agent
+        #if agent_name not in self.agents:
+        self.agents[agent_name] = agent
+
+        if agent.type not in self.agents_by_type:
+            self.agents_by_type[agent.type] = dict()
+        self.agents_by_type[agent.type][agent_name] = agent
 
     def exit_model(self, agent_name):
         """ An agent exits the model (is deleted from agents dict) """
-        if agent_name in self.agents:
-            del self.agents[agent_name]
+        try:
+            agent = self.agents.pop(agent_name)
+            del self.agents_by_type[agent.type][agent_name]
+        except KeyError:
+            print("There is no agent named", agent_name,
+                  " in the model ")
 
     def agents_of_type(self, agent_type):
         """ Returns a dict with the agents with an specific type """
         # TODO: Check this method
-        return {key: value for key, value in self.agents.items()
-                if value.type == agent_type}
+        return self.agents_by_type[agent_type]
+        #return {key: value for key, value in self.agents.items()
+        #        if value == agent_type}
 
-    def agents_by_type(self):
-        """ Returns a dict with all agents in the simulation
-            ordered by type (agent specific class)
-        """
-        return OrderedDict({value.__class__.__name__ + "_" + str(key): value
-                            for key, value in self.agents.items()})
+    # def agents_by_type(self):
+    #     """ Returns a dict with all agents in the simulation
+    #         ordered by type (agent specific class)
+    #     """
+    #     return OrderedDict({value.__class__.__name__ + "_" + str(key): value
+    #                         for key, value in self.agents.items()})
 
     def agents_number(self):
         """ Returns how many agents we have in the simulation (size of agents dict) """
@@ -116,8 +149,11 @@ class Model:
 
     def agents_of_type_number(self, agent_type):
         """ Returns how many agents of an specific type """
-        return len({key: value for key, value in self.agents.items()
-                    if value.__class__.__name__ == agent_type})
+        return len(self.agents_by_type[agent_type])
+    
+    def check_agent_type(self, agent_type):
+        """ Returns true if the agent type exists in the agents_by_type dict """
+        return (agent_type in self.agents_by_type)
 
     def mixed_agents(self):
         """ Returns a randomly shuffled list of agents (from agents dict) """

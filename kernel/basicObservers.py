@@ -33,6 +33,7 @@ class Observer(object):
         self.observables = None
         self.create_observables()
         self.path_to_results = path_to_results
+        self.first = True
 
     def define_observable_entity(self, entity_class):
         """ Defines the type of agent that will be observed by this observer """
@@ -72,7 +73,6 @@ class Observer(object):
 
     def basic_observation(self):
         """ Observer the agent variables """
-        self.first = True
         self.observation = None
         agents_to_observe = self.model.agents_of_type(self.observable_entity)
         self.update_observation_keys()

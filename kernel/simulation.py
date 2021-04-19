@@ -6,6 +6,7 @@ Simulation Class (This implements a batch simulation)
 """
 import json
 import sys
+import datetime as dt
 from model import Model
 from scenarioCreation import ScenarioCreator
 
@@ -15,6 +16,9 @@ class Simulation(object):
 
     def __init__(self, simulation_config_file, simulation_file):
         """ Initialize a Simulation """
+        self.simulation_config = None
+        self.json_simulation_defs = None
+        self.active_scenario = None
 
         # Read the simulation configuration file
         with open(simulation_config_file) as read_file:
@@ -29,17 +33,24 @@ class Simulation(object):
         self.path_to_results = self.simulation_config['paths']['results']
         sys.path.insert(0, self.path_to_model)
         self.initialize_simulation()
-
+     
     def initialize_simulation(self):
         """ Factory pattern to create a simulation"""
+
+        # Simulation Name
         self.name = self.json_simulation_defs["simulation_name"]
 
-        self.model = Model(self, self.json_simulation_defs, self.path_to_results)
+        # Create Model 
+        self.model = Model(self, self.json_simulation_defs, 
+                           self.path_to_results)
 
+        # Set Simulation Parameters
         for parameter in self.json_simulation_defs['simulation_parameters']:
             self.parameter_name = parameter['parameter_name']
             self.parameter_value = parameter['parameter_value']
             setattr(self, self.parameter_name, self.parameter_value)
+
+        # Create Scenarios
         self.create_scenarios()
 
     def create_scenarios(self):
@@ -49,16 +60,6 @@ class Simulation(object):
                                                  self.scenarios_def)
         self.scenarios = self.scenarios_factory.scenarios
 
-    def intialize_run(self):
-        """
-        Run initialization -
-        Initialize main variables for run
-        agents variables and space variables
-        """
-        # TODO: Look at pool design pattern to reduce simulation creation overload
-        # TODO: To Be Defined
-        pass
-
     def execute_simulation(self):
         """
         Executes a Simulation.
@@ -66,5 +67,27 @@ class Simulation(object):
         This method gets all scenarios in the json definition and executes
         the defined number of runs for each scenario
         """
+        self.pre_simulation()
         for scenario in self.scenarios.values():
+            self.active_scenario = scenario
             scenario.execute_scenario()
+        self.post_simulation()
+
+    def pre_simulation(self):
+        """ Executes routines pre simulation"""
+        for space in self.model.spaces.values():
+            space.create_vars()
+
+
+
+    def post_simulation(self):
+        """ Executes the routines post simulation """
+        for observer_name, observer in self.model.agent_observers.items():
+            observer.create_dataframe()
+            self.now = dt.datetime.now().isoformat(timespec='minutes')
+            self.filename = "_".join([self.name,
+                                     observer_name,
+                                      self.now, '.csv'])
+            observer.save_dataframe(self.filename)
+
+

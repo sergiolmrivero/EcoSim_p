@@ -7,4 +7,5 @@ cd ../examples/macro_model
 
 Rscript -e 'rmarkdown::render("macro_Caiani.rmd", output_format="html_document", output_dir="results")'
 
-firefox results/macro_Caiani.html
+#firefox results/macro_Caiani.html
+sensible-browser results/macro_Caiani.html&

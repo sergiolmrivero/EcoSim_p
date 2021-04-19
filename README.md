@@ -14,4 +14,3 @@ The results will be show in a browser (look for the file El_Farol.html in the fo
 The documentation for this framework can be found in:
 
 https://sergiolmrivero.github.io/EcoSim_p/
-

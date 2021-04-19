@@ -34,7 +34,7 @@ class Player(DiscreteEventAgent):
         self.my_play = self.strategy.select_game()
 
     def play(self):
-        """ The agent plays a strategy """
+        """ The agent plays a strategy - method my_play """
         return self.my_play
 
     def game_payoff(self):

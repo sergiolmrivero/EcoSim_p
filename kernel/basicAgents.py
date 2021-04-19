@@ -13,9 +13,10 @@ class Agent(object):
         self.name = agent_def['agent_prefix'] + '_' + str(agent_number)
         self.simulation = simulation
         self.model = model
+        self.scenario = None
         self.spaces = dict()
-        self.alive = False
-        self.model.enter_model(self, self.name)
+        self.alive = True
+        self.model.enter_model(self.name, self)
         for space_name in agent_def['agent_spaces']:
             try:
                 self.enter_space(space_name)
@@ -40,6 +41,10 @@ class Agent(object):
         else:
             return this_attribute
 
+    def set_attribute(self, attribute_name, atribute_value):
+        """ Set an agent attribute"""
+        self.__setattr__(attribute_name, atribute_value)
+
     def alive(self):
         """ Agent set to alive """
         self.alive = True
@@ -47,6 +52,7 @@ class Agent(object):
     def dead(self):
         """ Agent set to dead """
         self.alive = False
+        self.model.exit_model(self.name)
 
     def executionLoop(self):
         """ An Agent execution loop """
@@ -73,7 +79,8 @@ class DiscreteEventAgent(Agent):
     def dev_step(self, this_step):
         """ Discrete Event Step - Updates the step for the agent """
         self.my_step = this_step
-        self.step()
+        if self.alive:
+            self.step()
        
     def step(self):
         """ Dev Agent standard step - can be specialized by subclass

@@ -1,5 +1,5 @@
 ---
-title: "Macro Simulation (Caianim, 2016)"
+title: "Macro Simulation (Caiani et. al., 2016)"
 author: "Sérgio Rivero"
 date: "`r Sys.time()`"
 output:

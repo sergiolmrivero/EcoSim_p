@@ -26,8 +26,8 @@
 	}
     }
   ],
-  "agents": [
-    {
+  "agents": {
+    "RandomPlayer": {
       "agent_type": "RandomPlayer",
       "agent_prefix": "RPl",
       "agent_spaces": [
@@ -35,7 +35,7 @@
       ],
       "no_of_agents": 5
     },
-    {
+    "LikeSixtyPercentPlayer": {
       "agent_type": "LikeSixtyPercentPlayer",
       "agent_prefix": "L60p",
       "agent_spaces": [
@@ -44,7 +44,7 @@
       "no_of_agents": 100
     }
 
-  ],
+  },
   "observers": [
     {
       "observer_type": "Observer",

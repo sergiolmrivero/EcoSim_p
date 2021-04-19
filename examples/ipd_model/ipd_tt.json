@@ -25,8 +25,8 @@
 	}
     }
   ],
-  "agents": [
-    {
+  "agents": {
+    "TitForTatPlayer": {
       "agent_type": "TitForTatPlayer",
       "agent_prefix": "TTPl",
       "agent_spaces": [
@@ -35,7 +35,7 @@
       "no_of_agents": 20
     }
 
-  ],
+  },
   "observers": [
     {
       "observer_type": "Observer",
