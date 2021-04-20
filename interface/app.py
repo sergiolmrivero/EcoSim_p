@@ -41,6 +41,14 @@ def simulation():
     return render_template('/simulation.html')
 
 
+@app.route('/show_results', methods=['GET', 'POST'])
+def show_result():
+    """
+    Render the html returned of the R markdown
+    """
+    return render_template('/show_results/show_results.html')
+
+
 class ModelList(Resource):
     """
     RESTful API for consulting/list the models that can be simulated

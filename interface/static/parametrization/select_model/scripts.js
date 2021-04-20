@@ -1,1 +1,0 @@
-window.SelectModelController = new SelectModelController;
