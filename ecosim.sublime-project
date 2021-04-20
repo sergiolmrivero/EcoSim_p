@@ -15,7 +15,7 @@
 			},
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"focus": true,
-			"name": "learning datascience terminal",
+			"name": "ecosim terminal",
 			"post_window_hooks":
 			[
 				[
