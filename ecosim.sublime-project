@@ -5,7 +5,7 @@
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"name": "ecosim",
 			"selector": "source.python",
-			"shell_cmd": "\"/home/bruno/Documents/dev/learning-data-science/venv-learning-data-science/bin/python\" -u \"$file\""
+			"shell_cmd": "\"/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python\" -u \"$file\""
 		},
 		{
 			"auto_close": false,
@@ -26,7 +26,7 @@
 				]
 			],
 			"selector": "source.python",
-			"shell_cmd": "\"/home/bruno/Documents/dev/learning-data-science/venv-learning-data-science/bin/python\" -u \"$file\"",
+			"shell_cmd": "\"/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python\" -u \"$file\"",
 			"target": "terminus_open",
 			"timeit": true,
 			"title": "ecosim terminal",
@@ -34,7 +34,7 @@
 			[
 				{
 					"name": "Syntax Check",
-					"shell_cmd": "\"/home/bruno/Documents/dev/learning-data-science/venv-learning-data-science/bin/python\" -m py_compile \"${file}\""
+					"shell_cmd": "\"/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python\" -m py_compile \"${file}\""
 				}
 			],
 			"working_dir": "$file_path"
@@ -63,6 +63,12 @@
 			"timeit": true,
 			"title": "ipython",
 			"working_dir": "$file_path"
+		},
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python\" -u \"$file\""
 		}
 	],
 	"folders":
