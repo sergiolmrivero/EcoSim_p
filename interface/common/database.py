@@ -12,11 +12,14 @@ class Database:
     def get_models() -> Dict:
         """
         Get examples from the examples directory
+        Get models from the models directory
         """     
-        examples_files: List[str] = []        
+        example_and_model_files: List[str] = []        
         path_examples = os.path.join(os.sep.join(os.getcwd().split(os.sep)[:-1]), 'examples')     
-        examples_files.extend(os.listdir(path_examples))
+        path_models: str = os.path.join(os.sep.join(os.getcwd().split(os.sep)[:-1]), 'models')
+        example_and_model_files.extend(os.listdir(path_examples))
+        example_and_model_files.extend(os.listdir(path_models))
         
         return {
-            "models": list(set(filter(lambda file: '__' not in file, examples_files)))
+            "models": list(set(filter(lambda file: '__' not in file, example_and_model_files)))
         }        
