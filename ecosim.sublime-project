@@ -68,7 +68,7 @@
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"name": "Anaconda Python Builder",
 			"selector": "source.python",
-			"shell_cmd": "\"/home/bruno/Documents/dev/learning-flask/venv-learning-flask/bin/python\" -u \"$file\""
+			"shell_cmd": "\"/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python\" -u \"$file\""
 		}
 	],
 	"folders":
