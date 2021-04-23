@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-from models.model import Model
+from models.model import Models
 
 class ModelList(Resource):
     """
@@ -12,5 +12,5 @@ class ModelList(Resource):
         GET the models which the user will choose to simulate
         """
 
-        return Model.all(), 200
+        return Models.json(), 200
 

@@ -9,6 +9,6 @@ class AbstractDataModel(metaclass=ABCMeta):
 
 	@staticmethod
 	@abstractmethod
-	def all(self) -> Dict:
+	def json(self) -> Dict:
 		raise NotImplemented
 	

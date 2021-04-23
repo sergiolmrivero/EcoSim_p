@@ -6,13 +6,13 @@ from common.database import Database
 
 
 @dataclass
-class Model(AbstractDataModel):
+class Models(AbstractDataModel):
     """
     Access data (parameters) from implicit database
     Retrive data in a format to send to the interface (webpage)
-    """    
-    
-    def all() -> Dict:
+    """
+
+    def json() -> Dict:
         """
         Get examples from the examples directory
         Get models from the models directory
