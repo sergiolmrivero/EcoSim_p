@@ -2,6 +2,9 @@
 flask==1.1.2 # comes with flask-restful, but i prefer install separated
 flask-restful==0.3.8
 
+# database
+redis==3.5.3
+
 # others
 tqdm==4.55.1
 datetime==4.3

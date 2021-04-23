@@ -13,3 +13,4 @@ class ModelList(Resource):
         """
 
         return Model.all(), 200
+
