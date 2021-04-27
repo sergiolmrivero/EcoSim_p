@@ -5,7 +5,7 @@ from common.database import Database
 
 
 @dataclass
-class Models(AbstractDataModel):
+class Agent(AbstractDataModel):
     """
     Access data (parameters) from implicit database
     Retrive data in a format to send to the interface (webpage)
@@ -13,8 +13,8 @@ class Models(AbstractDataModel):
 
     def json():
         """
-        Get examples from the examples directory
+        Get agents of a specific model the examples directory
         Get models from the models directory
         """
 
-        return Database.get("models")
+        return Database.get("agents")

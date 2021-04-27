@@ -1,9 +1,14 @@
+##############
+# Controller #
+##############
+
 import os
 from flask import Flask
 from flask_restful import Api
 
 from common.database import Database
 from resources.model import ModelList
+from resources.agent import AgentList
 from views.parametrization import parametrization_blueprint
 from views.show_results import show_results_blueprint
 
@@ -24,6 +29,7 @@ app.secret_key = os.urandom(64)
 
 #############
 # Endpoints #
+#  (Views)  #
 #############
 
 app.register_blueprint(parametrization_blueprint, url_prefix="/")
@@ -31,9 +37,11 @@ app.register_blueprint(show_results_blueprint, url_prefix="/show_results")
 
 #############
 # Resources #
+# (Models)  #
 #############
 
 api = Api(app)
+api.add_resource(AgentList, '/agents')
 api.add_resource(ModelList, '/models')
 
 ##################
@@ -44,6 +52,5 @@ api.add_resource(ModelList, '/models')
 def init_db():
     Database.initialize()
 
-    
 if __name__ == '__main__':
     app.run('127.0.0.1', '5000', debug=True)  # important to mention debug=True

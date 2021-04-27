@@ -2,6 +2,7 @@ from flask_restful import Resource
 
 from models.model import Models
 
+
 class ModelList(Resource):
     """
     RESTful API for consulting/list the models that can be simulated
@@ -13,4 +14,3 @@ class ModelList(Resource):
         """
 
         return Models.json(), 200
-
