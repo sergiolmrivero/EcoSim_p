@@ -8,59 +8,33 @@
   <!-- <link href="/home/bruno/Documents/dev/ecosim/interface/static/parametrization/parametrization.css" rel="stylesheet"> -->
 <body>
 
-  <form id="form-simulate" action="/simulate" method="post">
+  <form id="form-simulation-execution" action="/simulation/execution" method="post">
     <div class="sidenav">
       <a href="#simulation" id="simulation">Simulation</a>
       <a href="#model" id="model">Model</a>
       <a href="#agents" id="agents">Agents</a>
       <a href="#spaces" id="spaces">Spaces</a>  
       <a href="#observers" id="scenarios">Scenarios</a>
-      <!-- <a href="#Simulate" id="simulate">Simulate</a> -->
-      <input type="submit" value="Simulate">
+      <input type="submit" value="SIMULATE!">
     </div>
 
-    <div class="main">
-
-      <h2>Parametrization</h2>
+    <div class="main">      
 
       <div class="container" id="div-simulation">
 
         <h3>Simulation</h3>
 
-        <div id = 'div-simulation-name'>
-          <label for="simulation-name">Simulation Name</label><br>
-          <input type="text" id="simulation-name" name="simulation-name" placeholder="Arbitrary name">
-          <br><br>
-        </div>        
-        
-        <div id ='div-simulation-model'>
-          <label for="simulation-model">Simulation Model</label><br>
-          <input type="text" id="simulation-model" name="simulation-model" value="" placeholder="Arbitrary name">
-          <br><br>
-        </div>
-
         <div id="models"></div>
       </div>
 
-      <div class="container" id="div-model" style="display:none">
-        <h3>Model</h3>
-        <p>Some text</p>
-      </div>
+      <div class="container" id="div-model" style="display:none"></div>
 
-      <div class="container" id="div-agents" style="display:none">
-        <h3>Agents</h3>
-        <p>Some text</p>
-      </div>
+      <div class="container" id="div-agents" style="display:none"></div>
 
-      <div class="container" id="div-spaces" style="display:none">
-        <h3>Spaces</h3>
-        <p>Some text</p>
-      </div>
+      <div class="container" id="div-spaces" style="display:none"></div>
 
-      <div class="container" id="div-observers" style="display:none">
-        <h3>Observers</h3>
-        <p>Some text</p>
-      </div>
+      <div class="container" id="div-observers" style="display:none"></div>
+
     </div>
   </form>
 

@@ -31,8 +31,8 @@ class SimulationController {
     renderModels = (models) => {
     	let modelsEl = document.createElement("div");
     	modelsEl.innerHTML = `
-    	 	<label for="models">Model: choose a model to simulate</label><br>
-    		<select id="models" name="models">
+    	 	<label for="select-model">Model: choose a model to simulate</label><br>
+    		<select id="select-model" name="model">
 				${models.map(model => `<option value="${model}">${model}</option>`).join("")}
     		</select>
     		<br><br>

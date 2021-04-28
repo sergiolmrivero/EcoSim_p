@@ -74,7 +74,13 @@
 	"folders":
 	[
 		{
-			"path": "."
+			"path": ".",
+		},
+		{
+			"path": "../clone-price-of-chair-new"
+		},
+		{
+			"path": "../learning-distributed-systems"
 		}
 	],
 	"python_interpreter": "/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python"

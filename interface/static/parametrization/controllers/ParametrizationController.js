@@ -2,7 +2,7 @@ class ParametrizationController {
 
 	constructor(){
 
-		this._formEl = document.getElementById("form-simulate")
+		this._formEl = document.getElementById("form-simulation-execution")
 		this._parameters = {simulation: [], model: [], spaces: [], agents: [], observers: []};
 
 		this._simulationMenuEl = document.querySelector("#simulation");
@@ -15,7 +15,7 @@ class ParametrizationController {
 
 		this.initializate();
 		
-		this.onSubmit();
+		// this.onSubmit();
 
 	}
 

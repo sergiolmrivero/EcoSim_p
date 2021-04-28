@@ -11,6 +11,7 @@ from resources.model import ModelList
 from resources.agent import AgentList
 from views.parametrization import parametrization_blueprint
 from views.show_results import show_results_blueprint
+from views.simulation import simulation_blueprint
 
 """
 HTTP Status
@@ -33,6 +34,7 @@ app.secret_key = os.urandom(64)
 #############
 
 app.register_blueprint(parametrization_blueprint, url_prefix="/")
+app.register_blueprint(simulation_blueprint, url_prefix="/simulation")
 app.register_blueprint(show_results_blueprint, url_prefix="/show_results")
 
 #############
