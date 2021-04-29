@@ -14,8 +14,9 @@
       <a href="#model" id="model">Model</a>
       <a href="#agents" id="agents">Agents</a>
       <a href="#spaces" id="spaces">Spaces</a>  
-      <a href="#observers" id="scenarios">Scenarios</a>
-      <input type="submit" value="SIMULATE!">
+      <a href="#observers" id="observers">Scenarios</a>
+      <input id='sidenav-input-simulate-exec' type="submit" value="SIMULATE!">
+      <input id='sidenav-input-simulate-stop' type="submit" value="STOP" style="display:none; color: #550001">
     </div>
 
     <div class="main">      
@@ -34,6 +35,10 @@
       <div class="container" id="div-spaces" style="display:none"></div>
 
       <div class="container" id="div-observers" style="display:none"></div>
+
+      <div class="container" id="div-wait-simulation-ends" style="display:none">
+        <h3>Simulation is beeing executed</h3>
+      </div>
 
     </div>
   </form>

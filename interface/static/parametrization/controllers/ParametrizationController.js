@@ -15,7 +15,7 @@ class ParametrizationController {
 
 		this.initializate();
 		
-		// this.onSubmit();
+		this.onSubmit();
 
 	}
 
@@ -64,8 +64,19 @@ class ParametrizationController {
 
 	onSubmit() {
 		this._formEl.addEventListener("submit", event => {
-			event.preventDefault();
-			alert("submit");
+			// event.preventDefault();
+			// alert("submit");
+			this.showElement("div-wait-simulation-ends");
+
+			this._simulationMenuEl.style.display = "none";
+			this._modelMenuEl.style.display = "none";
+			this._spacesMenuEl.style.display = "none";
+			this._agentsMenuEl.style.display = "none";
+			this._observersMenuEl.style.display = "none";
+			document.getElementById("sidenav-input-simulate-exec").style.display = "none";
+
+			document.getElementById("sidenav-input-simulate-stop").style.display = "block";
+
 		});
 	}
 	
