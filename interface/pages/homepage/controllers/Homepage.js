@@ -1,4 +1,4 @@
-class ParametrizationController {
+class Homepage {
 
 	constructor(){
 
@@ -64,8 +64,7 @@ class ParametrizationController {
 
 	onSubmit() {
 		this._formEl.addEventListener("submit", event => {
-			// event.preventDefault();
-			// alert("submit");
+			// event.preventDefault();			
 			this.showElement("div-wait-simulation-ends");
 
 			this._simulationMenuEl.style.display = "none";

@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, request
 from common.utils import execute_selected_simulation
+from common.utils import write_simulation_results_in_results_html
 
 
 simulation_blueprint = Blueprint('simulation', __name__)
 
 @simulation_blueprint.route("/execution", methods=['GET', 'POST'])
-def simulation():
+def execution():
     """
     Execute the simulation
     """
@@ -14,6 +15,11 @@ def simulation():
 
         model = request.form['model']
 
+        from pdb import set_trace
+        set_trace()
+
         execute_selected_simulation(model)
 
-    return render_template('/show_results/show_results.html')
+        write_simulation_results_in_results_html(model)
+
+    return render_template('/results/results.html')

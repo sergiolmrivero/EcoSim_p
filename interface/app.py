@@ -9,8 +9,7 @@ from flask_restful import Api
 from common.database import Database
 from resources.model import ModelList
 from resources.agent import AgentList
-from views.parametrization import parametrization_blueprint
-from views.show_results import show_results_blueprint
+from views.homepage import homepage_blueprint
 from views.simulation import simulation_blueprint
 
 """
@@ -23,8 +22,9 @@ HTTP Status
 #####################
 # Flask basic Setup #
 #####################
+path_pages = os.path.join(os.getcwd(), 'pages')
+app = Flask(__name__, template_folder=path_pages, static_folder=path_pages)
 
-app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True # To allow flask propagating exception even if debug is set to false on app
 app.secret_key = os.urandom(64)
 
@@ -33,9 +33,8 @@ app.secret_key = os.urandom(64)
 #  (Views)  #
 #############
 
-app.register_blueprint(parametrization_blueprint, url_prefix="/")
+app.register_blueprint(homepage_blueprint, url_prefix="/")
 app.register_blueprint(simulation_blueprint, url_prefix="/simulation")
-app.register_blueprint(show_results_blueprint, url_prefix="/show_results")
 
 #############
 # Resources #
