@@ -15,9 +15,6 @@ def execution():
 
         model = request.form['model']
 
-        from pdb import set_trace
-        set_trace()
-
         execute_selected_simulation(model)
 
         write_simulation_results_in_results_html(model)

@@ -6,13 +6,17 @@ from typing import Dict, List, Tuple
 import re
 
 
-class Database(metaclass=ABCMeta):    
+class Database:    
 
     """
     Colections of methods to initializate and
-    access Redis in memory Database
+    access in memory Database
     """
-    r = redis.Redis(host='localhost', port=6379, db=0)
+
+    # Redis
+    # r = redis.Redis(host='localhost', port=6379, db=0)
+    parameters: Dict = {}
+    
 
     @staticmethod
     def initialize() -> None:
@@ -34,7 +38,10 @@ class Database(metaclass=ABCMeta):
         example_and_model_files.extend(os.listdir(path_models))
         list_models = sorted(list(set(filter(
             lambda file: '__' not in file, example_and_model_files))))
-        Database.r.set("models", json.dumps(list_models))
+
+        # Redis
+        # Database.r.set("models", json.dumps(list_models))
+        Database.parameters['models'] = list_models
 
         ##############
         # Model Item #      
@@ -87,7 +94,9 @@ class Database(metaclass=ABCMeta):
 
                     di_agents[model_name] = agent_concrete_classes
 
-        Database.r.set("agents", json.dumps(di_agents))
+        # Redis
+        # Database.r.set("agents", json.dumps(di_agents))
+        Database.parameters['agents'] = di_agents
 
         #################
         # -> 02: Spaces #
@@ -95,4 +104,7 @@ class Database(metaclass=ABCMeta):
 
     @staticmethod
     def get(key: str) -> Dict:      
-        return {key: json.loads(Database.r.get(key))}
+        # Redis
+        # return {key: json.loads(Database.r.get(key))}
+        return {key: Database.parameters[key]}
+
