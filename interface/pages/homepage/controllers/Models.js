@@ -2,7 +2,7 @@ class Models {
 
 	constructor(){
 
-		this._modelsEl = document.getElementById("models");
+		this._modelsEl = document.querySelector("models");
 
 		this.initializate();			
 
@@ -15,6 +15,7 @@ class Models {
 
 	}
 
+    // APIs
 
     getModels(){
         const url = 'models';
@@ -27,7 +28,8 @@ class Models {
 
     }
     
-
+    // Components
+    
     renderModels = (models) => {
     	let modelsEl = document.createElement("div");
 
@@ -40,6 +42,7 @@ class Models {
         }    
 
     	modelsEl.innerHTML = `
+            <h3>Models</h3>
     	 	<label for="select-model">Model: choose a model to simulate</label><br>
     		<select id="select-model" name="model">
 				${

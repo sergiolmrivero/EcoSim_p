@@ -68,19 +68,34 @@
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"name": "Anaconda Python Builder",
 			"selector": "source.python",
-			"shell_cmd": "\"/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python\" -u \"$file\""
+			"shell_cmd": "\"/home/bruno/Documents/dev/software-fundamentals/venv-software-fundamentals/bin/python\" -u \"$file\""
 		}
 	],
 	"folders":
 	[
 		{
-			"path": ".",
+			"path": "."
 		},
 		{
 			"path": "../clone-price-of-chair-new"
 		},
 		{
 			"path": "../learning-distributed-systems"
+		},
+		{
+			"path": "../clone-coder-javascript"
+		},
+		{
+			"path": "../clone-rest-api-sections/"
+		},
+		{
+			"path": "../learning-flask/bootstrap"
+		},
+		{
+			"path": "../learning-html"
+		},
+		{
+			"path": "../learning-css"
 		}
 	],
 	"python_interpreter": "/home/bruno/Documents/dev/ecosim/venv-ecosim/bin/python"

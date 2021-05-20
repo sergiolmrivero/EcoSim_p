@@ -2,16 +2,18 @@ class Homepage {
 
 	constructor(){
 
-		this._formEl = document.getElementById("form-simulation-execution")
-		this._parameters = {simulation: [], model: [], spaces: [], agents: [], observers: []};
+		this._formEl = document.querySelector("form");		
 
-		this._simulationMenuEl = document.querySelector("#simulation");
-		this._modelMenuEl = document.querySelector("#model");
-		this._spacesMenuEl = document.querySelector("#spaces");
-		this._agentsMenuEl = document.querySelector("#agents");
-		this._observersMenuEl = document.querySelector("#observers");
+		this._arrayContent = Array.prototype.slice.call(document.querySelectorAll("aside > [content]"));
 
-		this._arrMainDivEl = Array.prototype.slice.call(document.querySelectorAll(".main > div"));
+		this._contentResultEl = document.querySelector("result");
+
+		// Buttons
+
+		this._btnModels = document.querySelector(".btn-models");
+		this._btnSimulate = document.querySelector(".btn-simulate");		
+		this._btnStop = document.querySelector(".btn-stop");
+		this._btnResult = document.querySelector(".btn-result");
 
 		this.initializate();
 		
@@ -19,64 +21,125 @@ class Homepage {
 
 	}
 
-	addEventListenerToMenuItemToHideCorrespondingDiv(menuItemEl, id_div) {
-		menuItemEl.addEventListener("click", e => {
-			this.hideElement(id_div);
+	// Events
+
+	addEventListenerToMenuItemToHideCorrespondingContent(contentSelectorEl, selector) {
+		contentSelectorEl.addEventListener("click", e => {
+			this.hideContent(selector);
 		});		
 	}
 
-	addEventListenerToMenuItemToShowCorrespondingDiv(menuItemEl, id_div) {
-		menuItemEl.addEventListener("click", e => {
-			this.showElement(id_div);			
+	addEventListenerToMenuItemToShowCorrespondingContent(contentSelectorEl, selector) {
+		contentSelectorEl.addEventListener("click", e => {
+			this.showContent(selector);			
 		});		
 	}
 
-	initializate() {	
+	showContent(selector)
+	{
 
-		// this._arrMainDivEl.slice(1, this._arrMainDivEl.length).forEach(divEl => {
-		// 	this.hideElement(divEl.id);
-		// });
+		this._arrayContent.forEach(contentEl => {
 
-		document.querySelectorAll(".sidenav > a").forEach(aEl => {
-			this.addEventListenerToMenuItemToShowCorrespondingDiv(aEl, "div-" + aEl.id);			
-		});
-
-	}
-
-	showElement(i) {
-
-		this._arrMainDivEl.forEach(divEl => {
-
-			// hiding displayed elements before show the clicked div corresponding
+			// hiding displayed elements before show the clicked contentEl corresponding
 			// to clicked menu item
 
-			divEl.style.display = "none";
+			contentEl.style.display = "none";
 
 
 		});
 
-		document.querySelector("#" + i).style.display = "block";
+		document.querySelector(selector).style.display = "block";
 	}
 
-	hideElement(i) {
-		document.querySelector("#" + i).style.display = "none";
+	hideContent(selector)
+	{
+		document.querySelector(selector).style.display = "none";
 	}
 
-	onSubmit() {
+	initializate()
+	{
+
+		document.querySelectorAll("sidebar > [content-selector]").forEach(contentSelectorEl => {
+
+			const selector = contentSelectorEl.getAttribute("content-selector");
+
+			this.addEventListenerToMenuItemToShowCorrespondingContent(contentSelectorEl, selector);
+
+			});
+
+		this._btnModels.addEventListener(["click"], event => {
+			this._btnSimulate.style.display = 'block';
+			caches.delete('result/download/csv');
+		});
+
+		this._btnResult.addEventListener(["click"], event => {
+			this._btnSimulate.style.display = 'none';
+		})
+
+		caches.delete('result/download/csv');
+	}
+
+	// APIs
+
+    postResult(event)
+    {
+	    const form = event.target;
+
+	    const data = new FormData(form);
+
+	    data.append('ajax', true);
+
+	    const options = {
+	        method: form.method,
+	        body: new URLSearchParams(data)
+	    };
+        
+	    try
+	    {   
+	        // POST            
+	        
+	        fetch(form.action, options)
+	            .then(resp => {	                
+
+	                this.showContent("result");
+	                
+	                this._btnModels.style.display = "block";
+	                this._btnSimulate.style.display = "none";	                
+	                this._btnStop.style.display = "none";
+	                this._btnResult.style.display = "block";	                
+
+	            })
+
+	    }
+
+	    catch (e)
+	    {
+	        this._contentResultEl.innerHTML = e;
+	    }
+
+	}
+
+	// Forms
+
+	onSubmit()
+	{
 		this._formEl.addEventListener("submit", event => {
-			// event.preventDefault();			
-			this.showElement("div-wait-simulation-ends");
 
-			this._simulationMenuEl.style.display = "none";
-			this._modelMenuEl.style.display = "none";
-			this._spacesMenuEl.style.display = "none";
-			this._agentsMenuEl.style.display = "none";
-			this._observersMenuEl.style.display = "none";
-			document.getElementById("sidenav-input-simulate-exec").style.display = "none";
+			event.preventDefault();
+			event.stopPropagation();
 
-			document.getElementById("sidenav-input-simulate-stop").style.display = "block";
+			this.showContent("progress");
+			
+			this._btnModels.style.display = "none";
+			this._btnSimulate.style.display = "none";			
+			this._btnStop.style.display = "block";
+			this._btnResult.style.display = "none";			
+			
+			this.showContent("progress");
 
+			this.postResult(event);
+			
 		});
 	}
-	
+
 }

@@ -1,38 +1,72 @@
-body {
-  font-family: "Lato", sans-serif;
+body {    
+    height: 100%;
+    padding: 0;
 }
 
-.sidenav {
-  height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 20px;
+nav {    
+    margin-left: 0px;
+    width: 100%;    
 }
 
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
+.nav-title {
+    font-size: 40px;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
+.container {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-.main {
-  margin-left: 160px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
+container-row {
+    margin: 0px;        
+    padding: 0px;    
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+sidebar {    
+    max-height: 300px;
+}
+
+aside {            
+    margin: 0px;
+    padding: 10px;
+    width: 100%;
+
+}
+
+aside > models {
+    display: block;
+}
+
+aside > progress {
+    display: none;
+}
+
+aside > result {
+    display: none;
+}
+
+.btn-menu {
+    background-color: #227;
+    border-color: #227;
+}
+
+.btn-models {
+    border-radius: 0px;
+}
+
+.btn-stop {
+    display: none;
+}
+
+.btn-simulate:hover {
+
+    background-color:  rgb(200, 0, 50);
+    border-color:  rgb(200, 0, 50);
+}
+
+.btn-result:hover {
+
+    background-color:  rgb(0, 150, 100);
+    border-color:  rgb(0, 150, 100);
 }
