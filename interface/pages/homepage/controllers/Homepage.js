@@ -75,8 +75,7 @@ class Homepage {
 		this._btnResult.addEventListener(["click"], event => {
 			this._btnSimulate.style.display = 'none';
 		})
-
-		caches.delete('result/download/csv');
+		
 	}
 
 	// APIs
@@ -125,8 +124,7 @@ class Homepage {
 	{
 		this._formEl.addEventListener("submit", event => {
 
-			event.preventDefault();
-			event.stopPropagation();
+			event.preventDefault();			
 
 			this.showContent("progress");
 			

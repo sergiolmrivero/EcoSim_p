@@ -58,7 +58,7 @@ def write_simulation_results_in_results_html(model: str) -> None:
 			f_html_web.writelines(f_html_ecos.readlines())
 
 
-def get_csv_result_paths(model) -> list:
+def get_csv_result_paths(model: str) -> list:
 	"""
 	Return a List of csv result paths
 	"""
@@ -73,14 +73,14 @@ def get_csv_result_paths(model) -> list:
 
 	path_model_runs = os.path.join(path, model, "runs")
 
-	csv_result_files = filter(lambda file: ".csv" in file, os.listdir(path_model_runs))
+	csv_result_files = list(filter(lambda file: ".csv" in file, os.listdir(path_model_runs)))
 
-	paths_csvs = list(map(lambda file: os.path.join(path_model_runs, file), csv_result_files))	
+	paths_csvs = list(map(lambda file: os.path.join(path_model_runs, file), csv_result_files))
 
 	return paths_csvs
 
 
-def generate_zip_csv_result(model) -> None:
+def generate_zip_csv_result(model: str, older_csv_files_paths: str) -> None:
 	"""
 	Get and compress CSV result files
 	"""
@@ -92,13 +92,14 @@ def generate_zip_csv_result(model) -> None:
 	# Delete older result files	
 
 	os.system(f'rm {path_files}/*.csv')
+
 	os.system(f'rm {path_files}/*.zip')
 
 	# copy csv files to interface/files	
 	
-	paths_csvs = []
+	older_and_new_csv_files_paths_together = get_csv_result_paths(model)
 
-	paths_csvs.extend(get_csv_result_paths(model))	
+	paths_csvs = filter(lambda file: file not in older_csv_files_paths, older_and_new_csv_files_paths_together)	
 
 	for path_csv in paths_csvs:
 
@@ -111,4 +112,5 @@ def generate_zip_csv_result(model) -> None:
 	# write zip file form interface/files
 
 	path_zip = os.path.join(path_files, 'result.zip')
+	
 	os.system(f'zip -r {path_zip} {path_files}')

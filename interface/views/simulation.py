@@ -1,4 +1,5 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request
+from common.utils import get_csv_result_paths
 from common.utils import execute_selected_simulation
 from common.utils import write_simulation_results_in_results_html
 from common.utils import generate_zip_csv_result
@@ -16,10 +17,12 @@ def execution():
 
         model = request.form['model']
 
+        older_csv_files_paths = get_csv_result_paths(model)
+
         execute_selected_simulation(model)
 
         write_simulation_results_in_results_html(model)
 
-        generate_zip_csv_result(model)        
+        generate_zip_csv_result(model, older_csv_files_paths)    
 
-    return render_template('/results/results.html')
+    return ('', 204)

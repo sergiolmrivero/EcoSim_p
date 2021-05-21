@@ -17,6 +17,7 @@ HTTP Status
 200 - Ok
 201 - Created
 404 - Error
+204 - No Content
 """
 
 #####################
